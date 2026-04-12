@@ -30,7 +30,7 @@ export function ProductCardGrid({ product }: Props) {
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group relative flex flex-col"
+      className="group relative flex flex-col m-0 p-0"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => {
         setHovered(false);
@@ -102,7 +102,7 @@ export function ProductCardGrid({ product }: Props) {
       </div>
 
       {/* Card text */}
-      <div className="bg-background px-2 py-3">
+      <div className="bg-white px-3 py-3">
         {product.kicker && (
           <p className="text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground">
             {product.kicker}
