@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ChevronLeft, ChevronRight, Plus, Heart } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
 import { CATALOG, CATALOG_SLUGS, FANTASMAGORY_RECS, type CatalogSlug } from "@/lib/catalog";
 import { Accordion } from "@/components/Accordion";
 import { AddToCartButton } from "@/components/AddToCartButton";
@@ -39,12 +40,20 @@ export default function ProductPage({ params }: Props) {
       <div className="flex flex-col lg:flex-row">
         {/* LEFT — scrollable stacked images */}
         <div className="relative lg:w-[55%] xl:w-[60%]">
-          <button
-            className="absolute left-6 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-background shadow-sm transition-opacity hover:opacity-70"
-            aria-label="Back"
+          {/* Expandable back button */}
+          <Link
+            href="/perfumes"
+            className="group absolute left-6 top-[90px] z-20 flex h-10 items-center overflow-hidden rounded-full bg-white/90 shadow-sm backdrop-blur-sm transition-all duration-300 hover:pr-4"
+            aria-label="Back to All Perfumes"
           >
-            <ChevronLeft size={18} />
-          </button>
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center">
+              <ChevronLeft size={18} />
+            </div>
+            <span className="max-w-0 overflow-hidden whitespace-nowrap text-[0.8rem] tracking-wide transition-all duration-300 group-hover:max-w-[220px]">
+              Perfumes and Beauty — All Perfumes
+            </span>
+          </Link>
+
           <div className="flex flex-col">
             {product.images.map((img, i) => (
               // eslint-disable-next-line @next/next/no-img-element
