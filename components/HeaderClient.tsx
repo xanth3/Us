@@ -19,9 +19,7 @@ export function HeaderClient() {
   return (
     <header
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/97 border-b border-border shadow-[0_1px_0_0_hsl(var(--border))]"
-          : "bg-transparent border-b border-transparent"
+        scrolled ? "bg-white" : "bg-transparent"
       }`}
     >
       <div className="flex items-center justify-between px-6 py-4">
