@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CATALOG, FEATURED_SLUGS } from "@/lib/catalog";
-import { WishlistButton } from "@/components/WishlistButton";
+import { ProductCardGrid } from "@/components/ProductCardGrid";
 
 export default function HomePage() {
   const featured = FEATURED_SLUGS.map((s) => CATALOG[s]);
@@ -33,35 +33,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured grid */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <h2 className="mb-8 text-2xl font-light" style={{ fontFamily: "var(--font-display)" }}>
-          Featured
-        </h2>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+      {/* Featured grid — edge-to-edge, 4 columns, no gaps */}
+      <section>
+        <div className="grid grid-cols-4 gap-0">
           {featured.map((product) => (
-            <Link
-              key={product.slug}
-              href={`/products/${product.slug}`}
-              className="group relative flex flex-col bg-secondary"
-            >
-              <div className="absolute right-3 top-3 z-10">
-                <WishlistButton slug={product.slug} />
-              </div>
-              <div className="aspect-[3/4] overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={product.images[0]?.src ?? ""}
-                  alt={product.images[0]?.alt ?? product.name}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-3">
-                <p className="text-sm font-medium">{product.name}</p>
-                <p className="mt-0.5 text-sm text-muted-foreground">${product.price.toFixed(2)}</p>
-              </div>
-            </Link>
+            <ProductCardGrid key={product.slug} product={product} />
           ))}
         </div>
       </section>
