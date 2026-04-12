@@ -29,4 +29,8 @@ export interface Product {
   serviceOffer: ServiceOffer;
   deliveryCopy: string[];
   faqs: FaqSection[];
+  /** Optional collection grouping (e.g. "Les Parfums", "Azur") */
+  collection?: string;
+  /** Optional badge label (e.g. "NEW", "ICON") */
+  badge?: string;
 }
