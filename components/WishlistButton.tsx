@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Heart } from "./icons";
-import { cn } from "@/lib/cn";
 
 const STORAGE_KEY = "us_wishlist";
 
@@ -14,12 +13,7 @@ function getWishlist(): string[] {
   }
 }
 
-interface Props {
-  slug: string;
-  className?: string;
-}
-
-export function WishlistButton({ slug, className }: Props) {
+export function WishlistButton({ slug, className = "" }: { slug: string; className?: string }) {
   const [wished, setWished] = useState(false);
 
   useEffect(() => {
@@ -42,17 +36,11 @@ export function WishlistButton({ slug, className }: Props) {
     <button
       onClick={toggle}
       aria-label={wished ? "Remove from wishlist" : "Add to wishlist"}
-      className={cn(
-        "flex h-8 w-8 items-center justify-center transition-colors",
-        className,
-      )}
+      className={`transition-opacity hover:opacity-60 ${className}`}
     >
       <Heart
-        size={18}
-        className={cn(
-          "transition-colors",
-          wished ? "fill-brand-black stroke-brand-black" : "stroke-brand-black",
-        )}
+        size={20}
+        className={wished ? "fill-foreground text-foreground" : "text-foreground"}
       />
     </button>
   );
