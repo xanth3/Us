@@ -72,7 +72,7 @@ export function AllPerfumesClient({ sections }: Props) {
   return (
     <div>
       {/* ── Sticky filter bar (snaps with navbar) ─────────────────────────────── */}
-      <div className="sticky top-16 z-40 flex items-center justify-between border-b border-border bg-background px-4 py-2.5 sm:px-6">
+      <div className="sticky top-[72px] z-40 flex items-center justify-between border-b border-border bg-background px-4 py-2.5 sm:px-6">
 
         {/* Left: Collection dropdown */}
         <div className="relative">
