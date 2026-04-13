@@ -49,20 +49,19 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
       }}
     >
       {/* ── Height spacers — define the card's total dimensions ── */}
-      {/* The image portion occupies 3:4 aspect; the text strip adds 72px below */}
-      <div className="aspect-[3/4] w-full" />
-      <div className="h-[72px]" />
+      {/* Mobile: taller aspect ratio to fill screen; Desktop: 3/4 aspect with 72px text strip */}
+      <div className="aspect-[9/14] w-full sm:aspect-[3/4]" />
+      <div className="h-[60px] sm:h-[72px]" />
 
       {/* ── Image layer ─────────────────────────────────────────── */}
-      {/* Normally covers just the image portion (calc(100%−72px));       */}
-      {/* on hover it expands to h-full, swallowing the text area below.  */}
+      {/* Mobile: covers most of screen; Desktop: covers image portion only */}
       <div
         className={`absolute inset-x-0 top-0 overflow-hidden bg-[hsl(var(--secondary))]
-                   h-[calc(100%-72px)] transition-[height] duration-500 ease-in-out
-                   ${isFirst ? "group-hover:h-full" : ""}`}
+                   h-[calc(100%-60px)] sm:h-[calc(100%-72px)] transition-[height] duration-500 ease-in-out
+                   ${isFirst ? "sm:group-hover:h-full" : ""}`}
       >
         {/* Quick-view — top-left */}
-        <div className={`absolute left-3 top-3 z-10 opacity-0 transition-opacity duration-200 ${isFirst ? "group-hover:opacity-100" : ""}`}>
+        <div className={`absolute left-3 top-3 z-10 opacity-0 transition-opacity duration-200 hidden sm:block ${isFirst ? "sm:group-hover:opacity-100" : ""}`}>
           <Maximize2 size={15} className="text-foreground drop-shadow-sm" />
         </div>
 
@@ -95,7 +94,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
             <button
               onClick={prev}
               aria-label="Previous image"
-              className={`absolute left-0 top-1/2 z-10 flex h-full w-10 -translate-y-1/2 items-center justify-center bg-gradient-to-r from-black/10 to-transparent opacity-0 transition-opacity duration-200 ${isFirst ? "group-hover:opacity-100" : ""} hover:from-black/20`}
+              className={`absolute left-0 top-1/2 z-10 hidden sm:flex h-full w-10 -translate-y-1/2 items-center justify-center bg-gradient-to-r from-black/10 to-transparent opacity-0 transition-opacity duration-200 ${isFirst ? "sm:group-hover:opacity-100" : ""} hover:from-black/20`}
             >
               <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/80 shadow-sm backdrop-blur-sm">
                 <ChevronLeft size={13} />
@@ -104,7 +103,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
             <button
               onClick={next}
               aria-label="Next image"
-              className={`absolute right-0 top-1/2 z-10 flex h-full w-10 -translate-y-1/2 items-center justify-center bg-gradient-to-l from-black/10 to-transparent opacity-0 transition-opacity duration-200 ${isFirst ? "group-hover:opacity-100" : ""} hover:from-black/20`}
+              className={`absolute right-0 top-1/2 z-10 hidden sm:flex h-full w-10 -translate-y-1/2 items-center justify-center bg-gradient-to-l from-black/10 to-transparent opacity-0 transition-opacity duration-200 ${isFirst ? "sm:group-hover:opacity-100" : ""} hover:from-black/20`}
             >
               <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/80 shadow-sm backdrop-blur-sm">
                 <ChevronRight size={13} />
@@ -115,7 +114,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
 
         {/* Image dots — bottom center */}
         {product.images.length > 1 && (
-          <div className={`absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 gap-1 opacity-0 transition-opacity duration-200 ${isFirst ? "group-hover:opacity-100" : ""}`}>
+          <div className={`absolute bottom-2 left-1/2 z-10 hidden sm:flex -translate-x-1/2 gap-1 opacity-0 transition-opacity duration-200 ${isFirst ? "sm:group-hover:opacity-100" : ""}`}>
             {product.images.map((_, i) => (
               <span
                 key={i}
@@ -129,20 +128,19 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
       </div>
 
       {/* ── Text layer ─────────────────────────────────────────── */}
-      {/* Sits at the bottom of the card; slides down out of view on hover */}
-      {/* On last image: background becomes transparent, text stays visible and black */}
+      {/* Mobile: stays visible with small strip; Desktop: slides down on hover */}
       <div
-        className={`absolute inset-x-0 bottom-0 px-3 py-3 transition-all duration-500 ease-in-out
+        className={`absolute inset-x-0 bottom-0 px-3 py-2 sm:py-3 transition-all duration-500 ease-in-out
                    ${imgIndex === product.images.length - 1 ? "bg-transparent" : "bg-white"}
-                   ${isFirst && imgIndex !== product.images.length - 1 ? "group-hover:translate-y-full" : ""}`}
+                   ${isFirst && imgIndex !== product.images.length - 1 ? "sm:group-hover:translate-y-full" : ""}`}
       >
         {product.kicker && (
-          <p className="text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground">
+          <p className="text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground">
             {product.kicker}
           </p>
         )}
-        <p className="mt-0.5 text-[0.8rem] font-medium tracking-wide text-foreground">{product.name}</p>
-        <p className="mt-0.5 text-[0.75rem] text-foreground">
+        <p className="mt-0.5 text-[0.7rem] sm:text-[0.8rem] font-medium tracking-wide text-foreground">{product.name}</p>
+        <p className="mt-0.5 text-[0.65rem] sm:text-[0.75rem] text-foreground">
           From {formatPrice(product.price, product.currency)}
         </p>
       </div>

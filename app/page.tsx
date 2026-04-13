@@ -33,9 +33,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured grid — edge-to-edge, 4 columns, no gaps */}
+      {/* Featured grid — 2 columns mobile, 4 columns desktop, edge-to-edge, no gaps */}
       <section>
-        <div className="grid grid-cols-4 gap-0">
+        <div className="grid grid-cols-2 gap-0 sm:grid-cols-4">
           {featured.map((product, index) => (
             <ProductCardGrid key={product.slug} product={product} isFirst={index === 0} />
           ))}

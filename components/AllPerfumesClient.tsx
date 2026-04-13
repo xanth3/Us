@@ -167,7 +167,7 @@ export function AllPerfumesClient({ sections }: Props) {
             </div>
 
             {/* Edge-to-edge product grid */}
-            <div className="grid grid-cols-4 gap-0">
+            <div className="grid grid-cols-2 gap-0 sm:grid-cols-4">
               {section.products.slice(0, visible).map((product, index) => (
                 <ProductCardGrid key={product.slug} product={product} isFirst={index === 0} />
               ))}
