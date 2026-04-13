@@ -9,10 +9,17 @@ import { MenuDrawer } from "./MenuDrawer";
 
 export function HeaderClient() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      setHidden(y > lastY && y > 80);
+      lastY = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -23,7 +30,7 @@ export function HeaderClient() {
       <header
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
           scrolled ? "bg-white" : "bg-transparent"
-        }`}
+        } ${hidden ? "-translate-y-full" : "translate-y-0"}`}
       >
         <div className="flex items-center justify-between px-6 py-4">
           {/* Left */}
