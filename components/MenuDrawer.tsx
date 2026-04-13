@@ -126,7 +126,6 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "Perfumes and Beauty",
     href: "/perfumes",
-    bold: true,
     submenu: {
       featured: [
         { src: "/assets/perfume-hero.jpg", alt: "All Fragrances", caption: "All Fragrances" },
