@@ -9,6 +9,8 @@ interface CartItem {
   currency: string;
   imageSrc: string;
   quantity: number;
+  sku?: string;
+  size?: string;
 }
 
 interface CartContextValue {

@@ -17,7 +17,7 @@ export default function CheckoutPage() {
     samples: false,
     gifting: false,
   });
-  const [selectedSample, setSelectedSample] = useState(null);
+  const [selectedSample, setSelectedSample] = useState<string | null>(null);
   const [giftMessage, setGiftMessage] = useState("");
   const [includeGiftBag, setIncludeGiftBag] = useState(false);
 
@@ -26,7 +26,7 @@ export default function CheckoutPage() {
   const tax = subtotal > 0 ? subtotal * 0.1 : 0; // 10% tax
   const total = subtotal + shipping + tax;
 
-  const toggleSection = (section) => {
+  const toggleSection = (section: "samples" | "gifting") => {
     setExpandedSections((prev) => ({
       ...prev,
       [section]: !prev[section],
@@ -183,7 +183,7 @@ export default function CheckoutPage() {
                           value={giftMessage}
                           onChange={(e) => setGiftMessage(e.target.value)}
                           className="w-full border border-border p-3 text-sm font-light rounded focus:outline-none focus:ring-1 focus:ring-foreground mb-3"
-                          rows="3"
+                          rows={3}
                         />
                       )}
                     </div>
