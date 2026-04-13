@@ -11,12 +11,12 @@ import { useCart } from "./CartProvider";
 export function HeaderClient() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
+  const [isHeaderHidden, setIsHeaderHidden] = useState(true); // Start hidden
   const { setCartDrawerOpen } = useCart();
 
   // Use refs to avoid dependency updates causing scroll listener recreation
   const scrollRef = useRef(0);
-  const lastHiddenStateRef = useRef(false);
+  const lastHiddenStateRef = useRef(true); // Match initial state
   const rafRef = useRef<number>();
 
   useEffect(() => {
@@ -44,9 +44,9 @@ export function HeaderClient() {
         // Update scroll background
         setScrolled(currentScrollY > 8);
 
-        // Hide header only when scrolling down significantly
-        // Only update state if the direction has actually changed to avoid constant re-renders
-        const shouldHide = currentScrollY > scrollThreshold && scrollDirection === 1;
+        // Hide header when scrolling down, show when scrolling up
+        // Start hidden and only show on scroll up
+        const shouldHide = scrollDirection === 1;
         if (shouldHide !== lastHiddenStateRef.current) {
           setIsHeaderHidden(shouldHide);
           lastHiddenStateRef.current = shouldHide;
