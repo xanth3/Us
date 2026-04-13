@@ -3,15 +3,35 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/components/CartProvider";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
+// Generate random 6-digit SKU
+const generateSKU = () => {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+};
 
 export default function CheckoutPage() {
   const { items, clearCart, setCartDrawerOpen } = useCart();
   const [isProcessing, setIsProcessing] = useState(false);
+  const [expandedSections, setExpandedSections] = useState({
+    samples: false,
+    gifting: false,
+  });
+  const [selectedSample, setSelectedSample] = useState(null);
+  const [giftMessage, setGiftMessage] = useState("");
+  const [includeGiftBag, setIncludeGiftBag] = useState(false);
 
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const shipping = 0; // Free shipping
   const tax = subtotal > 0 ? subtotal * 0.1 : 0; // 10% tax
   const total = subtotal + shipping + tax;
+
+  const toggleSection = (section) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
 
   const handlePayPalCheckout = async () => {
     setIsProcessing(true);
@@ -24,8 +44,8 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white pt-24">
-      <div className="mx-auto max-w-7xl px-6 py-8">
+    <div className="min-h-screen bg-white pt-24 pb-24 lg:pb-8">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-8">
         {items.length === 0 ? (
           <div className="text-center py-20">
             <h1 className="text-3xl font-light mb-4">Your cart is empty</h1>
@@ -44,12 +64,151 @@ export default function CheckoutPage() {
             {/* Main content */}
             <div className="lg:col-span-2">
               {/* Header */}
-            <div className="mb-8">
-              <h1 className="text-4xl font-light mb-1">Checkout</h1>
-            </div>
+              <div className="mb-8 lg:mb-8">
+                <h1 className="text-2xl lg:text-4xl font-light mb-1">
+                  My Shopping Cart ({items.length})
+                </h1>
+              </div>
 
-              {/* Delivery Section */}
-              <div className="mb-12">
+              {/* Product Details - Mobile View */}
+              <div className="lg:hidden space-y-6 mb-8">
+                {items.map((item, index) => (
+                  <div key={item.slug} className="border border-border p-4 rounded-lg">
+                    {/* Product Image */}
+                    <div className="mb-4 bg-gray-50 p-3 rounded flex justify-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.imageSrc}
+                        alt={item.name}
+                        className="h-32 w-32 object-contain"
+                        width={128}
+                        height={128}
+                      />
+                    </div>
+
+                    {/* Product Info */}
+                    <div className="space-y-3">
+                      {/* SKU and Name */}
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">{item.sku || generateSKU()}</p>
+                        <h3 className="text-sm font-light">{item.name}</h3>
+                      </div>
+
+                      {/* Size */}
+                      <div>
+                        <p className="text-xs font-light">Size: <span className="text-muted-foreground">{item.size || "100ML - 3.4 FL.OZ"}</span></p>
+                      </div>
+
+                      {/* Quantity and Price */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3 border border-border rounded">
+                          <button className="px-3 py-2 text-lg font-light hover:bg-gray-50">−</button>
+                          <span className="px-2 text-sm font-light">{item.quantity}</span>
+                          <button className="px-3 py-2 text-lg font-light hover:bg-gray-50">+</button>
+                        </div>
+                        <p className="text-base font-light">${(item.price * item.quantity).toFixed(2)}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Sample Selection - Mobile */}
+              <div className="lg:hidden border-t border-border pt-6 mb-6">
+                <button
+                  onClick={() => toggleSection("samples")}
+                  className="w-full flex items-center justify-between py-4"
+                >
+                  <div>
+                    <h3 className="text-sm font-light text-left">Sample Selection</h3>
+                    <p className="text-xs text-muted-foreground text-left">Complimentary</p>
+                  </div>
+                  {expandedSections.samples ? (
+                    <ChevronUp className="w-5 h-5" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5" />
+                  )}
+                </button>
+
+                {expandedSections.samples && (
+                  <div className="pl-0 space-y-3 pb-4">
+                    <p className="text-xs text-muted-foreground mb-3">Choose 2 optional complimentary samples</p>
+                    {["Sample 1", "Sample 2", "Sample 3", "Sample 4"].map((sample) => (
+                      <label key={sample} className="flex items-center gap-3 p-3 border border-border rounded hover:bg-gray-50 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          className="w-4 h-4 rounded"
+                          onChange={() => setSelectedSample(sample)}
+                        />
+                        <span className="text-sm font-light">{sample}</span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Gifting and Packaging - Mobile */}
+              <div className="lg:hidden border-t border-border pt-6 mb-6">
+                <button
+                  onClick={() => toggleSection("gifting")}
+                  className="w-full flex items-center justify-between py-4"
+                >
+                  <div>
+                    <h3 className="text-sm font-light text-left">Gifting and Packaging</h3>
+                    <p className="text-xs text-muted-foreground text-left">Complimentary</p>
+                  </div>
+                  {expandedSections.gifting ? (
+                    <ChevronUp className="w-5 h-5" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5" />
+                  )}
+                </button>
+
+                {expandedSections.gifting && (
+                  <div className="pl-0 space-y-4 pb-4">
+                    {/* Include Gift Message */}
+                    <div>
+                      <label className="flex items-center gap-3 p-3 border border-border rounded hover:bg-gray-50 cursor-pointer mb-3">
+                        <input
+                          type="checkbox"
+                          checked={giftMessage !== ""}
+                          className="w-4 h-4 rounded"
+                          onChange={(e) => setGiftMessage(e.target.checked ? "" : "")}
+                        />
+                        <span className="text-sm font-light">Include a Gift Message</span>
+                      </label>
+                      {giftMessage !== undefined && (
+                        <textarea
+                          placeholder="Add a personal touch to your order"
+                          value={giftMessage}
+                          onChange={(e) => setGiftMessage(e.target.value)}
+                          className="w-full border border-border p-3 text-sm font-light rounded focus:outline-none focus:ring-1 focus:ring-foreground mb-3"
+                          rows="3"
+                        />
+                      )}
+                    </div>
+
+                    {/* Include Shopping Bag */}
+                    <div>
+                      <label className="flex items-center gap-3 p-3 border border-border rounded hover:bg-gray-50 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={includeGiftBag}
+                          onChange={(e) => setIncludeGiftBag(e.target.checked)}
+                          className="w-4 h-4 rounded"
+                        />
+                        <div className="flex-1">
+                          <p className="text-sm font-light">Include a Shopping Bag</p>
+                          <p className="text-xs text-muted-foreground">Your bag preference may not be saved with PayPal Express. For the most seamless experience, please use standard checkout.</p>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Delivery Section - Desktop */}
+              <div className="hidden lg:block mb-12">
                 <h2 className="text-lg font-light mb-6 tracking-wide">Delivery Information</h2>
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
@@ -94,8 +253,8 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Shipping Method */}
-              <div className="mb-12">
+              {/* Shipping Method - Desktop */}
+              <div className="hidden lg:block mb-12">
                 <h2 className="text-lg font-light mb-6 tracking-wide">Shipping & Delivery</h2>
                 <div className="space-y-3">
                   <label className="flex items-center gap-3 border border-border p-4 cursor-pointer hover:bg-gray-50">
@@ -124,8 +283,8 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Payment Section */}
-              <div className="mb-12">
+              {/* Payment Section - Desktop */}
+              <div className="hidden lg:block mb-12">
                 <h2 className="text-lg font-light mb-6 tracking-wide">Payment</h2>
                 <div className="space-y-3">
                   {/* PayPal Button */}
@@ -170,7 +329,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Order Summary Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="hidden lg:block lg:col-span-1">
               <div className="sticky top-28 border border-border p-8">
                 <h2 className="text-lg font-light mb-6 tracking-wide">Order Summary</h2>
 
@@ -219,6 +378,38 @@ export default function CheckoutPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Order Summary - Fixed at Bottom */}
+        {items.length > 0 && (
+          <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-border p-4">
+            <div className="max-w-7xl mx-auto space-y-4">
+              {/* Price breakdown */}
+              <div className="space-y-2 text-sm font-light mb-4">
+                <div className="flex justify-between text-xs">
+                  <span>Subtotal</span>
+                  <span>${subtotal.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-xs">
+                  <span>Shipping</span>
+                  <span>Complimentary</span>
+                </div>
+                <div className="border-t border-border pt-2 flex justify-between font-light text-base">
+                  <span>Total</span>
+                  <span>${total.toFixed(2)}</span>
+                </div>
+              </div>
+
+              {/* Proceed to Checkout Button */}
+              <button
+                onClick={handlePayPalCheckout}
+                disabled={isProcessing}
+                className="w-full bg-black text-white py-4 text-xs font-light uppercase tracking-widest hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity rounded"
+              >
+                {isProcessing ? "Processing..." : "Proceed to Checkout"}
+              </button>
             </div>
           </div>
         )}
