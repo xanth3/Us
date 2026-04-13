@@ -54,12 +54,12 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
       {/* Normally covers just the image portion (calc(100%−72px));       */}
       {/* on hover it expands to h-full, swallowing the text area below.  */}
       <div
-        className="absolute inset-x-0 top-0 overflow-hidden bg-[hsl(var(--secondary))]
+        className={`absolute inset-x-0 top-0 overflow-hidden bg-[hsl(var(--secondary))]
                    h-[calc(100%-72px)] transition-[height] duration-500 ease-in-out
-                   group-hover:h-full"
+                   ${isFirst ? "group-hover:h-full" : ""}`}
       >
         {/* Quick-view — top-left */}
-        <div className="absolute left-3 top-3 z-10 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <div className={`absolute left-3 top-3 z-10 opacity-0 transition-opacity duration-200 ${isFirst ? "group-hover:opacity-100" : ""}`}>
           <Maximize2 size={15} className="text-foreground drop-shadow-sm" />
         </div>
 
@@ -88,7 +88,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
             <button
               onClick={prev}
               aria-label="Previous image"
-              className="absolute left-0 top-1/2 z-10 flex h-full w-10 -translate-y-1/2 items-center justify-center bg-gradient-to-r from-black/10 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100 hover:from-black/20"
+              className={`absolute left-0 top-1/2 z-10 flex h-full w-10 -translate-y-1/2 items-center justify-center bg-gradient-to-r from-black/10 to-transparent opacity-0 transition-opacity duration-200 ${isFirst ? "group-hover:opacity-100" : ""} hover:from-black/20`}
             >
               <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/80 shadow-sm backdrop-blur-sm">
                 <ChevronLeft size={13} />
@@ -97,7 +97,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
             <button
               onClick={next}
               aria-label="Next image"
-              className="absolute right-0 top-1/2 z-10 flex h-full w-10 -translate-y-1/2 items-center justify-center bg-gradient-to-l from-black/10 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100 hover:from-black/20"
+              className={`absolute right-0 top-1/2 z-10 flex h-full w-10 -translate-y-1/2 items-center justify-center bg-gradient-to-l from-black/10 to-transparent opacity-0 transition-opacity duration-200 ${isFirst ? "group-hover:opacity-100" : ""} hover:from-black/20`}
             >
               <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/80 shadow-sm backdrop-blur-sm">
                 <ChevronRight size={13} />
@@ -108,7 +108,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
 
         {/* Image dots — bottom center */}
         {product.images.length > 1 && (
-          <div className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 gap-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+          <div className={`absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 gap-1 opacity-0 transition-opacity duration-200 ${isFirst ? "group-hover:opacity-100" : ""}`}>
             {product.images.map((_, i) => (
               <span
                 key={i}
@@ -124,9 +124,9 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
       {/* ── Text layer ─────────────────────────────────────────── */}
       {/* Sits at the bottom of the card; slides down out of view on hover */}
       <div
-        className="absolute inset-x-0 bottom-0 bg-white px-3 py-3
+        className={`absolute inset-x-0 bottom-0 bg-white px-3 py-3
                    transition-transform duration-500 ease-in-out
-                   group-hover:translate-y-full"
+                   ${isFirst ? "group-hover:translate-y-full" : ""}`}
       >
         {product.kicker && (
           <p className="text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground">
