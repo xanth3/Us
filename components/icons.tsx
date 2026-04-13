@@ -7,5 +7,6 @@ export {
   ChevronRight,
   ChevronLeft,
   Plus,
+  Minus,
   X,
 } from "lucide-react";

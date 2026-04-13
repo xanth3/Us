@@ -6,10 +6,12 @@ import { Menu, Search, Heart, User, ShoppingBag } from "./icons";
 import { BrandLogo } from "./BrandLogo";
 import { CartBadge } from "./CartBadge";
 import { MenuDrawer } from "./MenuDrawer";
+import { useCart } from "./CartProvider";
 
 export function HeaderClient() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { setCartDrawerOpen } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -84,6 +86,7 @@ export function HeaderClient() {
               <User size={18} />
             </button>
             <button
+              onClick={() => setCartDrawerOpen(true)}
               className={`relative transition-opacity hover:opacity-60 ${
                 scrolled ? "text-foreground" : "text-foreground drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"
               }`}
