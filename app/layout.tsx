@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { BottomNavigation } from "@/components/BottomNavigation";
 import { CartProvider } from "@/components/CartProvider";
 import { CartDrawer } from "@/components/CartDrawer";
 import { ToastProvider } from "@/components/ToastProvider";
+import { GesturesClient } from "@/components/GesturesClient";
 
 export const metadata: Metadata = {
   title: {
@@ -50,9 +52,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ToastProvider>
           <CartProvider>
+            <GesturesClient />
             <Header />
-            <main className="pt-[60px]">{children}</main>
+            <main className="pt-[60px] pb-[70px] sm:pb-0">{children}</main>
             <Footer />
+            <BottomNavigation />
             <CartDrawer />
           </CartProvider>
         </ToastProvider>

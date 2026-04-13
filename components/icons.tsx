@@ -9,4 +9,5 @@ export {
   Plus,
   Minus,
   X,
+  Home,
 } from "lucide-react";

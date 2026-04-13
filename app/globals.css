@@ -154,8 +154,18 @@
     letter-spacing: 0.04em;
   }
 
+  /* iOS Touch Target Sizing (44px minimum) */
   .btn-cart {
-    @apply bg-primary text-primary-foreground w-full py-4 text-sm tracking-widest uppercase font-medium transition-opacity hover:opacity-90;
+    @apply bg-primary text-primary-foreground w-full py-3 text-sm tracking-widest uppercase font-medium transition-opacity hover:opacity-90 min-h-[44px] flex items-center justify-center;
+  }
+
+  button, a[role="button"] {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Optimize tap zones on iOS */
+  .touch-target {
+    @apply min-h-[48px] min-w-[48px];
   }
 
   .engraving-card {
@@ -172,6 +182,6 @@
   }
 
   .section-divider {
-    @apply border-t border-border py-4 flex items-center justify-between cursor-pointer;
+    @apply border-t border-border py-4 flex items-center justify-between cursor-pointer min-h-[44px];
   }
 }

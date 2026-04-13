@@ -45,6 +45,7 @@ export function ProductDetailsSheet({ children, product }: Props) {
         style={{
           transform: `translateY(${sheetY}%)`,
           transition: "transform 0.1s ease-out",
+          paddingBottom: "var(--safe-area-inset-bottom, 0)",
         }}
         className="fixed bottom-0 left-0 right-0 z-40 w-full max-h-[calc(100vh-60px)] overflow-hidden rounded-t-2xl bg-background shadow-2xl sm:static sm:rounded-none sm:shadow-none sm:max-h-none sm:overflow-visible sm:transform-none"
       >

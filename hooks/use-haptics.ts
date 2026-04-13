@@ -1,5 +1,5 @@
 export function useHaptics() {
-  const trigger = (pattern: "light" | "medium" | "heavy" | number | number[] = "light") => {
+  const trigger = (pattern: "light" | "medium" | "heavy" | "success" | "error" | "warning" | number | number[] = "light") => {
     if (typeof window === "undefined") return;
 
     // Check if haptics API is available
