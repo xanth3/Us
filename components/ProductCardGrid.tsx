@@ -32,6 +32,9 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
     <Link
       href={`/products/${product.slug}`}
       className="group relative block overflow-hidden m-0 p-0"
+      style={{
+        animation: "fadeInDelayed 0.6s ease-out 2s both",
+      }}
       onMouseEnter={() => {
         if (isFirst) {
           setHovered(true);
