@@ -1,113 +1,202 @@
-import { Heart, ChevronLeft, Plus, ChevronRight } from "lucide-react";
-import perfumeHero from "@/assets/perfume-hero.jpg";
-import perfumeDetail from "@/assets/perfume-detail.jpg";
-import perfumeLifestyle from "@/assets/perfume-lifestyle.jpg";
+import { Heart, Minus, Plus, ChevronDown } from "lucide-react";
+import { useState } from "react";
 import perfumeThumb from "@/assets/perfume-thumb.png";
-
-const images = [perfumeHero, perfumeDetail, perfumeLifestyle];
+import { Checkbox } from "@/components/ui/checkbox";
 
 const ProductPage = () => {
-  return (
-    <div className="flex flex-col lg:flex-row">
-      {/* Left: Scrollable Images */}
-      <div className="lg:w-[55%] xl:w-[60%] relative">
-        <button
-          className="absolute top-6 left-6 z-10 bg-background rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:opacity-70 transition-opacity"
-          aria-label="Back"
-        >
-          <ChevronLeft size={18} />
-        </button>
-        <div className="flex flex-col">
-          {images.map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt={`Product view ${i + 1}`}
-              className="w-full h-auto object-cover"
-              loading={i === 0 ? "eager" : "lazy"}
-              width={1536}
-              height={1920}
-            />
-          ))}
-        </div>
-      </div>
+  const [quantity, setQuantity] = useState(2);
+  const [selectedSamples, setSelectedSamples] = useState<string[]>([]);
+  const [expandedSections, setExpandedSections] = useState({
+    samples: false,
+    gifting: false,
+    packaging: false,
+  });
 
-      {/* Right: Sticky Product Info */}
-      <div className="lg:w-[45%] xl:w-[40%]">
-        <div className="lg:sticky lg:top-[73px] lg:h-[calc(100vh-73px)] lg:overflow-y-auto">
-          <div className="px-8 xl:px-16 py-10 lg:py-16">
+  const toggleSection = (section: string) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
+  const toggleSample = (sample: string) => {
+    setSelectedSamples((prev) =>
+      prev.includes(sample) ? prev.filter((s) => s !== sample) : [...prev, sample]
+    );
+  };
+
+  return (
+    <div className="w-full bg-background">
+      {/* Mobile Layout - Stacked */}
+      <div className="w-full px-6 py-8">
+        {/* Cart Header */}
+        <h1 className="text-xl font-medium mb-8">My Shopping Cart (2)</h1>
+
+        {/* Product Card */}
+        <div className="border border-border rounded mb-8 pb-6">
+          {/* Product Image */}
+          <div className="mb-4">
+            <img
+              src={perfumeThumb}
+              alt="Ambre Levant"
+              className="w-full h-64 object-cover"
+              loading="eager"
+              width={400}
+              height={256}
+            />
+          </div>
+
+          {/* Product Details */}
+          <div className="px-6">
             {/* SKU + Wishlist */}
-            <div className="flex items-start justify-between mb-6">
+            <div className="flex items-start justify-between mb-3">
               <span className="text-xs text-muted-foreground tracking-wider">LP0429</span>
-              <button className="hover:opacity-60 transition-opacity" aria-label="Add to wishlist">
-                <Heart size={20} className="text-foreground" />
+              <button
+                className="hover:opacity-60 transition-opacity"
+                aria-label="Add to wishlist"
+              >
+                <Heart size={18} className="text-foreground" />
               </button>
             </div>
 
-            {/* Product Info */}
-            <p className="text-xs text-muted-foreground tracking-[0.15em] uppercase mb-2">
-              Personalizable & Refillable
-            </p>
-            <h1 className="product-title text-2xl mb-1">Fantasmagory</h1>
-            <p className="text-base text-foreground mb-8">$595.00</p>
+            {/* Product Name */}
+            <h2 className="product-title text-lg mb-1">Ambre Levant</h2>
 
-            {/* Engraving */}
-            <div className="engraving-card mb-8">
-              <img
-                src={perfumeThumb}
-                alt="Bottle engraving"
-                className="w-12 h-12 object-contain"
-                loading="lazy"
-                width={48}
-                height={48}
-              />
-              <div>
-                <p className="text-sm font-medium underline underline-offset-2 cursor-pointer">
-                  Bottle Engraving
-                </p>
-                <p className="text-xs" style={{ color: 'hsl(var(--engraving-accent))' }}>
-                  Complimentary
-                </p>
-                <p className="text-xs text-muted-foreground">With your initials or numbers</p>
+            {/* View Details Link */}
+            <button className="text-xs text-muted-foreground underline underline-offset-2 hover:opacity-60 transition-opacity mb-3">
+              View Details
+            </button>
+
+            {/* Size */}
+            <p className="text-xs text-muted-foreground mb-4">Size: 100ML - 3.4 FL OZ</p>
+
+            {/* Quantity Selector */}
+            <div className="flex items-center gap-4 mb-4">
+              <span className="text-xs text-muted-foreground">Qty:</span>
+              <div className="flex items-center border border-border">
+                <button
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="p-1 hover:opacity-60 transition-opacity"
+                  aria-label="Decrease quantity"
+                >
+                  <Minus size={14} />
+                </button>
+                <span className="px-4 py-1 text-sm text-center min-w-[40px]">
+                  {quantity}
+                </span>
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="p-1 hover:opacity-60 transition-opacity"
+                  aria-label="Increase quantity"
+                >
+                  <Plus size={14} />
+                </button>
               </div>
             </div>
 
-            {/* CTA */}
-            <button className="btn-cart mb-4">Place in Cart</button>
-
-            <p className="text-center text-sm underline underline-offset-2 cursor-pointer hover:opacity-60 transition-opacity mb-8">
-              Contact an Advisor
-            </p>
-
-            <p className="text-xs text-muted-foreground mb-2">
-              Complimentary Standard Delivery or Collect-in-Store.
-            </p>
-            <p className="text-xs text-muted-foreground mb-8">
-              Available exclusively on us.com and in selected Us stores.
-            </p>
-
-            {/* Read more */}
-            <div className="border-t border-border pt-4 mb-2">
-              <button className="text-sm font-medium underline underline-offset-4 hover:opacity-60 transition-opacity">
-                Read more
-              </button>
-            </div>
-
-            {/* Expandable Sections */}
-            <div className="section-divider">
-              <span className="text-sm">Find in Store</span>
-              <Plus size={16} />
-            </div>
-            <div className="section-divider">
-              <span className="text-sm">Delivery & Returns</span>
-              <ChevronRight size={16} />
-            </div>
-            <div className="section-divider">
-              <span className="text-sm">Gifting</span>
-              <ChevronRight size={16} />
-            </div>
+            {/* Price */}
+            <p className="text-lg font-medium mb-6">$880.00</p>
           </div>
         </div>
+
+        {/* Sample Selection */}
+        <div className="border-t border-border pt-6 mb-6">
+          <button
+            onClick={() => toggleSection("samples")}
+            className="w-full flex items-center justify-between py-3"
+          >
+            <span className="text-base font-medium">Sample Selection</span>
+            <span className="text-xs text-muted-foreground">Complimentary</span>
+          </button>
+          {expandedSections.samples && (
+            <div className="pl-0 space-y-3">
+              <p className="text-xs text-muted-foreground mb-3">
+                Choose 2 optional complimentary samples
+              </p>
+              {["Sample 1", "Sample 2", "Sample 3"].map((sample) => (
+                <div key={sample} className="flex items-center gap-3">
+                  <Checkbox
+                    id={sample}
+                    checked={selectedSamples.includes(sample)}
+                    onCheckedChange={() => toggleSample(sample)}
+                  />
+                  <label htmlFor={sample} className="text-sm cursor-pointer">
+                    {sample}
+                  </label>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Gifting and Packaging */}
+        <div className="border-t border-border pt-6 mb-6">
+          <button
+            onClick={() => toggleSection("gifting")}
+            className="w-full flex items-center justify-between py-3"
+          >
+            <span className="text-base font-medium">Gifting and Packaging</span>
+            <ChevronDown
+              size={18}
+              className={`transition-transform ${
+                expandedSections.gifting ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {expandedSections.gifting && (
+            <div className="space-y-4 mt-4">
+              <div className="flex items-start gap-3">
+                <Checkbox id="gift-message" />
+                <label htmlFor="gift-message" className="text-sm cursor-pointer flex-1">
+                  <div className="font-medium">Include a Gift Message</div>
+                  <p className="text-xs text-muted-foreground">
+                    Add a personal touch to your order
+                  </p>
+                </label>
+              </div>
+              <div className="flex items-start gap-3 border-t border-border pt-4">
+                <Checkbox id="shopping-bag" />
+                <label htmlFor="shopping-bag" className="text-sm cursor-pointer flex-1">
+                  <div className="font-medium">Include a Shopping Bag</div>
+                  <p className="text-xs text-muted-foreground">
+                    Your bag preference may not be available
+                  </p>
+                </label>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Signature Packaging */}
+        <div className="border-t border-border pt-6 mb-8">
+          <button
+            onClick={() => toggleSection("packaging")}
+            className="w-full flex items-center justify-between py-3"
+          >
+            <span className="text-base font-medium">Signature Packaging</span>
+            <ChevronDown
+              size={18}
+              className={`transition-transform ${
+                expandedSections.packaging ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {expandedSections.packaging && (
+            <div className="mt-4">
+              <p className="text-xs text-muted-foreground">
+                Experience our signature packaging with every order
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Checkout Button */}
+        <button className="btn-cart w-full py-4 mb-4">Proceed to Checkout</button>
+
+        {/* Continue Shopping */}
+        <button className="w-full py-4 border border-border text-center text-sm font-medium hover:opacity-60 transition-opacity">
+          Continue Shopping
+        </button>
       </div>
     </div>
   );
