@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, Search, Heart, User, ShoppingBag } from "./icons";
 import { BrandLogo } from "./BrandLogo";
@@ -12,30 +12,58 @@ export function HeaderClient() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
-  const [previousScrollY, setPreviousScrollY] = useState(0);
   const { setCartDrawerOpen } = useCart();
 
-  useEffect(() => {
-    const onScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isScrollingDown = currentScrollY > previousScrollY;
-      const scrollThreshold = 10; // Threshold to prevent flickering
+  // Use refs to avoid dependency updates causing scroll listener recreation
+  const scrollRef = useRef(0);
+  const lastHiddenStateRef = useRef(false);
+  const rafRef = useRef<number>();
 
-      // Hide header when scrolling down past a certain point, show when scrolling up
-      if (currentScrollY > scrollThreshold) {
-        setIsHeaderHidden(isScrollingDown);
-      } else {
-        setIsHeaderHidden(false); // Always show at top
+  useEffect(() => {
+    let scrollDirection = 0; // 1 = down, -1 = up, 0 = idle
+    let lastScrollY = 0;
+    const scrollThreshold = 10; // Minimum scroll delta to register direction change
+
+    const onScroll = () => {
+      scrollRef.current = window.scrollY;
+
+      // Cancel previous RAF if still pending
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
       }
 
-      setScrolled(currentScrollY > 8);
-      setPreviousScrollY(currentScrollY);
+      rafRef.current = requestAnimationFrame(() => {
+        const currentScrollY = scrollRef.current;
+        const delta = currentScrollY - lastScrollY;
+
+        // Determine scroll direction if delta is significant
+        if (Math.abs(delta) > scrollThreshold) {
+          scrollDirection = delta > 0 ? 1 : -1;
+        }
+
+        // Update scroll background
+        setScrolled(currentScrollY > 8);
+
+        // Hide header only when scrolling down significantly
+        // Only update state if the direction has actually changed to avoid constant re-renders
+        const shouldHide = currentScrollY > scrollThreshold && scrollDirection === 1;
+        if (shouldHide !== lastHiddenStateRef.current) {
+          setIsHeaderHidden(shouldHide);
+          lastHiddenStateRef.current = shouldHide;
+        }
+
+        lastScrollY = currentScrollY;
+      });
     };
 
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [previousScrollY]);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>
