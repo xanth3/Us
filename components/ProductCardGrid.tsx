@@ -30,25 +30,40 @@ export function ProductCardGrid({ product }: Props) {
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group relative flex flex-col m-0 p-0"
-      onMouseEnter={() => setHovered(true)}
+      className="group relative block overflow-hidden m-0 p-0"
+      onMouseEnter={() => {
+        setHovered(true);
+        if (product.images.length > 1) setImgIndex(1);
+      }}
       onMouseLeave={() => {
         setHovered(false);
         setImgIndex(0);
       }}
     >
-      {/* Quick-view icon — top-left */}
-      <div className="absolute left-3 top-3 z-10 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-        <Maximize2 size={15} className="text-foreground drop-shadow-sm" />
-      </div>
+      {/* ── Height spacers — define the card's total dimensions ── */}
+      {/* The image portion occupies 3:4 aspect; the text strip adds 72px below */}
+      <div className="aspect-[3/4] w-full" />
+      <div className="h-[72px]" />
 
-      {/* Wishlist — top-right */}
-      <div className="absolute right-3 top-3 z-10">
-        <WishlistButton slug={product.slug} />
-      </div>
+      {/* ── Image layer ─────────────────────────────────────────── */}
+      {/* Normally covers just the image portion (calc(100%−72px));       */}
+      {/* on hover it expands to h-full, swallowing the text area below.  */}
+      <div
+        className="absolute inset-x-0 top-0 overflow-hidden bg-[hsl(var(--secondary))]
+                   h-[calc(100%-72px)] transition-[height] duration-500 ease-in-out
+                   group-hover:h-full"
+      >
+        {/* Quick-view — top-left */}
+        <div className="absolute left-3 top-3 z-10 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+          <Maximize2 size={15} className="text-foreground drop-shadow-sm" />
+        </div>
 
-      {/* Image stack */}
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-[hsl(var(--secondary))]">
+        {/* Wishlist — top-right */}
+        <div className="absolute right-3 top-3 z-10">
+          <WishlistButton slug={product.slug} />
+        </div>
+
+        {/* Image stack */}
         {product.images.map((img, i) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -62,7 +77,7 @@ export function ProductCardGrid({ product }: Props) {
           />
         ))}
 
-        {/* Gallery nav — only when hovered and multiple images */}
+        {/* Gallery nav arrows */}
         {hovered && product.images.length > 1 && (
           <>
             <button
@@ -101,8 +116,13 @@ export function ProductCardGrid({ product }: Props) {
         )}
       </div>
 
-      {/* Card text */}
-      <div className="bg-white px-3 py-3">
+      {/* ── Text layer ─────────────────────────────────────────── */}
+      {/* Sits at the bottom of the card; slides down out of view on hover */}
+      <div
+        className="absolute inset-x-0 bottom-0 bg-white px-3 py-3
+                   transition-transform duration-500 ease-in-out
+                   group-hover:translate-y-full"
+      >
         {product.kicker && (
           <p className="text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground">
             {product.kicker}
