@@ -3,14 +3,13 @@ import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { CATALOG, CATALOG_SLUGS, FANTASMAGORY_RECS, type CatalogSlug } from "@/lib/catalog";
-import { Accordion } from "@/components/Accordion";
-import { AddToCartButton } from "@/components/AddToCartButton";
-import { ReadMore } from "@/components/ReadMore";
 import { RecommendationsCarousel } from "@/components/RecommendationsCarousel";
 import { StickyCartBar } from "@/components/StickyCartBar";
-import { WishlistButton } from "@/components/WishlistButton";
 import { ScrollSnapController } from "@/components/ScrollSnapController";
 import { RecentlyViewedTracker } from "@/components/RecentlyViewedTracker";
+import { ProductDetailsSheet } from "@/components/ProductDetailsSheet";
+import { SheetTeaser } from "@/components/SheetTeaser";
+import { SheetContent } from "@/components/SheetContent";
 
 interface Props {
   params: { slug: string };
@@ -79,80 +78,19 @@ export default function ProductPage({ params }: Props) {
           </div>
         </div>
 
-        {/* RIGHT — sticky product info rail */}
-        <div className="lg:w-[45%] xl:w-[40%]">
+        {/* RIGHT — sticky product info rail (desktop) + animated sheet (mobile) */}
+        {/* Mobile: Animated bottom sheet */}
+        <div className="sm:hidden w-full">
+          <ProductDetailsSheet product={product}>
+            <SheetTeaser product={product} />
+            <SheetContent product={product} />
+          </ProductDetailsSheet>
+        </div>
+
+        {/* Desktop: Sticky sidebar */}
+        <div className="hidden sm:block lg:w-[45%] xl:w-[40%]">
           <div className="lg:sticky lg:top-[73px] lg:h-[calc(100vh-73px)] lg:overflow-y-auto">
-            <div className="px-8 py-10 xl:px-16 lg:py-16">
-              {/* SKU + Wishlist */}
-              <div className="mb-6 flex items-start justify-between">
-                <span className="text-xs tracking-wider text-muted-foreground">{product.ref}</span>
-                <WishlistButton
-                  slug={product.slug}
-                  productName={product.name}
-                  productImage={product.images[0]?.src}
-                />
-              </div>
-
-              {/* Kicker */}
-              <p className="mb-2 text-xs uppercase tracking-[0.15em] text-muted-foreground">
-                {product.kicker}
-              </p>
-
-              {/* Name */}
-              <h1 className="product-title mb-1 text-2xl">{product.name}</h1>
-
-              {/* Price */}
-              <p className="mb-8 text-base text-foreground">${product.price.toFixed(2)}</p>
-
-              {/* Engraving card */}
-              <div className="engraving-card mb-8">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={product.serviceOffer.icon}
-                  alt={product.serviceOffer.title}
-                  className="h-12 w-12 object-contain"
-                  loading="lazy"
-                  width={48}
-                  height={48}
-                />
-                <div>
-                  <p className="cursor-pointer text-sm font-medium underline underline-offset-2">
-                    {product.serviceOffer.title}
-                  </p>
-                  <p className="text-xs" style={{ color: "hsl(var(--engraving-accent))" }}>
-                    {product.serviceOffer.subtitle}
-                  </p>
-                  <p className="text-xs text-muted-foreground">{product.serviceOffer.description}</p>
-                </div>
-              </div>
-
-              {/* Primary CTA */}
-              <AddToCartButton product={product} />
-
-              {/* Contact */}
-              <p className="mb-8 mt-4 cursor-pointer text-center text-sm underline underline-offset-2 transition-opacity hover:opacity-60">
-                Contact an Advisor
-              </p>
-
-              {/* Delivery copy */}
-              <div className="mb-8">
-                <ReadMore lines={product.deliveryCopy} previewCount={1} />
-              </div>
-
-              {/* Read more */}
-              <div className="mb-2 border-t border-border pt-4">
-                <button className="text-sm font-medium underline underline-offset-4 transition-opacity hover:opacity-60">
-                  Read more
-                </button>
-              </div>
-
-              {/* Accordions */}
-              {product.faqs.map((faq) => (
-                <Accordion key={faq.title} title={faq.title} indicator={faq.indicator}>
-                  {faq.content}
-                </Accordion>
-              ))}
-            </div>
+            <SheetContent product={product} />
           </div>
         </div>
       </div>
