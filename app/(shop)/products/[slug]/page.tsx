@@ -9,6 +9,7 @@ import { ReadMore } from "@/components/ReadMore";
 import { RecommendationsCarousel } from "@/components/RecommendationsCarousel";
 import { StickyCartBar } from "@/components/StickyCartBar";
 import { WishlistButton } from "@/components/WishlistButton";
+import { ScrollSnapController } from "@/components/ScrollSnapController";
 
 interface Props {
   params: { slug: string };
@@ -37,10 +38,11 @@ export default function ProductPage({ params }: Props) {
 
   return (
     <>
+      <ScrollSnapController />
       <div className="flex flex-col lg:flex-row">
-        {/* LEFT — scrollable stacked images */}
+        {/* LEFT — scroll-snap image column */}
         <div className="relative lg:w-[55%] xl:w-[60%]">
-          {/* Expandable back button */}
+          {/* Expandable back button — stays above the scroll */}
           <Link
             href="/perfumes"
             className="group absolute left-6 top-[90px] z-20 flex h-10 items-center overflow-hidden rounded-full bg-white/90 shadow-sm backdrop-blur-sm transition-all duration-300 hover:pr-4"
@@ -56,16 +58,21 @@ export default function ProductPage({ params }: Props) {
 
           <div className="flex flex-col">
             {product.images.map((img, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              // Each image is a full-viewport snap section on large screens
+              <div
                 key={i}
-                src={img.src}
-                alt={img.alt}
-                className="h-auto w-full object-cover"
-                loading={i === 0 ? "eager" : "lazy"}
-                width={1536}
-                height={1920}
-              />
+                className="relative overflow-hidden lg:h-screen lg:snap-start"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="h-auto w-full object-cover lg:h-full"
+                  loading={i === 0 ? "eager" : "lazy"}
+                  width={1536}
+                  height={1920}
+                />
+              </div>
             ))}
           </div>
         </div>
