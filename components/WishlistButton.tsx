@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Heart } from "./icons";
+import { useToast } from "./ToastProvider";
 
 const STORAGE_KEY = "us_wishlist";
 
@@ -13,8 +14,19 @@ function getWishlist(): string[] {
   }
 }
 
-export function WishlistButton({ slug, className = "" }: { slug: string; className?: string }) {
+export function WishlistButton({
+  slug,
+  className = "",
+  productName = "",
+  productImage = "",
+}: {
+  slug: string;
+  className?: string;
+  productName?: string;
+  productImage?: string;
+}) {
   const [wished, setWished] = useState(false);
+  const { addToast } = useToast();
 
   useEffect(() => {
     setWished(getWishlist().includes(slug));
@@ -23,13 +35,28 @@ export function WishlistButton({ slug, className = "" }: { slug: string; classNa
   function toggle(e: React.MouseEvent) {
     e.preventDefault();
     const list = getWishlist();
-    const next = list.includes(slug) ? list.filter((s) => s !== slug) : [...list, slug];
+    const isAdding = !list.includes(slug);
+    const next = isAdding ? [...list, slug] : list.filter((s) => s !== slug);
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
     } catch {
       /* ignore */
     }
     setWished(next.includes(slug));
+
+    // Show toast only when adding to wishlist
+    if (isAdding && productName) {
+      addToast({
+        type: "success",
+        message: `The item ${productName} has been added to your wishlist`,
+        productName,
+        productImage,
+        link: {
+          text: "Access your wishlist",
+          href: "/wishlist",
+        },
+      });
+    }
   }
 
   return (

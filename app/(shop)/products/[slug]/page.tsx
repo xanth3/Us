@@ -10,6 +10,7 @@ import { RecommendationsCarousel } from "@/components/RecommendationsCarousel";
 import { StickyCartBar } from "@/components/StickyCartBar";
 import { WishlistButton } from "@/components/WishlistButton";
 import { ScrollSnapController } from "@/components/ScrollSnapController";
+import { RecentlyViewedTracker } from "@/components/RecentlyViewedTracker";
 
 interface Props {
   params: { slug: string };
@@ -38,6 +39,7 @@ export default function ProductPage({ params }: Props) {
 
   return (
     <>
+      <RecentlyViewedTracker slug={product.slug} />
       <ScrollSnapController />
       <div className="flex flex-col lg:flex-row">
         {/* LEFT — scroll-snap image column */}
@@ -84,7 +86,11 @@ export default function ProductPage({ params }: Props) {
               {/* SKU + Wishlist */}
               <div className="mb-6 flex items-start justify-between">
                 <span className="text-xs tracking-wider text-muted-foreground">{product.ref}</span>
-                <WishlistButton slug={product.slug} />
+                <WishlistButton
+                  slug={product.slug}
+                  productName={product.name}
+                  productImage={product.images[0]?.src}
+                />
               </div>
 
               {/* Kicker */}

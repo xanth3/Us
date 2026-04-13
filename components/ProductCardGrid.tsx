@@ -65,7 +65,11 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
 
         {/* Wishlist — top-right */}
         <div className="absolute right-3 top-3 z-10">
-          <WishlistButton slug={product.slug} />
+          <WishlistButton
+            slug={product.slug}
+            productName={product.name}
+            productImage={product.images[0]?.src}
+          />
         </div>
 
         {/* Image stack */}

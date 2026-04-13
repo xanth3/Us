@@ -69,14 +69,15 @@ export function HeaderClient() {
             >
               Contact Us
             </a>
-            <button
+            <Link
+              href="/wishlist"
               className={`transition-opacity hover:opacity-60 ${
                 scrolled ? "text-foreground" : "text-foreground drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"
               }`}
               aria-label="Wishlist"
             >
               <Heart size={18} />
-            </button>
+            </Link>
             <button
               className={`transition-opacity hover:opacity-60 ${
                 scrolled ? "text-foreground" : "text-foreground drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"
