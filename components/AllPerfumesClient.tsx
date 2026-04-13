@@ -72,7 +72,7 @@ export function AllPerfumesClient({ sections }: Props) {
   return (
     <div>
       {/* ── Sticky filter bar ─────────────────────────────── */}
-      <div className="sticky top-[65px] z-40 flex items-center justify-between border-b border-border bg-background/95 px-4 py-2.5 backdrop-blur-sm sm:px-6">
+      <div className="sticky top-[65px] z-40 flex items-center justify-between border-b border-border bg-background px-4 py-2.5 sm:px-6">
 
         {/* Left: Collection dropdown */}
         <div className="relative">
@@ -140,8 +140,7 @@ export function AllPerfumesClient({ sections }: Props) {
         return (
           <div key={section.name}>
             {/* Hero banner */}
-            <div className="relative h-[55vh] min-h-[360px] overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
+            <div className="relative h-[55vh] min-h-[360px] overflow-hidden">{/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={section.heroImage}
                 alt={section.heroTitle}
