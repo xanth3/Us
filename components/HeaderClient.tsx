@@ -11,21 +11,38 @@ import { useCart } from "./CartProvider";
 export function HeaderClient() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
+  const [previousScrollY, setPreviousScrollY] = useState(0);
   const { setCartDrawerOpen } = useCart();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+      const isScrollingDown = currentScrollY > previousScrollY;
+      const scrollThreshold = 10; // Threshold to prevent flickering
+
+      // Hide header when scrolling down past a certain point, show when scrolling up
+      if (currentScrollY > scrollThreshold) {
+        setIsHeaderHidden(isScrollingDown);
+      } else {
+        setIsHeaderHidden(false); // Always show at top
+      }
+
+      setScrolled(currentScrollY > 8);
+      setPreviousScrollY(currentScrollY);
+    };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [previousScrollY]);
 
   return (
     <>
       <header
-        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 sm:translate-y-0 ${
           scrolled ? "bg-white" : "bg-transparent"
-        }`}
+        } ${isHeaderHidden ? "-translate-y-full sm:translate-y-0" : "translate-y-0"}`}
         style={{
           paddingTop: "var(--safe-area-inset-top, 0)",
         }}
