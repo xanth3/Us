@@ -191,6 +191,7 @@ interface Props {
 
 export function MenuDrawer({ open, onClose }: Props) {
   const [activeLabel, setActiveLabel] = useState<string | null>(null);
+  const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
   const [enhanced, setEnhanced] = useState(false);
 
   useEffect(() => {
@@ -427,13 +428,19 @@ export function MenuDrawer({ open, onClose }: Props) {
             <ul>
               {NAV_ITEMS.map((item) => {
                 const isActive = activeLabel === item.label;
+                const isHovered = hoveredLabel === item.label;
+                const someHovered = hoveredLabel !== null;
                 return (
                   <li key={item.label}>
                     <button
                       onClick={() => setActiveLabel(isActive ? null : item.label)}
-                      className={`flex w-full items-center justify-between py-[9px] text-left text-[0.85rem] tracking-wide transition-opacity hover:opacity-60 ${
+                      onMouseEnter={() => setHoveredLabel(item.label)}
+                      onMouseLeave={() => setHoveredLabel(null)}
+                      className={`relative flex w-full items-center justify-between py-[9px] text-left text-[0.85rem] tracking-wide transition-all duration-200 ${
                         item.bold ? "font-semibold" : "font-normal"
-                      } ${isActive ? "underline underline-offset-2" : ""}`}
+                      } ${isActive ? "underline underline-offset-2" : ""} ${
+                        someHovered && !isHovered ? "opacity-40" : "opacity-100"
+                      }`}
                     >
                       {item.label}
                       <ChevronRight
@@ -442,6 +449,9 @@ export function MenuDrawer({ open, onClose }: Props) {
                           isActive ? "rotate-90" : ""
                         }`}
                       />
+                      {isHovered && !isActive && (
+                        <div className="absolute bottom-0 left-0 h-0.5 bg-foreground animate-underline" style={{ width: "100%" }} />
+                      )}
                     </button>
                   </li>
                 );

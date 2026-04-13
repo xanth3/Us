@@ -11,6 +11,23 @@
   }
 }
 
+@keyframes underline {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@layer utilities {
+  .animate-underline {
+    animation: underline 0.3s ease-out forwards;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
