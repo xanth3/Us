@@ -16,7 +16,10 @@ interface CartContextValue {
   count: number;
   addItem: (item: Omit<CartItem, "quantity">) => void;
   removeItem: (slug: string) => void;
+  updateQuantity: (slug: string, quantity: number) => void;
   clearCart: () => void;
+  cartDrawerOpen: boolean;
+  setCartDrawerOpen: (open: boolean) => void;
 }
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -25,6 +28,7 @@ const STORAGE_KEY = "us_cart";
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -69,6 +73,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     [items, persist],
   );
 
+  const updateQuantity = useCallback(
+    (slug: string, quantity: number) => {
+      if (quantity <= 0) {
+        removeItem(slug);
+      } else {
+        persist(items.map((i) => (i.slug === slug ? { ...i, quantity } : i)));
+      }
+    },
+    [items, persist, removeItem],
+  );
+
   const clearCart = useCallback(() => {
     persist([]);
   }, [persist]);
@@ -76,7 +91,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const count = items.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ items, count, addItem, removeItem, clearCart }}>
+    <CartContext.Provider value={{ items, count, addItem, removeItem, updateQuantity, clearCart, cartDrawerOpen, setCartDrawerOpen }}>
       {children}
     </CartContext.Provider>
   );
