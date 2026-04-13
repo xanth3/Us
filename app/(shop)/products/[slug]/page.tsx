@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { CATALOG, CATALOG_SLUGS, FANTASMAGORY_RECS, type CatalogSlug } from "@/lib/catalog";
-import { RecommendationsCarousel } from "@/components/RecommendationsCarousel";
 import { StickyCartBar } from "@/components/StickyCartBar";
 import { ScrollSnapController } from "@/components/ScrollSnapController";
 import { RecentlyViewedTracker } from "@/components/RecentlyViewedTracker";
@@ -83,20 +82,17 @@ export default function ProductPage({ params }: Props) {
         <div className="sm:hidden w-full">
           <ProductDetailsSheet product={product}>
             <SheetTeaser product={product} />
-            <SheetContent product={product} />
+            <SheetContent product={product} recommendations={recs} />
           </ProductDetailsSheet>
         </div>
 
         {/* Desktop: Sticky sidebar */}
         <div className="hidden sm:block lg:w-[45%] xl:w-[40%]">
           <div className="lg:sticky lg:top-[73px] lg:h-[calc(100vh-73px)] lg:overflow-y-auto">
-            <SheetContent product={product} />
+            <SheetContent product={product} recommendations={recs} />
           </div>
         </div>
       </div>
-
-      {/* Recommendations */}
-      <RecommendationsCarousel products={recs} />
 
       {/* Sticky cart bar */}
       <StickyCartBar product={product} />

@@ -20,9 +20,9 @@ export function ProductDetailsSheet({ children, product }: Props) {
       if (!ticking) {
         requestAnimationFrame(() => {
           const scrollY = window.scrollY;
-          // Map scroll (0-400px) to sheet position (100-0%)
+          // Map scroll (0-600px) to sheet position (100-0%)
           // Start at bottom (translateY: 100%), move to top (translateY: 0%)
-          const progress = Math.min(scrollY / 400, 1);
+          const progress = Math.min(scrollY / 600, 1);
           setSheetY(100 - progress * 100);
           ticking = false;
         });

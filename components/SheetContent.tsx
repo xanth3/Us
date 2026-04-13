@@ -4,13 +4,15 @@ import { AddToCartButton } from "./AddToCartButton";
 import { ReadMore } from "./ReadMore";
 import { WishlistButton } from "./WishlistButton";
 import { Accordion } from "./Accordion";
+import { RecommendationsCarousel } from "./RecommendationsCarousel";
 import type { Product } from "@/types/product";
 
 interface Props {
   product: Product;
+  recommendations?: Product[];
 }
 
-export function SheetContent({ product }: Props) {
+export function SheetContent({ product, recommendations = [] }: Props) {
   return (
     <div className="px-6 py-10 sm:px-8 sm:py-16">
       {/* SKU + Wishlist (desktop only) */}
@@ -102,6 +104,14 @@ export function SheetContent({ product }: Props) {
           {faq.content}
         </Accordion>
       ))}
+
+      {/* Recommendations */}
+      {recommendations && recommendations.length > 0 && (
+        <div className="mt-12 border-t border-border pt-12">
+          <h2 className="mb-8 text-xl font-medium tracking-wide">Recommended for You</h2>
+          <RecommendationsCarousel products={recommendations} />
+        </div>
+      )}
     </div>
   );
 }
