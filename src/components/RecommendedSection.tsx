@@ -23,12 +23,12 @@ const RecommendedSection = () => {
   };
 
   return (
-    <section className="py-12 px-6">
+    <section className="py-8 sm:py-12 px-4 sm:px-6">
       {/* Tabs */}
-      <div className="flex gap-8 mb-8 px-2">
+      <div className="flex gap-6 sm:gap-8 mb-6 sm:mb-8 px-2">
         <button
           onClick={() => setActiveTab("recommended")}
-          className={`text-sm tracking-wide pb-1 transition-opacity ${
+          className={`text-xs sm:text-sm tracking-wide pb-1 transition-opacity ${
             activeTab === "recommended"
               ? "underline underline-offset-4 font-medium"
               : "text-muted-foreground hover:opacity-70"
@@ -38,7 +38,7 @@ const RecommendedSection = () => {
         </button>
         <button
           onClick={() => setActiveTab("recent")}
-          className={`text-sm tracking-wide pb-1 transition-opacity ${
+          className={`text-xs sm:text-sm tracking-wide pb-1 transition-opacity ${
             activeTab === "recent"
               ? "underline underline-offset-4 font-medium"
               : "text-muted-foreground hover:opacity-70"
@@ -50,9 +50,9 @@ const RecommendedSection = () => {
 
       {/* Product Grid */}
       <div className="relative">
-        <div ref={scrollRef} className="flex gap-4 overflow-x-auto scrollbar-hide pb-4">
+        <div ref={scrollRef} className="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide pb-4">
           {products.map((product, i) => (
-            <div key={i} className="min-w-[280px] flex-1 group cursor-pointer">
+            <div key={i} className="min-w-[200px] sm:min-w-[280px] flex-1 group cursor-pointer">
               <div className="relative bg-secondary aspect-[4/5] mb-3 overflow-hidden">
                 <img
                   src={product.image}
@@ -69,8 +69,8 @@ const RecommendedSection = () => {
                   <Heart size={18} className="text-foreground" />
                 </button>
               </div>
-              <p className="text-sm font-medium">{product.name}</p>
-              <p className="text-sm text-muted-foreground">{product.price}</p>
+              <p className="text-xs sm:text-sm font-medium truncate">{product.name}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">{product.price}</p>
             </div>
           ))}
         </div>

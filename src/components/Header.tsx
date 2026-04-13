@@ -4,8 +4,8 @@ import BrandLogo from "./BrandLogo";
 const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-background border-b border-border">
-      <div className="flex items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-5">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
+        <div className="flex items-center gap-3 sm:gap-5">
           <button className="nav-link flex items-center gap-2" aria-label="Menu">
             <Menu size={18} />
             <span className="hidden sm:inline">Menu</span>
@@ -18,7 +18,7 @@ const Header = () => {
 
         <BrandLogo />
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3 sm:gap-5">
           <a href="#" className="nav-link hidden sm:inline">Contact Us</a>
           <button className="nav-link" aria-label="Wishlist">
             <Heart size={18} />

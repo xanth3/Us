@@ -35,7 +35,7 @@ const ProductPage = () => {
       {/* Right: Sticky Product Info */}
       <div className="lg:w-[45%] xl:w-[40%]">
         <div className="lg:sticky lg:top-[73px] lg:h-[calc(100vh-73px)] lg:overflow-y-auto">
-          <div className="px-8 xl:px-16 py-10 lg:py-16">
+          <div className="px-4 sm:px-6 lg:px-8 xl:px-16 py-8 sm:py-10 lg:py-16">
             {/* SKU + Wishlist */}
             <div className="flex items-start justify-between mb-6">
               <span className="text-xs text-muted-foreground tracking-wider">LP0429</span>
