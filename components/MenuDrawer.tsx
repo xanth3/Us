@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { X, ChevronRight } from "lucide-react";
+import { X, ChevronRight, ChevronLeft, Search, User, ShoppingBag } from "lucide-react";
+import { BrandLogo } from "./BrandLogo";
+import { CartBadge } from "./CartBadge";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -27,7 +29,7 @@ interface NavItem {
   };
 }
 
-// ─── Nav data ─────────────────────────────────────────────────────────────────
+// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const NAV_ITEMS: NavItem[] = [
   {
@@ -191,19 +193,62 @@ export function MenuDrawer({ open, onClose }: Props) {
   const [activeLabel, setActiveLabel] = useState<string | null>(null);
   const [enhanced, setEnhanced] = useState(false);
 
-  // Reset submenu when drawer closes
   useEffect(() => {
     if (!open) setActiveLabel(null);
   }, [open]);
 
-  // Lock body scroll
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
   const activeItem = NAV_ITEMS.find((i) => i.label === activeLabel);
-  const hasSubmenu = !!activeItem?.submenu;
+
+  // ── Shared bottom section ────────────────────────────────────────────────
+  const bottomSection = (
+    <>
+      <div className="my-5 border-t border-border" />
+      <p className="text-[0.71rem] text-muted-foreground">Can we help you?</p>
+      <a
+        href="tel:+18006600"
+        className="mt-0.5 block text-[0.8rem] font-medium tracking-wide transition-opacity hover:opacity-60"
+      >
+        +1 800 US-BRAND
+      </a>
+      <div className="my-5 border-t border-border" />
+      <ul>
+        {SECONDARY_LINKS.map((link) => (
+          <li key={link.label}>
+            <Link
+              href={link.href}
+              onClick={onClose}
+              className="block py-1.5 text-[0.8rem] tracking-wide transition-opacity hover:opacity-60"
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <div className="my-5 border-t border-border" />
+      <div className="mb-10 flex items-center justify-between">
+        <span className="text-[0.78rem] tracking-wide">Accessibility: Enhanced Contrast</span>
+        <button
+          role="switch"
+          aria-checked={enhanced}
+          onClick={() => setEnhanced((v) => !v)}
+          className={`relative h-5 w-9 shrink-0 rounded-full transition-colors duration-200 ${
+            enhanced ? "bg-foreground" : "bg-border"
+          }`}
+        >
+          <span
+            className={`absolute top-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform duration-200 ${
+              enhanced ? "translate-x-4" : "translate-x-0.5"
+            }`}
+          />
+        </button>
+      </div>
+    </>
+  );
 
   return (
     <>
@@ -216,16 +261,159 @@ export function MenuDrawer({ open, onClose }: Props) {
         }`}
       />
 
-      {/* Drawer — two panels side by side */}
-      <aside
-        className={`fixed left-0 top-0 z-[70] flex h-full transition-transform duration-300 ease-in-out ${
+      {/* ══════════════════════════════════════════════════
+           MOBILE  (<md) — full-screen, sliding panels
+          ══════════════════════════════════════════════════ */}
+      <div
+        className={`fixed inset-0 z-[70] flex flex-col bg-white transition-transform duration-300 ease-in-out md:hidden ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* ── Panel 1: Main nav ─────────────────────────────────── */}
+        {/* Mobile drawer header (mirrors site header) */}
+        <div className="flex shrink-0 items-center justify-between border-b border-border px-5 py-4">
+          <div className="flex items-center gap-4">
+            <button onClick={onClose} aria-label="Close menu">
+              <X size={18} />
+            </button>
+            <button aria-label="Search">
+              <Search size={18} />
+            </button>
+          </div>
+          <Link href="/" onClick={onClose}>
+            <BrandLogo />
+          </Link>
+          <div className="flex items-center gap-4">
+            <button aria-label="Account">
+              <User size={18} />
+            </button>
+            <button className="relative" aria-label="Cart">
+              <ShoppingBag size={18} />
+              <CartBadge />
+            </button>
+          </div>
+        </div>
+
+        {/* Sliding panels container */}
+        <div className="relative flex-1 overflow-hidden">
+
+          {/* ── Panel 1: Main nav ── */}
+          <div
+            className={`absolute inset-0 overflow-y-auto transition-transform duration-300 ease-in-out ${
+              activeLabel ? "-translate-x-full" : "translate-x-0"
+            }`}
+          >
+            <nav className="px-5 pt-2">
+              <ul>
+                {NAV_ITEMS.map((item) => (
+                  <li key={item.label}>
+                    <button
+                      onClick={() => setActiveLabel(item.label)}
+                      className={`flex w-full items-center justify-between py-[14px] text-left text-[0.95rem] tracking-wide transition-opacity hover:opacity-60 ${
+                        item.bold ? "font-semibold" : "font-normal"
+                      }`}
+                    >
+                      {item.label}
+                      <ChevronRight size={16} className="shrink-0 text-foreground/50" />
+                    </button>
+                    <div className="border-t border-border/60" />
+                  </li>
+                ))}
+              </ul>
+              {bottomSection}
+            </nav>
+          </div>
+
+          {/* ── Panel 2: Submenu ── */}
+          <div
+            className={`absolute inset-0 overflow-y-auto transition-transform duration-300 ease-in-out ${
+              activeLabel ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            {/* Back row */}
+            <button
+              onClick={() => setActiveLabel(null)}
+              className="flex w-full items-center gap-2 border-b border-border px-5 py-4 text-sm tracking-wide transition-opacity hover:opacity-60"
+              aria-label="Back"
+            >
+              <ChevronLeft size={17} />
+              <span>{activeLabel}</span>
+            </button>
+
+            {/* Submenu content */}
+            {activeItem?.submenu && (
+              <div className="px-0">
+                {/* First image — full width hero */}
+                {activeItem.submenu.featured[0] && (
+                  <div className="mb-4">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={activeItem.submenu.featured[0].src}
+                      alt={activeItem.submenu.featured[0].alt}
+                      className="w-full object-cover"
+                      style={{ aspectRatio: "16/9" }}
+                      loading="lazy"
+                    />
+                    <p className="mt-2 text-center text-sm tracking-wide">
+                      {activeItem.submenu.featured[0].caption}
+                    </p>
+                  </div>
+                )}
+
+                {/* Remaining images — 2 column */}
+                {activeItem.submenu.featured.length > 1 && (
+                  <div className="mb-4 grid grid-cols-2">
+                    {activeItem.submenu.featured.slice(1).map((img) => (
+                      <div key={img.caption}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          className="w-full object-cover"
+                          style={{ aspectRatio: "1/1" }}
+                          loading="lazy"
+                        />
+                        <p className="mt-1 px-1 text-center text-[0.72rem] text-muted-foreground">
+                          {img.caption}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Divider + links */}
+                <div className="border-t border-border" />
+                <ul className="px-5">
+                  {activeItem.submenu.items.map((sub) => (
+                    <li key={sub.label}>
+                      <Link
+                        href={sub.href}
+                        onClick={onClose}
+                        className="flex items-center justify-between py-[14px] text-[0.95rem] tracking-wide transition-opacity hover:opacity-60"
+                      >
+                        {sub.label}
+                        <ChevronRight size={16} className="shrink-0 text-foreground/50" />
+                      </Link>
+                      <div className="border-t border-border/60" />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* ══════════════════════════════════════════════════
+           DESKTOP  (md+) — two panels side by side
+          ══════════════════════════════════════════════════ */}
+      <aside
+        className={`fixed left-0 top-0 z-[70] hidden h-full transition-transform duration-300 ease-in-out md:flex ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        {/* Panel 1: Main nav */}
         <div className="flex w-[280px] shrink-0 flex-col overflow-y-auto bg-white">
-          {/* Close */}
-          <div className="px-5 pt-4 pb-1">
+          <div className="px-5 pb-1 pt-4">
             <button
               onClick={onClose}
               className="flex items-center gap-1.5 text-[0.72rem] tracking-wide text-foreground transition-opacity hover:opacity-60"
@@ -235,8 +423,6 @@ export function MenuDrawer({ open, onClose }: Props) {
               Close
             </button>
           </div>
-
-          {/* Nav items */}
           <nav className="flex-1 px-5 pt-4">
             <ul>
               {NAV_ITEMS.map((item) => {
@@ -244,9 +430,7 @@ export function MenuDrawer({ open, onClose }: Props) {
                 return (
                   <li key={item.label}>
                     <button
-                      onClick={() =>
-                        setActiveLabel(isActive ? null : item.label)
-                      }
+                      onClick={() => setActiveLabel(isActive ? null : item.label)}
                       className={`flex w-full items-center justify-between py-[9px] text-left text-[0.85rem] tracking-wide transition-opacity hover:opacity-60 ${
                         item.bold ? "font-semibold" : "font-normal"
                       } ${isActive ? "underline underline-offset-2" : ""}`}
@@ -263,71 +447,19 @@ export function MenuDrawer({ open, onClose }: Props) {
                 );
               })}
             </ul>
-
-            <div className="my-5 border-t border-border" />
-
-            {/* Help */}
-            <p className="text-[0.71rem] text-muted-foreground">Can we help you?</p>
-            <a
-              href="tel:+18006600"
-              className="mt-0.5 block text-[0.8rem] font-medium tracking-wide transition-opacity hover:opacity-60"
-            >
-              +1 800 US-BRAND
-            </a>
-
-            <div className="my-5 border-t border-border" />
-
-            {/* Secondary links */}
-            <ul>
-              {SECONDARY_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    onClick={onClose}
-                    className="block py-1.5 text-[0.8rem] tracking-wide transition-opacity hover:opacity-60"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <div className="my-5 border-t border-border" />
-
-            {/* Accessibility toggle */}
-            <div className="mb-8 flex items-center justify-between">
-              <span className="text-[0.78rem] tracking-wide">
-                Accessibility: Enhanced Contrast
-              </span>
-              <button
-                role="switch"
-                aria-checked={enhanced}
-                onClick={() => setEnhanced((v) => !v)}
-                className={`relative h-5 w-9 rounded-full transition-colors duration-200 ${
-                  enhanced ? "bg-foreground" : "bg-border"
-                }`}
-              >
-                <span
-                  className={`absolute top-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform duration-200 ${
-                    enhanced ? "translate-x-4" : "translate-x-0.5"
-                  }`}
-                />
-              </button>
-            </div>
+            {bottomSection}
           </nav>
         </div>
 
-        {/* ── Panel 2: Submenu ──────────────────────────────────── */}
+        {/* Panel 2: Submenu */}
         <div
           className={`shrink-0 overflow-y-auto border-l border-border bg-white transition-all duration-300 ease-in-out ${
-            hasSubmenu ? "w-[290px]" : "w-0"
+            activeItem?.submenu ? "w-[290px]" : "w-0"
           }`}
         >
-          {/* Inner is fixed-width so layout doesn't jump as it opens */}
           <div className="w-[290px] px-5 py-5">
             {activeItem?.submenu && (
               <>
-                {/* Featured images — 2-column grid */}
                 {activeItem.submenu.featured.length > 0 && (
                   <div className="mb-5 grid grid-cols-2 gap-2">
                     {activeItem.submenu.featured.map((img) => (
@@ -346,12 +478,9 @@ export function MenuDrawer({ open, onClose }: Props) {
                     ))}
                   </div>
                 )}
-
                 {activeItem.submenu.featured.length > 0 && (
                   <div className="mb-4 border-t border-border" />
                 )}
-
-                {/* Sub-items */}
                 <ul>
                   {activeItem.submenu.items.map((sub) => (
                     <li key={sub.label}>
