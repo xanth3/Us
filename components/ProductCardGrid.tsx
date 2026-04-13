@@ -123,18 +123,19 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
 
       {/* ── Text layer ─────────────────────────────────────────── */}
       {/* Sits at the bottom of the card; slides down out of view on hover */}
+      {/* On last image: background becomes transparent, text stays visible and black */}
       <div
         className={`absolute inset-x-0 bottom-0 px-3 py-3 transition-all duration-500 ease-in-out
                    ${imgIndex === product.images.length - 1 ? "bg-transparent" : "bg-white"}
-                   ${isFirst ? "group-hover:translate-y-full" : ""}`}
+                   ${isFirst && imgIndex !== product.images.length - 1 ? "group-hover:translate-y-full" : ""}`}
       >
         {product.kicker && (
           <p className="text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground">
             {product.kicker}
           </p>
         )}
-        <p className="mt-0.5 text-[0.8rem] font-medium tracking-wide">{product.name}</p>
-        <p className="mt-0.5 text-[0.75rem] text-muted-foreground">
+        <p className="mt-0.5 text-[0.8rem] font-medium tracking-wide text-foreground">{product.name}</p>
+        <p className="mt-0.5 text-[0.75rem] text-foreground">
           From {formatPrice(product.price, product.currency)}
         </p>
       </div>
