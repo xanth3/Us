@@ -10,6 +10,7 @@ import { RecommendationsCarousel } from "@/components/RecommendationsCarousel";
 import { StickyCartBar } from "@/components/StickyCartBar";
 import { WishlistButton } from "@/components/WishlistButton";
 import { ScrollSnapController } from "@/components/ScrollSnapController";
+import { FadeInImage } from "@/components/FadeInImage";
 
 interface Props {
   params: { slug: string };
@@ -58,19 +59,14 @@ export default function ProductPage({ params }: Props) {
 
           <div className="flex flex-col">
             {product.images.map((img, i) => (
-              // Each image is a full-viewport snap section on large screens
               <div
                 key={i}
                 className="relative overflow-hidden lg:h-screen lg:snap-start"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <FadeInImage
                   src={img.src}
                   alt={img.alt}
-                  className="h-auto w-full object-cover lg:h-full"
                   loading={i === 0 ? "eager" : "lazy"}
-                  width={1536}
-                  height={1920}
                 />
               </div>
             ))}
