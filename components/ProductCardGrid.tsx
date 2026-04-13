@@ -9,9 +9,10 @@ import { WishlistButton } from "./WishlistButton";
 
 interface Props {
   product: Product;
+  autoAdvance?: boolean;
 }
 
-export function ProductCardGrid({ product }: Props) {
+export function ProductCardGrid({ product, autoAdvance = false }: Props) {
   const [hovered, setHovered] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
 
@@ -33,7 +34,7 @@ export function ProductCardGrid({ product }: Props) {
       className="group relative block overflow-hidden m-0 p-0"
       onMouseEnter={() => {
         setHovered(true);
-        if (product.images.length > 1) setImgIndex(1);
+        if (autoAdvance && product.images.length > 1) setImgIndex(1);
       }}
       onMouseLeave={() => {
         setHovered(false);

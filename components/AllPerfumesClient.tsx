@@ -133,7 +133,7 @@ export function AllPerfumesClient({ sections }: Props) {
       </div>
 
       {/* ── Sections ──────────────────────────────────────── */}
-      {filteredSections.map((section, idx) => {
+      {filteredSections.map((section, sIdx) => {
         const visible = visibleCounts[section.name] ?? INITIAL_VISIBLE;
         const hasMore = visible < section.products.length;
 
@@ -169,8 +169,12 @@ export function AllPerfumesClient({ sections }: Props) {
 
             {/* Edge-to-edge product grid */}
             <div className="grid grid-cols-4 gap-0">
-              {section.products.slice(0, visible).map((product) => (
-                <ProductCardGrid key={product.slug} product={product} />
+              {section.products.slice(0, visible).map((product, pIdx) => (
+                <ProductCardGrid
+                  key={product.slug}
+                  product={product}
+                  autoAdvance={sIdx === 0 && pIdx === 0}
+                />
               ))}
             </div>
 
@@ -187,7 +191,7 @@ export function AllPerfumesClient({ sections }: Props) {
             )}
 
             {/* Section divider (between collections) */}
-            {idx < filteredSections.length - 1 && (
+            {sIdx < filteredSections.length - 1 && (
               <div className="border-t border-border" />
             )}
           </div>

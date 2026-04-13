@@ -9,7 +9,6 @@ import { ReadMore } from "@/components/ReadMore";
 import { RecommendationsCarousel } from "@/components/RecommendationsCarousel";
 import { StickyCartBar } from "@/components/StickyCartBar";
 import { WishlistButton } from "@/components/WishlistButton";
-import { ScrollSnapController } from "@/components/ScrollSnapController";
 
 interface Props {
   params: { slug: string };
@@ -38,7 +37,6 @@ export default function ProductPage({ params }: Props) {
 
   return (
     <>
-      <ScrollSnapController />
       <div className="flex flex-col lg:flex-row">
         {/* LEFT — scroll-snap image column */}
         <div className="relative lg:w-[55%] xl:w-[60%]">
@@ -61,7 +59,7 @@ export default function ProductPage({ params }: Props) {
               // Each image is a full-viewport snap section on large screens
               <div
                 key={i}
-                className="relative overflow-hidden lg:h-screen lg:snap-start"
+                className="relative overflow-hidden lg:h-screen"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
