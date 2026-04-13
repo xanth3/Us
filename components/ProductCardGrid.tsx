@@ -9,9 +9,10 @@ import { WishlistButton } from "./WishlistButton";
 
 interface Props {
   product: Product;
+  isFirst?: boolean;
 }
 
-export function ProductCardGrid({ product }: Props) {
+export function ProductCardGrid({ product, isFirst = false }: Props) {
   const [hovered, setHovered] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
 
@@ -32,12 +33,16 @@ export function ProductCardGrid({ product }: Props) {
       href={`/products/${product.slug}`}
       className="group relative block overflow-hidden m-0 p-0"
       onMouseEnter={() => {
-        setHovered(true);
-        if (product.images.length > 1) setImgIndex(1);
+        if (isFirst) {
+          setHovered(true);
+          if (product.images.length > 1) setImgIndex(1);
+        }
       }}
       onMouseLeave={() => {
-        setHovered(false);
-        setImgIndex(0);
+        if (isFirst) {
+          setHovered(false);
+          setImgIndex(0);
+        }
       }}
     >
       {/* ── Height spacers — define the card's total dimensions ── */}

@@ -36,8 +36,8 @@ export default function HomePage() {
       {/* Featured grid — edge-to-edge, 4 columns, no gaps */}
       <section>
         <div className="grid grid-cols-4 gap-0">
-          {featured.map((product) => (
-            <ProductCardGrid key={product.slug} product={product} />
+          {featured.map((product, index) => (
+            <ProductCardGrid key={product.slug} product={product} isFirst={index === 0} />
           ))}
         </div>
       </section>
