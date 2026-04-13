@@ -124,8 +124,8 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
       {/* ── Text layer ─────────────────────────────────────────── */}
       {/* Sits at the bottom of the card; slides down out of view on hover */}
       <div
-        className={`absolute inset-x-0 bottom-0 bg-white px-3 py-3
-                   transition-transform duration-500 ease-in-out
+        className={`absolute inset-x-0 bottom-0 px-3 py-3 transition-all duration-500 ease-in-out
+                   ${imgIndex === product.images.length - 1 ? "bg-transparent" : "bg-white"}
                    ${isFirst ? "group-hover:translate-y-full" : ""}`}
       >
         {product.kicker && (
