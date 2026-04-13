@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { BottomNavigation } from "@/components/BottomNavigation";
 import { CartProvider } from "@/components/CartProvider";
 import { CartDrawer } from "@/components/CartDrawer";
 import { ToastProvider } from "@/components/ToastProvider";
@@ -54,9 +53,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CartProvider>
             <GesturesClient />
             <Header />
-            <main className="pt-[60px] pb-[70px] sm:pb-0">{children}</main>
+            <main className="pt-[calc(60px+var(--safe-area-inset-top,0px))]">{children}</main>
             <Footer />
-            <BottomNavigation />
             <CartDrawer />
           </CartProvider>
         </ToastProvider>

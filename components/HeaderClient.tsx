@@ -26,6 +26,9 @@ export function HeaderClient() {
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
           scrolled ? "bg-white" : "bg-transparent"
         }`}
+        style={{
+          paddingTop: "var(--safe-area-inset-top, 0)",
+        }}
       >
         <div className="flex items-center justify-between px-6 py-4">
           {/* Left */}
