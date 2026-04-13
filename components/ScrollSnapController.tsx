@@ -6,11 +6,11 @@ import { useEffect } from "react";
 export function ScrollSnapController() {
   useEffect(() => {
     const html = document.documentElement;
-    html.style.scrollSnapType = "y proximity";
-    html.style.scrollBehavior = "smooth";
+    html.style.scrollSnapType = "y mandatory";
+    html.style.scrollPaddingTop = "65px";
     return () => {
       html.style.scrollSnapType = "";
-      html.style.scrollBehavior = "";
+      html.style.scrollPaddingTop = "";
     };
   }, []);
 
