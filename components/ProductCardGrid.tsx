@@ -32,40 +32,28 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
     <Link
       href={`/products/${product.slug}`}
       className="group relative block overflow-hidden m-0 p-0"
-      style={{
-        animation: "fadeInDelayed 0.6s ease-out 0.5s both",
-      }}
+      style={{ animation: "fadeInDelayed 0.6s ease-out 0.5s both" }}
       onMouseEnter={() => {
-        if (isFirst) {
-          setHovered(true);
-          if (product.images.length > 1) setImgIndex(1);
-        }
+        setHovered(true);
+        if (product.images.length > 1) setImgIndex(1);
       }}
       onMouseLeave={() => {
-        if (isFirst) {
-          setHovered(false);
-          setImgIndex(0);
-        }
+        setHovered(false);
+        setImgIndex(0);
       }}
     >
-      {/* ── Height spacers — define the card's total dimensions ── */}
-      {/* Mobile: taller aspect ratio to fill screen; Desktop: 3/4 aspect with 72px text strip */}
+      {/* Card dimensions */}
       <div className="aspect-[9/14] w-full sm:aspect-[3/4]" />
       <div className="h-[60px] sm:h-[72px]" />
 
       {/* ── Image layer ─────────────────────────────────────────── */}
-      {/* Mobile: covers most of screen; Desktop: covers image portion only */}
-      <div
-        className={`absolute inset-x-0 top-0 overflow-hidden bg-[hsl(var(--secondary))]
-                   h-[calc(100%-60px)] sm:h-[calc(100%-72px)] transition-[height] duration-500 ease-in-out
-                   ${isFirst ? "sm:group-hover:h-full" : ""}`}
-      >
-        {/* Quick-view — top-left */}
-        <div className={`absolute left-3 top-3 z-10 opacity-0 transition-opacity duration-200 hidden sm:block ${isFirst ? "sm:group-hover:opacity-100" : ""}`}>
+      <div className="absolute inset-x-0 top-0 h-[calc(100%-60px)] sm:h-[calc(100%-72px)] overflow-hidden bg-[hsl(var(--secondary))]">
+        {/* Quick-view */}
+        <div className="absolute left-3 top-3 z-10 hidden sm:block opacity-0 transition-opacity duration-200 group-hover:opacity-100">
           <Maximize2 size={15} className="text-foreground drop-shadow-sm" />
         </div>
 
-        {/* Wishlist — top-right */}
+        {/* Wishlist */}
         <div className="absolute right-3 top-3 z-10">
           <WishlistButton
             slug={product.slug}
@@ -74,7 +62,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
           />
         </div>
 
-        {/* Image stack */}
+        {/* Images — crossfade only, no slide/drawer */}
         {product.images.map((img, i) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -88,29 +76,29 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
           />
         ))}
 
-        {/* Gallery nav arrows */}
+        {/* Nav arrows — visible on hover when manually cycling */}
         {hovered && product.images.length > 1 && (
           <>
             <button
               onClick={prev}
               aria-label="Previous image"
-              className={`absolute left-2 top-1/2 z-10 hidden sm:flex -translate-y-1/2 p-1 text-foreground opacity-0 transition-opacity duration-200 hover:opacity-60 ${isFirst ? "sm:group-hover:opacity-100" : ""}`}
+              className="absolute left-2 top-1/2 z-10 hidden sm:flex -translate-y-1/2 p-1 text-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100 hover:opacity-60"
             >
               <ChevronLeft size={16} strokeWidth={1.5} />
             </button>
             <button
               onClick={next}
               aria-label="Next image"
-              className={`absolute right-2 top-1/2 z-10 hidden sm:flex -translate-y-1/2 p-1 text-foreground opacity-0 transition-opacity duration-200 hover:opacity-60 ${isFirst ? "sm:group-hover:opacity-100" : ""}`}
+              className="absolute right-2 top-1/2 z-10 hidden sm:flex -translate-y-1/2 p-1 text-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100 hover:opacity-60"
             >
               <ChevronRight size={16} strokeWidth={1.5} />
             </button>
           </>
         )}
 
-        {/* Image dots — bottom center */}
+        {/* Dots */}
         {product.images.length > 1 && (
-          <div className={`absolute bottom-2 left-1/2 z-10 hidden sm:flex -translate-x-1/2 gap-1 opacity-0 transition-opacity duration-200 ${isFirst ? "sm:group-hover:opacity-100" : ""}`}>
+          <div className="absolute bottom-2 left-1/2 z-10 hidden sm:flex -translate-x-1/2 gap-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
             {product.images.map((_, i) => (
               <span
                 key={i}
@@ -123,19 +111,16 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
         )}
       </div>
 
-      {/* ── Text layer ─────────────────────────────────────────── */}
-      {/* Mobile: stays visible with small strip; Desktop: slides down on hover */}
-      <div
-        className={`absolute inset-x-0 bottom-0 px-3 py-2 sm:py-3 transition-all duration-500 ease-in-out
-                   ${imgIndex === product.images.length - 1 ? "bg-transparent" : "bg-white"}
-                   ${isFirst && imgIndex !== product.images.length - 1 ? "sm:group-hover:translate-y-full" : ""}`}
-      >
+      {/* ── Text layer — static, no slide animation ─────────────── */}
+      <div className="absolute inset-x-0 bottom-0 bg-white px-3 py-2 sm:py-3">
         {product.kicker && (
           <p className="text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground">
             {product.kicker}
           </p>
         )}
-        <p className="mt-0.5 text-[0.7rem] sm:text-[0.8rem] font-medium tracking-wide text-foreground">{product.name}</p>
+        <p className="mt-0.5 text-[0.7rem] sm:text-[0.8rem] font-medium tracking-wide text-foreground">
+          {product.name}
+        </p>
         <p className="mt-0.5 text-[0.65rem] sm:text-[0.75rem] text-foreground">
           From {formatPrice(product.price, product.currency)}
         </p>
@@ -143,3 +128,4 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
     </Link>
   );
 }
+
