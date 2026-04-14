@@ -5,6 +5,7 @@ import Link from "next/link";
 import { X, ChevronRight, ChevronLeft, Search, User, ShoppingBag } from "lucide-react";
 import { BrandLogo } from "./BrandLogo";
 import { CartBadge } from "./CartBadge";
+import { BRAND_NAME } from "@/lib/brand";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -157,7 +158,7 @@ const NAV_ITEMS: NavItem[] = [
     },
   },
   {
-    label: "The Maison Us",
+    label: `The Maison ${BRAND_NAME}`,
     href: "/",
     submenu: {
       featured: [
@@ -213,7 +214,7 @@ export function MenuDrawer({ open, onClose }: Props) {
         href="tel:+18006600"
         className="mt-0.5 block text-[0.8rem] font-medium tracking-wide transition-opacity hover:opacity-60"
       >
-        +1 800 US-BRAND
+        +1 800 {BRAND_NAME.toUpperCase()}
       </a>
       <div className="my-5 border-t border-border" />
       <ul>

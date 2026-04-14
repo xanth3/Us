@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createCheckoutSession } from "@/lib/stripe";
+import { BRAND_NAME } from "@/lib/brand";
 
 export async function POST(req: NextRequest) {
   if (!process.env.STRIPE_SECRET_KEY) {
@@ -16,7 +17,7 @@ export async function POST(req: NextRequest) {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
     const session = await createCheckoutSession({
-      productName: body.productName ?? "Us Product",
+      productName: body.productName ?? `${BRAND_NAME} Product`,
       priceAmount: body.priceAmount ?? 59500, // $595.00 in cents
       currency: body.currency ?? "usd",
       successUrl: `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,

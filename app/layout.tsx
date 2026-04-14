@@ -7,18 +7,19 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { AccountDrawer } from "@/components/AccountDrawer";
 import { ToastProvider } from "@/components/ToastProvider";
 import { GesturesClient } from "@/components/GesturesClient";
+import { BRAND_NAME } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: {
-    default: "Us — Luxury Beauty & Fragrance",
-    template: "%s | Us",
+    default: `${BRAND_NAME} — Luxury Beauty & Fragrance`,
+    template: `%s | ${BRAND_NAME}`,
   },
-  description: "Discover the Us collection of luxury fragrances, makeup, and skincare.",
-  manifest: "/manifest.json",
+  description: `Discover the ${BRAND_NAME} collection of luxury fragrances, makeup, and skincare.`,
+  manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Us",
+    title: BRAND_NAME,
     startupImage: "/assets/splash-screen.png",
   },
   formatDetection: {
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
-    "apple-mobile-web-app-title": "Us",
+    "apple-mobile-web-app-title": BRAND_NAME,
     "theme-color": "#000000",
   },
 };

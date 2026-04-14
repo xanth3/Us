@@ -1,4 +1,5 @@
 import type { Product } from "@/types/product";
+import { BRAND_NAME, BRAND_DOMAIN } from "@/lib/brand";
 
 export const CATALOG_SLUGS = [
   "fantasmagory",
@@ -42,10 +43,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Complimentary Standard Delivery on all orders. Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available at checkout.", indicator: "›" },
     ],
@@ -72,10 +73,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],
@@ -102,10 +103,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],
@@ -115,13 +116,13 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     slug: "us-rouge-lipstick",
     ref: "LP0312",
     kicker: "Bestseller",
-    name: "Us Rouge — Satin Lipstick",
+    name: `${BRAND_NAME} Rouge — Satin Lipstick`,
     price: 160.0,
     currency: "USD",
     collection: "Les Parfums",
     images: [
-      { src: "/assets/product-lipstick.jpg", alt: "Us Rouge Satin Lipstick" },
-      { src: "/assets/perfume-hero.jpg", alt: "Us Rouge lifestyle" },
+      { src: "/assets/product-lipstick.jpg", alt: `${BRAND_NAME} Rouge Satin Lipstick` },
+      { src: "/assets/perfume-hero.jpg", alt: `${BRAND_NAME} Rouge lifestyle` },
     ],
     serviceOffer: {
       title: "Gift Wrapping",
@@ -131,10 +132,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],
@@ -144,13 +145,13 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     slug: "us-ombres-palette",
     ref: "LP0517",
     kicker: "Collector's Edition",
-    name: "Us Ombres — Eyeshadow Palette",
+    name: `${BRAND_NAME} Ombres — Eyeshadow Palette`,
     price: 250.0,
     currency: "USD",
     collection: "Les Parfums",
     images: [
-      { src: "/assets/product-palette.jpg", alt: "Us Ombres Eyeshadow Palette" },
-      { src: "/assets/perfume-lifestyle.jpg", alt: "Us Ombres lifestyle" },
+      { src: "/assets/product-palette.jpg", alt: `${BRAND_NAME} Ombres Eyeshadow Palette` },
+      { src: "/assets/perfume-lifestyle.jpg", alt: `${BRAND_NAME} Ombres lifestyle` },
     ],
     serviceOffer: {
       title: "Gift Wrapping",
@@ -160,10 +161,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],
@@ -192,10 +193,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],
@@ -222,10 +223,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],
@@ -251,10 +252,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],
@@ -280,10 +281,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],
@@ -312,10 +313,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],
@@ -342,10 +343,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],
@@ -372,10 +373,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],
@@ -402,10 +403,10 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      `Available exclusively on ${BRAND_DOMAIN} and in selected ${BRAND_NAME} stores.`,
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
+      { title: "Find in Store", content: `Use our store locator to find the nearest ${BRAND_NAME} boutique.`, indicator: "+" },
       { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
       { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
     ],

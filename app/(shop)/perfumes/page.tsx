@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { CATALOG, LES_PARFUMS_SLUGS, AZUR_SLUGS } from "@/lib/catalog";
 import { AllPerfumesClient } from "@/components/AllPerfumesClient";
+import { BRAND_NAME } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "All Perfumes",
-  description: "Explore the full Us perfume collection — personalizable, refillable luxury fragrances.",
+  description: `Explore the full ${BRAND_NAME} perfume collection — personalizable, refillable luxury fragrances.`,
 };
 
 export default function AllPerfumesPage() {
@@ -14,7 +15,7 @@ export default function AllPerfumesPage() {
   const sections = [
     {
       name: "Les Parfums",
-      description: "The signature Us fragrance collection.",
+      description: `The signature ${BRAND_NAME} fragrance collection.`,
       heroImage: "/assets/perfume-hero.jpg",
       heroTitle: "Fantasmagory, the Art of Illusion",
       heroSubtitle:

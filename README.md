@@ -1,6 +1,10 @@
-# Us — Luxury Beauty & Fragrance
+# Fames — Luxury Beauty & Fragrance
 
-Next.js 14 App Router e-commerce scaffold for the Us (Xanthe) brand.
+Next.js 14 App Router e-commerce scaffold for the Fames (Xanthe) brand.
+
+> **Brand name is a placeholder.** All user-facing copy reads from a single constant
+> in [`lib/brand.ts`](./lib/brand.ts). Change `BRAND_NAME` there (or set
+> `NEXT_PUBLIC_BRAND_NAME` in `.env.local`) to rebrand the entire app.
 
 ## Prerequisites
 
