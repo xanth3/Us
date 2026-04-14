@@ -34,7 +34,7 @@ const ProductPage = () => {
 
       {/* Right: Sticky Product Info */}
       <div className="lg:w-[45%] xl:w-[40%]">
-        <div className="lg:sticky lg:top-[73px] lg:h-[calc(100vh-73px)] lg:overflow-y-auto">
+        <div className="lg:sticky lg:top-[54px] lg:h-[calc(100vh-54px)] lg:overflow-y-auto">
           <div className="px-8 xl:px-16 py-10 lg:py-16">
             {/* SKU + Wishlist */}
             <div className="flex items-start justify-between mb-6">
