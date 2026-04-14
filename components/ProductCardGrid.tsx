@@ -94,20 +94,16 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
             <button
               onClick={prev}
               aria-label="Previous image"
-              className={`absolute left-0 top-1/2 z-10 hidden sm:flex h-full w-10 -translate-y-1/2 items-center justify-center bg-gradient-to-r from-black/10 to-transparent opacity-0 transition-opacity duration-200 ${isFirst ? "sm:group-hover:opacity-100" : ""} hover:from-black/20`}
+              className={`absolute left-2 top-1/2 z-10 hidden sm:flex -translate-y-1/2 p-1 text-foreground opacity-0 transition-opacity duration-200 hover:opacity-60 ${isFirst ? "sm:group-hover:opacity-100" : ""}`}
             >
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/80 shadow-sm backdrop-blur-sm">
-                <ChevronLeft size={13} />
-              </div>
+              <ChevronLeft size={16} strokeWidth={1.5} />
             </button>
             <button
               onClick={next}
               aria-label="Next image"
-              className={`absolute right-0 top-1/2 z-10 hidden sm:flex h-full w-10 -translate-y-1/2 items-center justify-center bg-gradient-to-l from-black/10 to-transparent opacity-0 transition-opacity duration-200 ${isFirst ? "sm:group-hover:opacity-100" : ""} hover:from-black/20`}
+              className={`absolute right-2 top-1/2 z-10 hidden sm:flex -translate-y-1/2 p-1 text-foreground opacity-0 transition-opacity duration-200 hover:opacity-60 ${isFirst ? "sm:group-hover:opacity-100" : ""}`}
             >
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/80 shadow-sm backdrop-blur-sm">
-                <ChevronRight size={13} />
-              </div>
+              <ChevronRight size={16} strokeWidth={1.5} />
             </button>
           </>
         )}

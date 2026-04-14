@@ -78,17 +78,17 @@ export function RecommendationsCarousel({ products }: Props) {
         {/* Nav arrows */}
         <button
           onClick={() => scroll("left")}
-          className="absolute left-2 top-[40%] -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-background/80 shadow transition-opacity hover:opacity-70"
+          className="absolute left-2 top-[40%] -translate-y-1/2 p-1 text-foreground transition-opacity hover:opacity-50"
           aria-label="Previous"
         >
-          <ChevronLeft size={16} />
+          <ChevronLeft size={18} strokeWidth={1.5} />
         </button>
         <button
           onClick={() => scroll("right")}
-          className="absolute right-2 top-[40%] -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-background/80 shadow transition-opacity hover:opacity-70"
+          className="absolute right-2 top-[40%] -translate-y-1/2 p-1 text-foreground transition-opacity hover:opacity-50"
           aria-label="Next"
         >
-          <ChevronRight size={16} />
+          <ChevronRight size={18} strokeWidth={1.5} />
         </button>
       </div>
     </section>
