@@ -20,7 +20,12 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
-      <section className="relative h-screen">
+      {/* Negative margin cancels the layout's pt-[60px+safe-area] so the image
+          sits flush behind the transparent header instead of leaving a white gap */}
+      <section
+        className="relative h-screen"
+        style={{ marginTop: "calc(-60px - var(--safe-area-inset-top, 0px))" }}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/perfume-hero.jpg"
