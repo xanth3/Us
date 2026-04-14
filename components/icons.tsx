@@ -10,4 +10,6 @@ export {
   Minus,
   X,
   Home,
+  Eye,
+  EyeOff,
 } from "lucide-react";

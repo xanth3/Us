@@ -22,6 +22,8 @@ interface CartContextValue {
   clearCart: () => void;
   cartDrawerOpen: boolean;
   setCartDrawerOpen: (open: boolean) => void;
+  accountDrawerOpen: boolean;
+  setAccountDrawerOpen: (open: boolean) => void;
 }
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -31,6 +33,7 @@ const STORAGE_KEY = "us_cart";
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
+  const [accountDrawerOpen, setAccountDrawerOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -93,7 +96,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const count = items.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ items, count, addItem, removeItem, updateQuantity, clearCart, cartDrawerOpen, setCartDrawerOpen }}>
+    <CartContext.Provider value={{ items, count, addItem, removeItem, updateQuantity, clearCart, cartDrawerOpen, setCartDrawerOpen, accountDrawerOpen, setAccountDrawerOpen }}>
       {children}
     </CartContext.Provider>
   );

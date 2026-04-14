@@ -12,7 +12,7 @@ export function HeaderClient() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false); // Start visible
-  const { setCartDrawerOpen } = useCart();
+  const { setCartDrawerOpen, setAccountDrawerOpen } = useCart();
 
   // Use refs to avoid dependency updates causing scroll listener recreation
   const scrollRef = useRef(0);
@@ -134,6 +134,7 @@ export function HeaderClient() {
               <Heart size={18} />
             </Link>
             <button
+              onClick={() => setAccountDrawerOpen(true)}
               className={`transition-all hover:opacity-60 ${
                 scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}

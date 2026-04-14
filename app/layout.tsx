@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CartProvider } from "@/components/CartProvider";
 import { CartDrawer } from "@/components/CartDrawer";
+import { AccountDrawer } from "@/components/AccountDrawer";
 import { ToastProvider } from "@/components/ToastProvider";
 import { GesturesClient } from "@/components/GesturesClient";
 
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="pt-[calc(60px+var(--safe-area-inset-top,0px))]">{children}</main>
             <Footer />
             <CartDrawer />
+            <AccountDrawer />
           </CartProvider>
         </ToastProvider>
       </body>
