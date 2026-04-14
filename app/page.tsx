@@ -33,6 +33,8 @@ export default function HomePage() {
           className="absolute inset-0 h-full w-full object-cover"
           loading="eager"
         />
+        {/* Gradient ensures white navbar text is always legible */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/30 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 flex flex-col items-center pb-16 text-center text-white">
           <p className="mb-2 text-xs uppercase tracking-[0.3em]">New</p>
           <h1

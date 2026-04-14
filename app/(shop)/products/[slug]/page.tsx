@@ -43,6 +43,8 @@ export default function ProductPage({ params }: Props) {
       <div className="sm:hidden" style={{ marginTop: "calc(-60px - var(--safe-area-inset-top, 0px))" }}>
         {/* Hero image with back button overlay */}
         <div className="relative w-full overflow-hidden">
+          {/* Gradient keeps white navbar text legible on landing */}
+          <div className="absolute inset-x-0 top-0 z-10 h-40 bg-gradient-to-b from-black/30 to-transparent" />
           <Link
             href="/perfumes"
             className="group absolute left-4 top-[80px] z-20 flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white/90 shadow-sm backdrop-blur-sm"
@@ -118,6 +120,10 @@ export default function ProductPage({ params }: Props) {
                 key={i}
                 className="relative overflow-hidden lg:h-screen lg:snap-start"
               >
+                {/* Gradient on first image only — keeps white navbar text legible on landing */}
+                {i === 0 && (
+                  <div className="absolute inset-x-0 top-0 z-10 h-40 bg-gradient-to-b from-black/30 to-transparent" />
+                )}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={img.src}

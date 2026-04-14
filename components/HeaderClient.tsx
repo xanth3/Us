@@ -76,7 +76,7 @@ export function HeaderClient() {
     <>
       <header
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-          scrolled ? "bg-white" : "bg-transparent"
+          scrolled ? "bg-white border-b border-border" : "bg-transparent border-b border-transparent"
         } ${isHeaderHidden ? "-translate-y-full" : "translate-y-0"}`}
         style={{
           paddingTop: "var(--safe-area-inset-top, 0)",
@@ -87,8 +87,8 @@ export function HeaderClient() {
           <div className="flex items-center gap-5">
             <button
               onClick={() => setMenuOpen(true)}
-              className={`flex items-center gap-2 text-sm tracking-[0.05em] transition-opacity hover:opacity-60 ${
-                scrolled ? "text-foreground" : "text-foreground drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"
+              className={`flex items-center gap-2 text-sm tracking-[0.05em] transition-all hover:opacity-60 ${
+                scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
               aria-label="Open menu"
             >
@@ -96,8 +96,8 @@ export function HeaderClient() {
               <span className="hidden sm:inline font-medium">Menu</span>
             </button>
             <button
-              className={`flex items-center gap-2 text-sm tracking-[0.05em] transition-opacity hover:opacity-60 ${
-                scrolled ? "text-foreground" : "text-foreground drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"
+              className={`flex items-center gap-2 text-sm tracking-[0.05em] transition-all hover:opacity-60 ${
+                scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
               aria-label="Search"
             >
@@ -109,7 +109,7 @@ export function HeaderClient() {
           {/* Centre */}
           <Link
             href="/"
-            className={scrolled ? "text-foreground" : "text-foreground drop-shadow-[0_1px_3px_rgba(255,255,255,0.6)]"}
+            className={`transition-all ${scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"}`}
           >
             <BrandLogo />
           </Link>
@@ -118,24 +118,24 @@ export function HeaderClient() {
           <div className="flex items-center gap-5">
             <a
               href="#"
-              className={`hidden sm:inline text-sm tracking-[0.05em] transition-opacity hover:opacity-60 font-medium ${
-                scrolled ? "text-foreground" : "text-foreground drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"
+              className={`hidden sm:inline text-sm tracking-[0.05em] transition-all hover:opacity-60 font-medium ${
+                scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
             >
               Contact Us
             </a>
             <Link
               href="/wishlist"
-              className={`transition-opacity hover:opacity-60 ${
-                scrolled ? "text-foreground" : "text-foreground drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"
+              className={`transition-all hover:opacity-60 ${
+                scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
               aria-label="Wishlist"
             >
               <Heart size={18} />
             </Link>
             <button
-              className={`transition-opacity hover:opacity-60 ${
-                scrolled ? "text-foreground" : "text-foreground drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"
+              className={`transition-all hover:opacity-60 ${
+                scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
               aria-label="Account"
             >
@@ -143,8 +143,8 @@ export function HeaderClient() {
             </button>
             <button
               onClick={() => setCartDrawerOpen(true)}
-              className={`relative transition-opacity hover:opacity-60 ${
-                scrolled ? "text-foreground" : "text-foreground drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"
+              className={`relative transition-all hover:opacity-60 ${
+                scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
               aria-label="Cart"
             >
