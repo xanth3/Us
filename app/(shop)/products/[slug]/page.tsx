@@ -4,12 +4,13 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { CATALOG, CATALOG_SLUGS, FANTASMAGORY_RECS, type CatalogSlug } from "@/lib/catalog";
 import { StickyCartBar } from "@/components/StickyCartBar";
-import { ScrollSnapController } from "@/components/ScrollSnapController";
 import { RecentlyViewedTracker } from "@/components/RecentlyViewedTracker";
 import { SheetTeaser } from "@/components/SheetTeaser";
 import { SheetContent } from "@/components/SheetContent";
 import { RecommendationsCarousel } from "@/components/RecommendationsCarousel";
 import { MobileImageCarousel } from "@/components/MobileImageCarousel";
+import { FadeInSection } from "@/components/FadeInSection";
+import { DesktopImageFade } from "@/components/DesktopImageFade";
 
 interface Props {
   params: { slug: string };
@@ -45,41 +46,48 @@ export default function ProductPage({ params }: Props) {
         {/* Full image carousel — handles back button, wishlist, prev/next, dots */}
         <MobileImageCarousel images={product.images} slug={product.slug} />
 
-        {/* Product info — flat top edge, in normal document flow */}
-        <section className="w-full bg-background">
-          <SheetTeaser product={product} />
-          <SheetContent product={product} recommendations={[]} />
-        </section>
+        {/* Product info — flat top edge, lifts up as user scrolls past the hero */}
+        <FadeInSection>
+          <section className="w-full bg-background">
+            <SheetTeaser product={product} />
+            <SheetContent product={product} recommendations={[]} />
+          </section>
+        </FadeInSection>
 
-        {/* Remaining product images (visible below info when scrolling) */}
+        {/* Remaining product images — each lifts up as it enters view */}
         {product.images.slice(1).map((img, i) => (
-          <div key={i} className="w-full overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={img.src}
-              alt={img.alt}
-              className="h-auto w-full object-cover"
-              loading="lazy"
-              width={1536}
-              height={1920}
-            />
-          </div>
+          <FadeInSection key={i}>
+            <div className="w-full overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="h-auto w-full object-cover"
+                loading="lazy"
+                width={1536}
+                height={1920}
+              />
+            </div>
+          </FadeInSection>
         ))}
 
         {/* Recommendations after the images */}
-        {recs.length > 0 && <RecommendationsCarousel products={recs} />}
+        {recs.length > 0 && (
+          <FadeInSection>
+            <RecommendationsCarousel products={recs} />
+          </FadeInSection>
+        )}
 
         {/* Sticky bottom CTA — appears via IntersectionObserver once main CTA scrolls out */}
         <StickyCartBar product={product} />
       </div>
 
-      {/* ===== DESKTOP LAYOUT (≥ 640px): two-column with scroll-snap images ===== */}
-      <ScrollSnapController />
+      {/* ===== DESKTOP LAYOUT (≥ 640px): two-column, natural scroll with per-image fade ===== */}
       <div
         className="hidden sm:flex sm:flex-col lg:flex-row"
         style={{ marginTop: "calc(-60px - var(--safe-area-inset-top, 0px))" }}
       >
-        {/* LEFT — scroll-snap image column */}
+        {/* LEFT — image column, each image fades in as it enters view */}
         <div className="relative lg:w-[55%] xl:w-[60%]">
           <Link
             href="/perfumes"
@@ -94,10 +102,7 @@ export default function ProductPage({ params }: Props) {
 
           <div className="flex flex-col">
             {product.images.map((img, i) => (
-              <div
-                key={i}
-                className="relative overflow-hidden lg:h-screen lg:snap-start"
-              >
+              <DesktopImageFade key={i} className="relative overflow-hidden lg:h-screen">
                 {/* Gradient on first image only — keeps white navbar text legible on landing */}
                 {i === 0 && (
                   <div className="absolute inset-x-0 top-0 z-10 h-40 bg-gradient-to-b from-black/30 to-transparent" />
@@ -111,7 +116,7 @@ export default function ProductPage({ params }: Props) {
                   width={1536}
                   height={1920}
                 />
-              </div>
+              </DesktopImageFade>
             ))}
           </div>
         </div>

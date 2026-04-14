@@ -51,8 +51,8 @@ export function HeaderClient() {
             lastHiddenStateRef.current = false;
           }
         } else {
-          // Hide when scrolling UP, show when scrolling DOWN
-          const shouldHide = scrollDirection === -1;
+          // Hide when scrolling DOWN, show when scrolling UP (Apple/LV standard)
+          const shouldHide = scrollDirection === 1;
           if (shouldHide !== lastHiddenStateRef.current) {
             setIsHeaderHidden(shouldHide);
             lastHiddenStateRef.current = shouldHide;
