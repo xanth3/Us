@@ -12,6 +12,10 @@ export function StickyCartBar({ product }: Props) {
   const [visible, setVisible] = useState(false);
   const { addItem } = useCart();
   const ioRef = useRef<IntersectionObserver | null>(null);
+  // Only show bar after the CTA has been visible at least once (i.e. user scrolled
+  // down to it). Without this, the bar appears immediately on load because the CTA
+  // starts just below the fold (not intersecting → visible = true before user sees it).
+  const hasBeenVisible = useRef(false);
 
   useEffect(() => {
     // Find the visible in-page CTA button (the first one with a non-zero bounding rect)
@@ -20,7 +24,10 @@ export function StickyCartBar({ product }: Props) {
     if (!target) return;
 
     ioRef.current = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting),
+      ([entry]) => {
+        if (entry.isIntersecting) hasBeenVisible.current = true;
+        if (hasBeenVisible.current) setVisible(!entry.isIntersecting);
+      },
       { rootMargin: "0px 0px -40px 0px", threshold: 0 }
     );
     ioRef.current.observe(target);
