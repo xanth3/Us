@@ -9,6 +9,7 @@ import { RecentlyViewedTracker } from "@/components/RecentlyViewedTracker";
 import { SheetTeaser } from "@/components/SheetTeaser";
 import { SheetContent } from "@/components/SheetContent";
 import { RecommendationsCarousel } from "@/components/RecommendationsCarousel";
+import { MobileImageCarousel } from "@/components/MobileImageCarousel";
 
 interface Props {
   params: { slug: string };
@@ -41,29 +42,8 @@ export default function ProductPage({ params }: Props) {
 
       {/* ===== MOBILE LAYOUT (< 640px): natural document flow ===== */}
       <div className="sm:hidden" style={{ marginTop: "calc(-60px - var(--safe-area-inset-top, 0px))" }}>
-        {/* Hero image with back button overlay */}
-        <div className="relative w-full overflow-hidden">
-          {/* Gradient keeps white navbar text legible on landing */}
-          <div className="absolute inset-x-0 top-0 z-10 h-40 bg-gradient-to-b from-black/30 to-transparent" />
-          <Link
-            href="/perfumes"
-            className="group absolute left-4 top-[80px] z-20 flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white/90 shadow-sm backdrop-blur-sm"
-            aria-label="Back to All Perfumes"
-          >
-            <ChevronLeft size={18} />
-          </Link>
-          {product.images[0] && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={product.images[0].src}
-              alt={product.images[0].alt}
-              className="h-auto w-full object-cover"
-              loading="eager"
-              width={1536}
-              height={1920}
-            />
-          )}
-        </div>
+        {/* Full image carousel — handles back button, wishlist, prev/next, dots */}
+        <MobileImageCarousel images={product.images} slug={product.slug} />
 
         {/* Product info — flat top edge, in normal document flow */}
         <section className="w-full bg-background">
@@ -71,7 +51,7 @@ export default function ProductPage({ params }: Props) {
           <SheetContent product={product} recommendations={[]} />
         </section>
 
-        {/* Remaining product images flow below the info section */}
+        {/* Remaining product images (visible below info when scrolling) */}
         {product.images.slice(1).map((img, i) => (
           <div key={i} className="w-full overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -103,12 +83,10 @@ export default function ProductPage({ params }: Props) {
         <div className="relative lg:w-[55%] xl:w-[60%]">
           <Link
             href="/perfumes"
-            className="group absolute left-6 top-[90px] z-20 flex h-10 items-center overflow-hidden rounded-full bg-white/90 shadow-sm backdrop-blur-sm transition-all duration-300 hover:pr-4"
+            className="group absolute left-6 top-[90px] z-20 flex items-center gap-1 text-white transition-opacity hover:opacity-60"
             aria-label="Back to All Perfumes"
           >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center">
-              <ChevronLeft size={18} />
-            </div>
+            <ChevronLeft size={20} strokeWidth={1.5} />
             <span className="max-w-0 overflow-hidden whitespace-nowrap text-[0.8rem] tracking-wide transition-all duration-300 group-hover:max-w-[220px]">
               Perfumes and Beauty — All Perfumes
             </span>
