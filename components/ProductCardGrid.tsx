@@ -35,7 +35,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
       style={{ animation: "fadeInDelayed 0.6s ease-out 0.5s both" }}
       onMouseEnter={() => {
         setHovered(true);
-        if (product.images.length > 1) setImgIndex(1);
+        if (isFirst && product.images.length > 1) setImgIndex(1);
       }}
       onMouseLeave={() => {
         setHovered(false);
@@ -76,8 +76,8 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
           />
         ))}
 
-        {/* Nav arrows — visible on hover when manually cycling */}
-        {hovered && product.images.length > 1 && (
+        {/* Nav arrows — visible on hover when manually cycling (first card only) */}
+        {isFirst && hovered && product.images.length > 1 && (
           <>
             <button
               onClick={prev}
@@ -111,8 +111,8 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
         )}
       </div>
 
-      {/* ── Text layer — static, no slide animation ─────────────── */}
-      <div className="absolute inset-x-0 bottom-0 bg-white px-3 py-2 sm:py-3">
+      {/* ── Text layer — transparent on hover ───────────────────── */}
+      <div className={`absolute inset-x-0 bottom-0 px-3 py-2 sm:py-3 transition-colors duration-300 ${hovered ? "bg-transparent" : "bg-white"}`}>
         {product.kicker && (
           <p className="text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground">
             {product.kicker}
