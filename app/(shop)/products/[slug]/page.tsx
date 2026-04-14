@@ -40,7 +40,7 @@ export default function ProductPage({ params }: Props) {
       <RecentlyViewedTracker slug={product.slug} />
 
       {/* ===== MOBILE LAYOUT (< 640px): natural document flow ===== */}
-      <div className="sm:hidden">
+      <div className="sm:hidden" style={{ marginTop: "calc(-60px - var(--safe-area-inset-top, 0px))" }}>
         {/* Hero image with back button overlay */}
         <div className="relative w-full overflow-hidden">
           <Link
@@ -93,7 +93,10 @@ export default function ProductPage({ params }: Props) {
 
       {/* ===== DESKTOP LAYOUT (≥ 640px): two-column with scroll-snap images ===== */}
       <ScrollSnapController />
-      <div className="hidden sm:flex sm:flex-col lg:flex-row">
+      <div
+        className="hidden sm:flex sm:flex-col lg:flex-row"
+        style={{ marginTop: "calc(-60px - var(--safe-area-inset-top, 0px))" }}
+      >
         {/* LEFT — scroll-snap image column */}
         <div className="relative lg:w-[55%] xl:w-[60%]">
           <Link
@@ -129,8 +132,11 @@ export default function ProductPage({ params }: Props) {
           </div>
         </div>
 
-        {/* RIGHT — sticky product info sidebar */}
-        <div className="lg:w-[45%] xl:w-[40%]">
+        {/* RIGHT — sticky product info sidebar (padding compensates for the negative margin on the row) */}
+        <div
+          className="lg:w-[45%] xl:w-[40%]"
+          style={{ paddingTop: "calc(60px + var(--safe-area-inset-top, 0px))" }}
+        >
           <div className="lg:sticky lg:top-[73px] lg:h-[calc(100vh-73px)] lg:overflow-y-auto">
             <SheetContent product={product} recommendations={recs} />
           </div>
