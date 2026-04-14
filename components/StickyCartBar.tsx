@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCart } from "./CartProvider";
 import type { Product } from "@/types/product";
 
@@ -11,17 +11,28 @@ interface Props {
 export function StickyCartBar({ product }: Props) {
   const [visible, setVisible] = useState(false);
   const { addItem } = useCart();
+  const ioRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setVisible(window.scrollY > 600);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Find the visible in-page CTA button (the first one with a non-zero bounding rect)
+    const buttons = Array.from(document.querySelectorAll<HTMLElement>("[data-pdp-cta]"));
+    const target = buttons.find((btn) => btn.getBoundingClientRect().width > 0) ?? null;
+    if (!target) return;
+
+    ioRef.current = new IntersectionObserver(
+      ([entry]) => setVisible(!entry.isIntersecting),
+      { rootMargin: "0px 0px -40px 0px", threshold: 0 }
+    );
+    ioRef.current.observe(target);
+    return () => ioRef.current?.disconnect();
   }, []);
 
-  if (!visible) return null;
-
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between border-t border-border bg-background px-6 py-3">
+    <div
+      className={`fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between border-t border-border bg-background px-6 py-3 transition-transform duration-300 ${
+        visible ? "translate-y-0" : "translate-y-full"
+      }`}
+    >
       <div className="flex items-center gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

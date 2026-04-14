@@ -23,6 +23,7 @@ export function AddToCartButton({ product }: { product: Product }) {
 
   return (
     <button
+      data-pdp-cta="true"
       onClick={handleClick}
       className="btn-cart rounded-full min-h-[44px]"
     >
