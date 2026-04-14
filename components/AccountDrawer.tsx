@@ -59,11 +59,12 @@ export function AccountDrawer() {
     }
   }, [accountDrawerOpen]);
 
-  const supabase = createSupabaseBrowserClient();
+  // Instantiated lazily inside handlers — never runs during SSR/SSG
+  const getSupabase = () => createSupabaseBrowserClient();
 
   const handleGoogleSignIn = async () => {
     setLoading(true);
-    await supabase.auth.signInWithOAuth({
+    await getSupabase().auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo: `${window.location.origin}/auth/callback` },
     });
@@ -74,7 +75,7 @@ export function AccountDrawer() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await getSupabase().auth.signInWithPassword({ email, password });
     if (error) setError(error.message);
     else setAccountDrawerOpen(false);
     setLoading(false);
@@ -84,7 +85,7 @@ export function AccountDrawer() {
     if (!email) { setError("Enter your email address first."); return; }
     setLoading(true);
     setError(null);
-    await supabase.auth.signInWithOtp({ email });
+    await getSupabase().auth.signInWithOtp({ email });
     setMagicLinkSent(true);
     setLoading(false);
   };
