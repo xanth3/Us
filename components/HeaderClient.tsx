@@ -11,12 +11,12 @@ import { useCart } from "./CartProvider";
 export function HeaderClient() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isHeaderHidden, setIsHeaderHidden] = useState(true); // Start hidden
+  const [isHeaderHidden, setIsHeaderHidden] = useState(false); // Start visible
   const { setCartDrawerOpen } = useCart();
 
   // Use refs to avoid dependency updates causing scroll listener recreation
   const scrollRef = useRef(0);
-  const lastHiddenStateRef = useRef(true); // Match initial state
+  const lastHiddenStateRef = useRef(false); // Match initial state
   const rafRef = useRef<number>();
 
   useEffect(() => {
@@ -41,15 +41,22 @@ export function HeaderClient() {
           scrollDirection = delta > 0 ? 1 : -1;
         }
 
-        // Update scroll background
+        // Opaque white background once past the top
         setScrolled(currentScrollY > 8);
 
-        // Hide header when scrolling down, show when scrolling up
-        // Start hidden and only show on scroll up
-        const shouldHide = scrollDirection === 1;
-        if (shouldHide !== lastHiddenStateRef.current) {
-          setIsHeaderHidden(shouldHide);
-          lastHiddenStateRef.current = shouldHide;
+        // Always show at the very top (transparent zone)
+        if (currentScrollY < 10) {
+          if (lastHiddenStateRef.current) {
+            setIsHeaderHidden(false);
+            lastHiddenStateRef.current = false;
+          }
+        } else {
+          // Hide when scrolling UP, show when scrolling DOWN
+          const shouldHide = scrollDirection === -1;
+          if (shouldHide !== lastHiddenStateRef.current) {
+            setIsHeaderHidden(shouldHide);
+            lastHiddenStateRef.current = shouldHide;
+          }
         }
 
         lastScrollY = currentScrollY;
@@ -68,9 +75,9 @@ export function HeaderClient() {
   return (
     <>
       <header
-        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 sm:translate-y-0 ${
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
           scrolled ? "bg-white" : "bg-transparent"
-        } ${isHeaderHidden ? "-translate-y-full sm:translate-y-0" : "translate-y-0"}`}
+        } ${isHeaderHidden ? "-translate-y-full" : "translate-y-0"}`}
         style={{
           paddingTop: "var(--safe-area-inset-top, 0)",
         }}
