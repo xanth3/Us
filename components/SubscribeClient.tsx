@@ -31,6 +31,8 @@ export function SubscribeClient({ fragrances, tiers }: Props) {
   const [scentSlug, setScentSlug] = useState<string>(fragrances[0]?.slug ?? "");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [hoveredTier, setHoveredTier] = useState<SubscriptionTier | null>(null);
+  const [hoveredScent, setHoveredScent] = useState<string | null>(null);
   const { setAccountDrawerOpen } = useCart();
 
   const selectedTier = useMemo(() => tiers.find((t) => t.tier === tier)!, [tiers, tier]);
@@ -91,16 +93,20 @@ export function SubscribeClient({ fragrances, tiers }: Props) {
         <div className="grid gap-4 sm:grid-cols-2">
           {tiers.map((t) => {
             const isActive = t.tier === tier;
+            const isHovered = hoveredTier === t.tier;
+            const someHovered = hoveredTier !== null;
             return (
               <button
                 key={t.tier}
                 type="button"
                 onClick={() => setTier(t.tier)}
-                className={`flex flex-col rounded-sm border p-6 text-left transition-all ${
+                onMouseEnter={() => setHoveredTier(t.tier)}
+                onMouseLeave={() => setHoveredTier(null)}
+                className={`flex flex-col rounded-sm border p-6 text-left transition-all duration-200 ${
                   isActive
                     ? "border-foreground bg-foreground/[0.02] shadow-[0_1px_0_rgba(0,0,0,0.04)]"
                     : "border-border hover:border-foreground/40"
-                }`}
+                } ${someHovered && !isHovered ? "opacity-40" : "opacity-100"}`}
                 aria-pressed={isActive}
               >
                 <div className="mb-3 flex items-baseline justify-between">
@@ -133,14 +139,18 @@ export function SubscribeClient({ fragrances, tiers }: Props) {
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
           {fragrances.map((f) => {
             const isActive = f.slug === scentSlug;
+            const isHovered = hoveredScent === f.slug;
+            const someHovered = hoveredScent !== null;
             return (
               <button
                 key={f.slug}
                 type="button"
                 onClick={() => setScentSlug(f.slug)}
-                className={`group flex flex-col overflow-hidden rounded-sm border text-left transition-all ${
+                onMouseEnter={() => setHoveredScent(f.slug)}
+                onMouseLeave={() => setHoveredScent(null)}
+                className={`group flex flex-col overflow-hidden rounded-sm border text-left transition-all duration-200 ${
                   isActive ? "border-foreground" : "border-border hover:border-foreground/40"
-                }`}
+                } ${someHovered && !isHovered ? "opacity-40" : "opacity-100"}`}
                 aria-pressed={isActive}
               >
                 <div className="relative aspect-[3/4] w-full overflow-hidden bg-muted">
