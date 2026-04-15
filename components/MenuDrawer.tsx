@@ -148,6 +148,7 @@ const NAV_ITEMS: NavItem[] = [
     submenu: {
       featured: [],
       items: [
+        { label: "The Subscription", href: "/subscribe" },
         { label: "Bottle Engraving", href: "/" },
         { label: "Gift Wrapping", href: "/" },
         { label: "Click & Collect", href: "/" },
