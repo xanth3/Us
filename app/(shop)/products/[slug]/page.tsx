@@ -3,13 +3,9 @@ import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { CATALOG, CATALOG_SLUGS, FANTASMAGORY_RECS, type CatalogSlug } from "@/lib/catalog";
-import { StickyCartBar } from "@/components/StickyCartBar";
 import { RecentlyViewedTracker } from "@/components/RecentlyViewedTracker";
-import { SheetTeaser } from "@/components/SheetTeaser";
 import { SheetContent } from "@/components/SheetContent";
-import { RecommendationsCarousel } from "@/components/RecommendationsCarousel";
-import { MobileImageCarousel } from "@/components/MobileImageCarousel";
-import { FadeInSection } from "@/components/FadeInSection";
+import { MobilePDPSheet } from "@/components/MobilePDPSheet";
 import { DesktopImageFade } from "@/components/DesktopImageFade";
 
 interface Props {
@@ -41,46 +37,8 @@ export default function ProductPage({ params }: Props) {
     <>
       <RecentlyViewedTracker slug={product.slug} />
 
-      {/* ===== MOBILE LAYOUT (< 640px): natural document flow ===== */}
-      <div className="sm:hidden" style={{ marginTop: "calc(-60px - var(--safe-area-inset-top, 0px))" }}>
-        {/* Full image carousel — handles back button, wishlist, prev/next, dots */}
-        <MobileImageCarousel images={product.images} slug={product.slug} />
-
-        {/* Product info — flat top edge, lifts up as user scrolls past the hero */}
-        <FadeInSection>
-          <section className="w-full bg-background">
-            <SheetTeaser product={product} />
-            <SheetContent product={product} recommendations={[]} />
-          </section>
-        </FadeInSection>
-
-        {/* Remaining product images — each lifts up as it enters view */}
-        {product.images.slice(1).map((img, i) => (
-          <FadeInSection key={i}>
-            <div className="w-full overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="h-auto w-full object-cover"
-                loading="lazy"
-                width={1536}
-                height={1920}
-              />
-            </div>
-          </FadeInSection>
-        ))}
-
-        {/* Recommendations after the images */}
-        {recs.length > 0 && (
-          <FadeInSection>
-            <RecommendationsCarousel products={recs} />
-          </FadeInSection>
-        )}
-
-        {/* Sticky bottom CTA — appears via IntersectionObserver once main CTA scrolls out */}
-        <StickyCartBar product={product} />
-      </div>
+      {/* ===== MOBILE LAYOUT (< 640px): LV-style draggable sheet over hero ===== */}
+      <MobilePDPSheet product={product} recommendations={recs} />
 
       {/* ===== DESKTOP LAYOUT (≥ 640px): two-column, natural scroll with per-image fade ===== */}
       <div
