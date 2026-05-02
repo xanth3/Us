@@ -211,7 +211,7 @@ export function MenuDrawer({ open, onClose }: Props) {
       <p className="text-[0.71rem] text-muted-foreground">Can we help you?</p>
       <a
         href="tel:+18006600"
-        className="mt-0.5 block text-[0.8rem] font-medium tracking-wide transition-opacity hover:opacity-60"
+        className="mt-0.5 block text-[0.8rem] font-medium tracking-wide transition-opacity hover:opacity-70 active:opacity-80"
       >
         +1 800 US-BRAND
       </a>
@@ -222,7 +222,7 @@ export function MenuDrawer({ open, onClose }: Props) {
             <Link
               href={link.href}
               onClick={onClose}
-              className="block py-1.5 text-[0.8rem] tracking-wide transition-opacity hover:opacity-60"
+              className="block py-1.5 text-[0.8rem] tracking-wide transition-opacity hover:opacity-70 active:opacity-80"
             >
               {link.label}
             </Link>
@@ -308,7 +308,7 @@ export function MenuDrawer({ open, onClose }: Props) {
                   <li key={item.label}>
                     <button
                       onClick={() => setActiveLabel(item.label)}
-                      className={`flex w-full items-center justify-between py-[14px] text-left text-[0.95rem] tracking-wide transition-opacity hover:opacity-60 ${
+                      className={`flex w-full items-center justify-between py-[14px] text-left text-[0.95rem] tracking-wide transition-opacity hover:opacity-70 active:opacity-80 ${
                         item.bold ? "font-semibold" : "font-normal"
                       }`}
                     >
@@ -332,7 +332,7 @@ export function MenuDrawer({ open, onClose }: Props) {
             {/* Back row */}
             <button
               onClick={() => setActiveLabel(null)}
-              className="flex w-full items-center gap-2 border-b border-border px-5 py-4 text-sm tracking-wide transition-opacity hover:opacity-60"
+              className="flex w-full items-center gap-2 border-b border-border px-5 py-4 text-sm tracking-wide transition-opacity hover:opacity-70 active:opacity-80"
               aria-label="Back"
             >
               <ChevronLeft size={17} />
@@ -388,7 +388,7 @@ export function MenuDrawer({ open, onClose }: Props) {
                       <Link
                         href={sub.href}
                         onClick={onClose}
-                        className="flex items-center justify-between py-[14px] text-[0.95rem] tracking-wide transition-opacity hover:opacity-60"
+                        className="flex items-center justify-between py-[14px] text-[0.95rem] tracking-wide transition-opacity hover:opacity-70 active:opacity-80"
                       >
                         {sub.label}
                         <ChevronRight size={16} className="shrink-0 text-foreground/50" />
@@ -416,7 +416,7 @@ export function MenuDrawer({ open, onClose }: Props) {
           <div className="px-5 pb-1 pt-4">
             <button
               onClick={onClose}
-              className="flex items-center gap-1.5 text-[0.72rem] tracking-wide text-foreground transition-opacity hover:opacity-60"
+              className="flex items-center gap-1.5 text-[0.72rem] tracking-wide text-foreground transition-opacity hover:opacity-70 active:opacity-80"
               aria-label="Close menu"
             >
               <X size={13} />
@@ -496,7 +496,7 @@ export function MenuDrawer({ open, onClose }: Props) {
                       <Link
                         href={sub.href}
                         onClick={onClose}
-                        className="block py-2 text-[0.85rem] tracking-wide transition-opacity hover:opacity-60"
+                        className="block py-2 text-[0.85rem] tracking-wide transition-opacity hover:opacity-70 active:opacity-80"
                       >
                         {sub.label}
                       </Link>

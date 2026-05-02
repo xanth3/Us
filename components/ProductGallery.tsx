@@ -11,7 +11,7 @@ export function ProductGallery({ images, productName }: Props) {
   const secondary = images.slice(1);
 
   return (
-    <div className="sticky top-14 h-[calc(100vh-3.5rem)] overflow-hidden bg-neutral-100">
+    <div className="sticky top-14 h-[calc(100vh-3.5rem)] overflow-hidden bg-muted">
       {primary && (
         <div className="relative h-full w-full">
           <Image

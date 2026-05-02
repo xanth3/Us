@@ -91,7 +91,7 @@ function ToastContainer({ toasts, removeToast }: { toasts: Toast[]; removeToast:
 
           <button
             onClick={() => removeToast(toast.id)}
-            className="shrink-0 transition-opacity hover:opacity-60"
+            className="shrink-0 transition-opacity hover:opacity-70 active:opacity-80"
             aria-label="Close notification"
           >
             <X size={18} />

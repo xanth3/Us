@@ -63,7 +63,7 @@ export function RecommendationsCarousel({ products }: Props) {
                 />
                 <button
                   onClick={(e) => e.preventDefault()}
-                  className="absolute right-3 top-3 transition-opacity hover:opacity-60"
+                  className="absolute right-3 top-3 transition-opacity hover:opacity-70 active:opacity-80"
                   aria-label="Add to wishlist"
                 >
                   <Heart size={18} className="text-foreground" />

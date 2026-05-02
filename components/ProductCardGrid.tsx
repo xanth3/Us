@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import type { Product } from "@/types/product";
 import { formatPrice } from "@/lib/format";
 import { WishlistButton } from "./WishlistButton";
+import { DragLiftLink } from "./DragLiftLink";
 
 interface Props {
   product: Product;
@@ -29,7 +29,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
   };
 
   return (
-    <Link
+    <DragLiftLink
       href={`/products/${product.slug}`}
       className="group relative block overflow-hidden m-0 p-0"
       style={{ animation: "fadeInDelayed 0.6s ease-out 0.5s both" }}
@@ -125,7 +125,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
           From {formatPrice(product.price, product.currency)}
         </p>
       </div>
-    </Link>
+    </DragLiftLink>
   );
 }
 

@@ -54,7 +54,7 @@ export default function CheckoutPage() {
             </p>
             <Link
               href="/perfumes"
-              className="inline-block bg-black text-white px-8 py-4 text-xs font-light uppercase tracking-widest hover:opacity-90"
+              className="inline-flex min-h-[44px] items-center justify-center bg-primary px-8 py-4 text-xs font-light uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90 active:opacity-80"
             >
               Continue Shopping
             </Link>
@@ -291,7 +291,7 @@ export default function CheckoutPage() {
                   <button
                     onClick={handlePayPalCheckout}
                     disabled={isProcessing}
-                    className="w-full bg-[#003087] text-white py-4 text-xs font-light uppercase tracking-widest hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+                    className="w-full bg-payment-paypal py-4 text-xs font-light uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90 active:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {isProcessing ? "Processing..." : "Pay with PayPal"}
                   </button>
@@ -307,7 +307,7 @@ export default function CheckoutPage() {
                       }, 2000);
                     }}
                     disabled={isProcessing}
-                    className="w-full bg-black text-white py-4 text-xs font-light uppercase tracking-widest flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+                    className="flex w-full items-center justify-center gap-2 bg-primary py-4 text-xs font-light uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90 active:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <svg
                       className="w-4 h-4"
@@ -406,7 +406,7 @@ export default function CheckoutPage() {
               <button
                 onClick={handlePayPalCheckout}
                 disabled={isProcessing}
-                className="w-full bg-black text-white py-4 text-xs font-light uppercase tracking-widest hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity rounded"
+                className="w-full rounded bg-primary py-4 text-xs font-light uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90 active:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isProcessing ? "Processing..." : "Proceed to Checkout"}
               </button>

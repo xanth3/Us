@@ -18,7 +18,7 @@ export function AnnouncementBar() {
       </p>
       <button
         onClick={() => setVisible(false)}
-        className="absolute right-4 top-1/2 -translate-y-1/2 transition-opacity hover:opacity-60"
+        className="absolute right-4 top-1/2 -translate-y-1/2 transition-opacity hover:opacity-70 active:opacity-80"
         aria-label="Close announcement"
       >
         <X size={14} />

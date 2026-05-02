@@ -87,7 +87,7 @@ export function HeaderClient() {
           <div className="flex items-center gap-5">
             <button
               onClick={() => setMenuOpen(true)}
-              className={`flex items-center gap-2 text-sm tracking-[0.05em] transition-all hover:opacity-60 ${
+              className={`flex items-center gap-2 text-sm tracking-[0.05em] transition-all hover:opacity-70 active:opacity-80 ${
                 scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
               aria-label="Open menu"
@@ -96,7 +96,7 @@ export function HeaderClient() {
               <span className="hidden sm:inline font-medium">Menu</span>
             </button>
             <button
-              className={`flex items-center gap-2 text-sm tracking-[0.05em] transition-all hover:opacity-60 ${
+              className={`flex items-center gap-2 text-sm tracking-[0.05em] transition-all hover:opacity-70 active:opacity-80 ${
                 scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
               aria-label="Search"
@@ -118,7 +118,7 @@ export function HeaderClient() {
           <div className="flex items-center gap-5">
             <a
               href="#"
-              className={`hidden sm:inline text-sm tracking-[0.05em] transition-all hover:opacity-60 font-medium ${
+              className={`hidden text-sm font-normal tracking-[0.05em] transition-all hover:opacity-70 active:opacity-80 sm:inline ${
                 scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
             >
@@ -126,7 +126,7 @@ export function HeaderClient() {
             </a>
             <Link
               href="/wishlist"
-              className={`transition-all hover:opacity-60 ${
+              className={`transition-all hover:opacity-70 active:opacity-80 ${
                 scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
               aria-label="Wishlist"
@@ -135,7 +135,7 @@ export function HeaderClient() {
             </Link>
             <button
               onClick={() => setAccountDrawerOpen(true)}
-              className={`transition-all hover:opacity-60 ${
+              className={`transition-all hover:opacity-70 active:opacity-80 ${
                 scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
               aria-label="Account"
@@ -144,7 +144,7 @@ export function HeaderClient() {
             </button>
             <button
               onClick={() => setCartDrawerOpen(true)}
-              className={`relative transition-all hover:opacity-60 ${
+              className={`relative transition-all hover:opacity-70 active:opacity-80 ${
                 scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
               aria-label="Cart"

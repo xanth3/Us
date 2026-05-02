@@ -63,7 +63,7 @@ export default function WishlistPage() {
 
               {/* Sign In Button */}
               <button
-                className="mb-16 rounded-full bg-black px-12 py-3 text-xs font-medium tracking-widest text-white transition-opacity hover:opacity-90"
+                className="mb-16 rounded-lg bg-primary px-12 py-3 text-xs font-medium tracking-widest text-primary-foreground transition-opacity hover:opacity-90 active:opacity-80"
                 onClick={() => alert("Sign in functionality would be integrated with auth provider")}
               >
                 Sign In
@@ -86,7 +86,7 @@ export default function WishlistPage() {
             <div className="mt-16 border-t border-border pt-8">
               <Link
                 href="/perfumes"
-                className="inline-block border border-foreground px-8 py-3 text-xs font-light uppercase tracking-widest transition-colors hover:bg-foreground hover:text-white"
+                className="inline-flex min-h-[44px] items-center justify-center border border-primary px-8 py-3 text-xs font-light uppercase tracking-widest transition-colors hover:bg-primary hover:text-primary-foreground active:opacity-80"
               >
                 Explore Our Collection
               </Link>

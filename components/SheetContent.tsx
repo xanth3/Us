@@ -82,7 +82,7 @@ export function SheetContent({ product, recommendations = [] }: Props) {
       <AddToCartButton product={product} />
 
       {/* Contact */}
-      <p className="mb-8 mt-4 cursor-pointer text-center text-sm underline underline-offset-2 transition-opacity hover:opacity-60">
+      <p className="mb-8 mt-4 cursor-pointer text-center text-sm underline underline-offset-2 transition-opacity hover:opacity-70 active:opacity-80">
         Contact an Advisor
       </p>
 
@@ -93,7 +93,7 @@ export function SheetContent({ product, recommendations = [] }: Props) {
 
       {/* Read more */}
       <div className="mb-2 border-t border-border pt-4">
-        <button className="text-sm font-medium underline underline-offset-4 transition-opacity hover:opacity-60">
+        <button className="text-sm font-medium underline underline-offset-4 transition-opacity hover:opacity-70 active:opacity-80">
           Read more
         </button>
       </div>

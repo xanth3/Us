@@ -78,7 +78,7 @@ export function AllPerfumesClient({ sections }: Props) {
         <div className="relative">
           <button
             onClick={() => setDropdownOpen((v) => !v)}
-            className="flex items-center gap-1.5 text-[0.8rem] tracking-wide transition-opacity hover:opacity-60"
+            className="flex items-center gap-1.5 text-[0.8rem] tracking-wide transition-opacity hover:opacity-70 active:opacity-80"
           >
             <span className="font-medium">{collectionFilter}</span>
             <ChevronDown
@@ -147,7 +147,7 @@ export function AllPerfumesClient({ sections }: Props) {
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-black/35" />
-              <div className="relative z-10 flex h-full flex-col justify-end px-8 pb-12 text-white sm:max-w-lg">
+              <div className="relative z-10 flex h-full flex-col justify-end px-8 pb-12 text-primary-foreground sm:max-w-lg">
                 <h2
                   className="text-3xl font-light leading-snug sm:text-4xl"
                   style={{ fontFamily: "var(--font-display)" }}
@@ -201,7 +201,7 @@ export function AllPerfumesClient({ sections }: Props) {
           </p>
           <button
             onClick={clearAll}
-            className="mt-4 text-[0.75rem] tracking-widest uppercase underline underline-offset-2 transition-opacity hover:opacity-60"
+            className="mt-4 text-[0.75rem] tracking-widest uppercase underline underline-offset-2 transition-opacity hover:opacity-70 active:opacity-80"
           >
             Clear All Filters
           </button>
@@ -231,7 +231,7 @@ export function AllPerfumesClient({ sections }: Props) {
           <button
             onClick={closeDrawer}
             aria-label="Close filters"
-            className="transition-opacity hover:opacity-60"
+            className="transition-opacity hover:opacity-70 active:opacity-80"
           >
             <X size={16} />
           </button>
@@ -264,7 +264,7 @@ export function AllPerfumesClient({ sections }: Props) {
           <div className="flex items-center gap-3">
             <button
               onClick={clearAll}
-              className="flex-1 py-3 text-[0.75rem] tracking-widest uppercase transition-opacity hover:opacity-60"
+              className="flex-1 py-3 text-[0.75rem] tracking-widest uppercase transition-opacity hover:opacity-70 active:opacity-80"
             >
               Clear All
             </button>

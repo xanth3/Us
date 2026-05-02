@@ -58,23 +58,45 @@
 
 @layer base {
   :root {
+    --lv-color-text-primary: 0 0% 10%;
+    --lv-color-text-tertiary: 0 0% 45%;
+    --lv-color-surface-base: 0 0% 0%;
+    --lv-color-surface-raised: 0 0% 97%;
+    --lv-color-surface-muted: 0 0% 100%;
+    --lv-space-1: 2px;
+    --lv-space-2: 4px;
+    --lv-space-3: 8px;
+    --lv-space-4: 12px;
+    --lv-space-5: 13px;
+    --lv-space-6: 14px;
+    --lv-space-7: 16px;
+    --lv-space-8: 24px;
+    --lv-radius-xs: 4px;
+    --lv-radius-sm: 8px;
+    --lv-radius-md: 40px;
+    --lv-radius-lg: 50px;
+    --lv-motion-instant: 150ms;
+    --lv-motion-fast: 300ms;
+    --lv-shadow-lift: rgba(0, 0, 0, 0.18) 0px 18px 40px -18px;
+    --payment-paypal: 215 100% 26%;
+
     --background: 0 0% 100%;
-    --foreground: 0 0% 7%;
+    --foreground: var(--lv-color-text-primary);
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 7%;
+    --card: var(--lv-color-surface-muted);
+    --card-foreground: var(--lv-color-text-primary);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 7%;
+    --popover: var(--lv-color-surface-muted);
+    --popover-foreground: var(--lv-color-text-primary);
 
-    --primary: 0 0% 7%;
-    --primary-foreground: 0 0% 100%;
+    --primary: var(--lv-color-surface-base);
+    --primary-foreground: var(--lv-color-surface-muted);
 
-    --secondary: 40 10% 96%;
-    --secondary-foreground: 0 0% 7%;
+    --secondary: var(--lv-color-surface-raised);
+    --secondary-foreground: var(--lv-color-text-primary);
 
-    --muted: 40 10% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: var(--lv-color-surface-raised);
+    --muted-foreground: var(--lv-color-text-tertiary);
 
     --accent: 330 50% 55%;
     --accent-foreground: 0 0% 100%;
@@ -84,9 +106,9 @@
 
     --border: 0 0% 88%;
     --input: 0 0% 88%;
-    --ring: 0 0% 7%;
+    --ring: var(--lv-color-text-primary);
 
-    --radius: 0px;
+    --radius: var(--lv-radius-sm);
 
     --font-display: 'Louis Vuitton Web', 'Louis Vuitton Web Fallback', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-body: 'Louis Vuitton Web', 'Louis Vuitton Web Fallback', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -117,7 +139,8 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-body);
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 1.5;
     
     /* iOS optimizations */
     -webkit-font-smoothing: antialiased;
@@ -143,7 +166,11 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 400;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 
   /* Allow text selection where needed */
@@ -175,9 +202,9 @@
   .nav-link {
     font-family: var(--font-body);
     font-size: 0.8125rem;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0.05em;
-    @apply text-foreground transition-opacity hover:opacity-60;
+    @apply text-foreground transition-opacity hover:opacity-70 focus-visible:opacity-100;
   }
 
   .announcement-bar {
@@ -190,7 +217,7 @@
 
   /* iOS Touch Target Sizing (44px minimum) */
   .btn-cart {
-    @apply bg-primary text-primary-foreground w-full py-3 text-sm tracking-widest uppercase font-medium transition-opacity hover:opacity-90 min-h-[44px] flex items-center justify-center;
+    @apply flex min-h-[44px] w-full items-center justify-center bg-primary py-3 text-sm font-normal uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90 active:opacity-80 disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   button, a[role="button"] {

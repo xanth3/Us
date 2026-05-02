@@ -14,7 +14,7 @@ export function ReadMore({ lines, previewCount = 1 }: Props) {
   return (
     <div className="space-y-1">
       {visible.map((line, i) => (
-        <p key={i} className="text-xs text-brand-muted">
+        <p key={i} className="text-xs text-muted-foreground">
           {line}
         </p>
       ))}

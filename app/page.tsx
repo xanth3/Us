@@ -35,7 +35,7 @@ export default function HomePage() {
         />
         {/* Gradient ensures white navbar text is always legible */}
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/30 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center pb-16 text-center text-white">
+        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center pb-16 text-center text-primary-foreground">
           <p className="mb-2 text-xs uppercase tracking-[0.3em]">New</p>
           <h1
             className="mb-6 text-4xl font-light"
@@ -45,7 +45,7 @@ export default function HomePage() {
           </h1>
           <Link
             href="/perfumes"
-            className="border border-white px-8 py-2.5 text-xs tracking-widest transition-colors hover:bg-white hover:text-black"
+            className="inline-flex min-h-[44px] items-center justify-center border border-primary-foreground px-8 py-2.5 text-xs tracking-widest transition-colors hover:bg-primary-foreground hover:text-primary active:opacity-80"
           >
             Shop Now
           </Link>
@@ -128,7 +128,7 @@ export default function HomePage() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/perfumes"
-            className="rounded-full border border-foreground px-8 py-2.5 text-xs tracking-widest transition-colors hover:bg-foreground hover:text-white"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-primary px-8 py-2.5 text-xs tracking-widest transition-colors hover:bg-primary hover:text-primary-foreground active:opacity-80"
           >
             Shop Now
           </Link>

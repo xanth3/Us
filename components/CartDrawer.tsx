@@ -42,7 +42,7 @@ export function CartDrawer() {
           <button
             onClick={() => setCartDrawerOpen(false)}
             aria-label="Close cart"
-            className="transition-opacity hover:opacity-60"
+            className="transition-opacity hover:opacity-70 active:opacity-80"
           >
             <X size={20} />
           </button>
@@ -73,7 +73,7 @@ export function CartDrawer() {
                       <h3 className="font-light text-sm leading-tight">{item.name}</h3>
                       <button
                         onClick={() => removeItem(item.slug)}
-                        className="text-muted-foreground hover:text-foreground transition-colors text-xs"
+                        className="text-xs text-muted-foreground transition-colors hover:text-foreground"
                       >
                         Remove
                       </button>
@@ -87,7 +87,7 @@ export function CartDrawer() {
                     <div className="flex items-center gap-3 border border-border rounded">
                       <button
                         onClick={() => updateQuantity(item.slug, Math.max(1, item.quantity - 1))}
-                        className="px-3 py-1.5 text-sm font-light transition-opacity hover:opacity-60"
+                        className="px-3 py-1.5 text-sm font-light transition-opacity hover:opacity-70 active:opacity-80"
                         aria-label="Decrease quantity"
                       >
                         −
@@ -95,7 +95,7 @@ export function CartDrawer() {
                       <span className="text-sm font-light flex-1 text-center">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.slug, item.quantity + 1)}
-                        className="px-3 py-1.5 text-sm font-light transition-opacity hover:opacity-60"
+                        className="px-3 py-1.5 text-sm font-light transition-opacity hover:opacity-70 active:opacity-80"
                         aria-label="Increase quantity"
                       >
                         +
@@ -123,13 +123,13 @@ export function CartDrawer() {
               <Link
                 href="/checkout"
                 onClick={() => setCartDrawerOpen(false)}
-                className="block w-full bg-black text-white text-center py-4 text-xs font-light uppercase tracking-widest transition-opacity hover:opacity-90"
+                className="block w-full bg-primary py-4 text-center text-xs font-light uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90 active:opacity-80"
               >
                 Proceed to Checkout
               </Link>
 
               {/* Apple Pay Button */}
-              <button className="w-full bg-black text-white py-4 text-xs font-light uppercase tracking-widest flex items-center justify-center gap-2 transition-opacity hover:opacity-90">
+              <button className="flex w-full items-center justify-center gap-2 bg-primary py-4 text-xs font-light uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90 active:opacity-80">
                 <svg
                   className="w-4 h-4"
                   viewBox="0 0 24 24"
@@ -144,7 +144,7 @@ export function CartDrawer() {
               {/* Continue Shopping */}
               <button
                 onClick={() => setCartDrawerOpen(false)}
-                className="w-full border border-border py-4 text-xs font-light uppercase tracking-widest text-foreground transition-opacity hover:opacity-60"
+                className="w-full border border-border py-4 text-xs font-light uppercase tracking-widest text-foreground transition-opacity hover:opacity-70 active:opacity-80"
               >
                 Continue Shopping
               </button>

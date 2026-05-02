@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Product } from "@/types/product";
 import { formatPrice } from "@/lib/format";
 import { WishlistButton } from "./WishlistButton";
+import { DragLiftLink } from "./DragLiftLink";
 
 interface Props {
   product: Product;
@@ -12,9 +12,9 @@ export function ProductCard({ product }: Props) {
   const img = product.images[0];
 
   return (
-    <Link
+    <DragLiftLink
       href={`/products/${product.slug}`}
-      className="group relative flex flex-col bg-neutral-100"
+      className="group relative flex flex-col bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
     >
       {/* Wishlist */}
       <div className="absolute right-3 top-3 z-10">
@@ -32,17 +32,17 @@ export function ProductCard({ product }: Props) {
             className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="h-full w-full bg-neutral-200" />
+          <div className="h-full w-full bg-muted" />
         )}
       </div>
 
       {/* Meta */}
       <div className="p-3">
-        <p className="font-playfair text-sm">{product.name}</p>
-        <p className="mt-0.5 text-xs text-brand-muted">
+        <p className="font-display text-sm leading-5">{product.name}</p>
+        <p className="mt-0.5 text-xs text-muted-foreground">
           {formatPrice(product.price, product.currency)}
         </p>
       </div>
-    </Link>
+    </DragLiftLink>
   );
 }

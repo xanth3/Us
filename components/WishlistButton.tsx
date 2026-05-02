@@ -73,7 +73,7 @@ export function WishlistButton({
     <button
       onClick={toggle}
       aria-label={wished ? "Remove from wishlist" : "Add to wishlist"}
-      className={`flex items-center justify-center min-h-[44px] min-w-[44px] transition-opacity hover:opacity-60 ${className}`}
+      className={`flex min-h-[44px] min-w-[44px] items-center justify-center transition-opacity hover:opacity-70 active:opacity-80 ${className}`}
     >
       <Heart
         size={20}

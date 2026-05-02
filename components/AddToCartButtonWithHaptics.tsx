@@ -20,7 +20,7 @@ export function AddToCartButtonWithHaptics({ product, className }: Props) {
   return (
     <button
       onClick={handleClick}
-      className={`btn-cart rounded-full min-h-[44px] ${className || ""}`}
+      className={`btn-cart min-h-[44px] rounded-lg ${className || ""}`}
     >
       Place in Cart
     </button>

@@ -51,11 +51,30 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        brand: {
+          black: "hsl(var(--primary))",
+          border: "hsl(var(--border))",
+          muted: "hsl(var(--muted-foreground))",
+        },
+        payment: {
+          paypal: "hsl(var(--payment-paypal))",
+        },
+      },
+      fontFamily: {
+        display: "var(--font-display)",
+        body: "var(--font-body)",
+        playfair: "var(--font-display)",
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "var(--lv-radius-lg)",
+        md: "var(--lv-radius-md)",
+        sm: "var(--lv-radius-sm)",
+        xs: "var(--lv-radius-xs)",
+      },
+      boxShadow: {
+        lv1: "rgb(0, 0, 0) 0px 2px 0px -1px",
+        lv2: "rgb(26, 26, 26) 0px 2px 0px -1px",
+        lv3: "rgba(0, 0, 0, 0.04) 0px 24px 24px -4px",
       },
       keyframes: {
         "accordion-down": {
