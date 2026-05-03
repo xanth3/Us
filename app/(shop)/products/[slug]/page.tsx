@@ -62,7 +62,7 @@ export default function ProductPage({ params }: Props) {
               <img
                 src={img.src}
                 alt={img.alt}
-                className="h-auto w-full object-cover"
+                className="h-auto w-full cursor-grab object-cover active:cursor-grabbing"
                 loading="lazy"
                 width={1536}
                 height={1920}
@@ -111,7 +111,7 @@ export default function ProductPage({ params }: Props) {
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="h-auto w-full object-cover lg:h-full"
+                  className="h-auto w-full cursor-grab object-cover active:cursor-grabbing lg:h-full"
                   loading={i === 0 ? "eager" : "lazy"}
                   width={1536}
                   height={1920}

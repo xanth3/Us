@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import type { PointerEvent } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { WishlistButton } from "./WishlistButton";
@@ -13,14 +14,59 @@ interface Props {
 
 export function MobileImageCarousel({ images, slug }: Props) {
   const [index, setIndex] = useState(0);
+  const dragStartRef = useRef<{ x: number; y: number } | null>(null);
+  const [dragging, setDragging] = useState(false);
 
   const prev = () => setIndex((i) => (i === 0 ? images.length - 1 : i - 1));
   const next = () => setIndex((i) => (i === images.length - 1 ? 0 : i + 1));
 
   const current = images[index];
 
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (images.length < 2) return;
+    dragStartRef.current = { x: event.clientX, y: event.clientY };
+    setDragging(true);
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (!dragStartRef.current) return;
+    const deltaX = event.clientX - dragStartRef.current.x;
+    const deltaY = event.clientY - dragStartRef.current.y;
+    if (Math.abs(deltaX) > 8 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      event.preventDefault();
+    }
+  };
+
+  const handlePointerRelease = (event: PointerEvent<HTMLDivElement>) => {
+    if (!dragStartRef.current) return;
+
+    const deltaX = event.clientX - dragStartRef.current.x;
+    const deltaY = event.clientY - dragStartRef.current.y;
+    if (Math.abs(deltaX) > 44 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX > 0) prev();
+      else next();
+    }
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+
+    dragStartRef.current = null;
+    setDragging(false);
+  };
+
   return (
-    <div className="relative w-full select-none overflow-hidden bg-secondary">
+    <div
+      className={`relative w-full select-none overflow-hidden bg-secondary ${
+        dragging ? "cursor-grabbing" : "cursor-grab"
+      }`}
+      style={{ touchAction: "pan-y" }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerRelease}
+      onPointerCancel={handlePointerRelease}
+    >
       {/* Top gradient keeps white navbar readable */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-40 bg-gradient-to-b from-black/30 to-transparent" />
 
@@ -45,7 +91,7 @@ export function MobileImageCarousel({ images, slug }: Props) {
           key={index}
           src={current.src}
           alt={current.alt}
-          className="h-auto w-full object-cover"
+          className="h-auto w-full cursor-grab object-cover active:cursor-grabbing"
           loading="eager"
           width={1536}
           height={1920}

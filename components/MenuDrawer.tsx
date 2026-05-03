@@ -37,8 +37,8 @@ const NAV_ITEMS: NavItem[] = [
     href: "/",
     submenu: {
       featured: [
-        { src: "/assets/perfume-hero.jpg", alt: "Monogram", caption: "Monogram Collection" },
-        { src: "/assets/perfume-lifestyle.jpg", alt: "Anniversary", caption: "Anniversary Editions" },
+        { src: "/assets/heritage/fames-bad-blood-hero.png", alt: "Monogram", caption: "Monogram Collection" },
+        { src: "/assets/heritage/fames-product-gold.png", alt: "Anniversary", caption: "Anniversary Editions" },
       ],
       items: [
         { label: "Limited Editions", href: "/" },
@@ -53,8 +53,8 @@ const NAV_ITEMS: NavItem[] = [
     href: "/",
     submenu: {
       featured: [
-        { src: "/assets/perfume-detail.jpg", alt: "Gifts", caption: "Gifts" },
-        { src: "/assets/product-symphony.jpg", alt: "Personalization", caption: "Personalization" },
+        { src: "/assets/heritage/fames-full-ghorm-clear.png", alt: "Gifts", caption: "Gifts" },
+        { src: "/assets/heritage/fames-lavender.png", alt: "Personalization", caption: "Personalization" },
       ],
       items: [
         { label: "Gift Sets", href: "/" },
@@ -70,10 +70,10 @@ const NAV_ITEMS: NavItem[] = [
     href: "/",
     submenu: {
       featured: [
-        { src: "/assets/perfume-hero.jpg", alt: "New Arrivals", caption: "New Arrivals" },
-        { src: "/assets/perfume-lifestyle.jpg", alt: "The Essentials", caption: "The Essentials" },
-        { src: "/assets/perfume-detail.jpg", alt: "Spring 2026", caption: "Spring 2026" },
-        { src: "/assets/product-stellar.jpg", alt: "Summer 2026 Show", caption: "Summer 2026 Show" },
+        { src: "/assets/heritage/fames-bad-blood-hero.png", alt: "New Arrivals", caption: "New Arrivals" },
+        { src: "/assets/heritage/fames-product-gold.png", alt: "The Essentials", caption: "The Essentials" },
+        { src: "/assets/heritage/fames-full-ghorm-clear.png", alt: "Spring 2026", caption: "Spring 2026" },
+        { src: "/assets/heritage/fames-blue.png", alt: "Summer 2026 Show", caption: "Summer 2026 Show" },
       ],
       items: [
         { label: "New Fragrances", href: "/perfumes" },
@@ -88,10 +88,10 @@ const NAV_ITEMS: NavItem[] = [
     href: "/",
     submenu: {
       featured: [
-        { src: "/assets/perfume-hero.jpg", alt: "New Arrivals", caption: "New Arrivals" },
-        { src: "/assets/perfume-lifestyle.jpg", alt: "The Essentials", caption: "The Essentials" },
-        { src: "/assets/perfume-detail.jpg", alt: "Spring 2026", caption: "Spring 2026" },
-        { src: "/assets/product-symphony.jpg", alt: "Spring–Summer 2026 Show", caption: "Spring–Summer 2026 Show" },
+        { src: "/assets/heritage/fames-bad-blood-hero.png", alt: "New Arrivals", caption: "New Arrivals" },
+        { src: "/assets/heritage/fames-product-gold.png", alt: "The Essentials", caption: "The Essentials" },
+        { src: "/assets/heritage/fames-full-ghorm-clear.png", alt: "Spring 2026", caption: "Spring 2026" },
+        { src: "/assets/heritage/fames-lavender.png", alt: "Spring–Summer 2026 Show", caption: "Spring–Summer 2026 Show" },
       ],
       items: [
         { label: "Small Leather Goods", href: "/" },
@@ -108,10 +108,10 @@ const NAV_ITEMS: NavItem[] = [
     href: "/",
     submenu: {
       featured: [
-        { src: "/assets/product-stellar.jpg", alt: "New Arrivals", caption: "New Arrivals" },
-        { src: "/assets/perfume-lifestyle.jpg", alt: "The Essentials", caption: "The Essentials" },
-        { src: "/assets/perfume-detail.jpg", alt: "Spring 2026", caption: "Spring 2026" },
-        { src: "/assets/product-symphony.jpg", alt: "Spring–Summer 2026 Show", caption: "Spring–Summer 2026 Show" },
+        { src: "/assets/heritage/fames-blue.png", alt: "New Arrivals", caption: "New Arrivals" },
+        { src: "/assets/heritage/fames-product-gold.png", alt: "The Essentials", caption: "The Essentials" },
+        { src: "/assets/heritage/fames-full-ghorm-clear.png", alt: "Spring 2026", caption: "Spring 2026" },
+        { src: "/assets/heritage/fames-lavender.png", alt: "Spring–Summer 2026 Show", caption: "Spring–Summer 2026 Show" },
       ],
       items: [
         { label: "Small Leather Goods", href: "/" },
@@ -128,10 +128,10 @@ const NAV_ITEMS: NavItem[] = [
     href: "/perfumes",
     submenu: {
       featured: [
-        { src: "/assets/perfume-hero.jpg", alt: "All Fragrances", caption: "All Fragrances" },
-        { src: "/assets/perfume-lifestyle.jpg", alt: "New Arrivals", caption: "New Arrivals" },
-        { src: "/assets/perfume-detail.jpg", alt: "Makeup", caption: "Makeup" },
-        { src: "/assets/product-symphony.jpg", alt: "Skincare", caption: "Skincare" },
+        { src: "/assets/heritage/fames-bad-blood-hero.png", alt: "All Fragrances", caption: "All Fragrances" },
+        { src: "/assets/heritage/fames-product-gold.png", alt: "New Arrivals", caption: "New Arrivals" },
+        { src: "/assets/heritage/fames-full-ghorm-clear.png", alt: "Makeup", caption: "Makeup" },
+        { src: "/assets/heritage/fames-lavender.png", alt: "Skincare", caption: "Skincare" },
       ],
       items: [
         { label: "All Perfumes", href: "/perfumes" },
@@ -161,8 +161,8 @@ const NAV_ITEMS: NavItem[] = [
     href: "/",
     submenu: {
       featured: [
-        { src: "/assets/perfume-hero.jpg", alt: "Our Story", caption: "Our Story" },
-        { src: "/assets/perfume-lifestyle.jpg", alt: "Our Artisans", caption: "Our Artisans" },
+        { src: "/assets/heritage/fames-bad-blood-hero.png", alt: "Our Story", caption: "Our Story" },
+        { src: "/assets/heritage/fames-product-gold.png", alt: "Our Artisans", caption: "Our Artisans" },
       ],
       items: [
         { label: "Our Story", href: "/" },
@@ -349,7 +349,7 @@ export function MenuDrawer({ open, onClose }: Props) {
                     <img
                       src={activeItem.submenu.featured[0].src}
                       alt={activeItem.submenu.featured[0].alt}
-                      className="w-full object-cover"
+                      className="w-full cursor-grab object-cover active:cursor-grabbing"
                       style={{ aspectRatio: "16/9" }}
                       loading="lazy"
                     />
@@ -368,7 +368,7 @@ export function MenuDrawer({ open, onClose }: Props) {
                         <img
                           src={img.src}
                           alt={img.alt}
-                          className="w-full object-cover"
+                          className="w-full cursor-grab object-cover active:cursor-grabbing"
                           style={{ aspectRatio: "1/1" }}
                           loading="lazy"
                         />
@@ -477,7 +477,7 @@ export function MenuDrawer({ open, onClose }: Props) {
                         <img
                           src={img.src}
                           alt={img.alt}
-                          className="aspect-[4/3] w-full object-cover"
+                          className="aspect-[4/3] w-full cursor-grab object-cover active:cursor-grabbing"
                           loading="lazy"
                         />
                         <p className="mt-1 text-[0.72rem] tracking-wide text-muted-foreground">

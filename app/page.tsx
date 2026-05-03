@@ -4,14 +4,14 @@ import { formatPrice } from "@/lib/format";
 import { WishlistButton } from "@/components/WishlistButton";
 
 const CATEGORIES = [
-  { label: "Women's Bags",                href: "/", img: "/assets/perfume-lifestyle.jpg" },
-  { label: "Women's Small Leather Goods", href: "/", img: "/assets/perfume-detail.jpg"    },
-  { label: "Women's Accessories",         href: "/", img: "/assets/product-palette.jpg"   },
-  { label: "Women's Shoes",               href: "/", img: "/assets/product-stellar.jpg"   },
-  { label: "Men's Bags",                  href: "/", img: "/assets/product-symphony.jpg"  },
-  { label: "Men's Small Leather Goods",   href: "/", img: "/assets/product-lipstick.jpg" },
-  { label: "Men's Shoes",                 href: "/", img: "/assets/perfume-hero.jpg"      },
-  { label: "Perfumes",                    href: "/perfumes", img: "/assets/perfume-thumb.png" },
+  { label: "Women's Bags",                href: "/", img: "/assets/heritage/fames-product-gold.png" },
+  { label: "Women's Small Leather Goods", href: "/", img: "/assets/heritage/fames-full-ghorm-clear.png" },
+  { label: "Women's Accessories",         href: "/", img: "/assets/heritage/fames-silver.png" },
+  { label: "Women's Shoes",               href: "/", img: "/assets/heritage/fames-blue.png" },
+  { label: "Men's Bags",                  href: "/", img: "/assets/heritage/fames-lavender.png" },
+  { label: "Men's Small Leather Goods",   href: "/", img: "/assets/heritage/fames-rose.png" },
+  { label: "Men's Shoes",                 href: "/", img: "/assets/heritage/fames-bad-blood-hero.png" },
+  { label: "Perfumes",                    href: "/perfumes", img: "/assets/heritage/fames-full-ghorm-clear.png" },
 ];
 
 export default function HomePage() {
@@ -28,7 +28,7 @@ export default function HomePage() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/perfume-hero.jpg"
+          src="/assets/heritage/fames-bad-blood-hero.png"
           alt="Flight Mode Collection"
           className="absolute inset-0 h-full w-full object-cover"
           loading="eager"
@@ -68,7 +68,7 @@ export default function HomePage() {
                 <img
                   src={cat.img}
                   alt={cat.label}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full cursor-grab object-cover transition-transform duration-500 active:cursor-grabbing group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
@@ -108,7 +108,7 @@ export default function HomePage() {
                 <img
                   src={product.images[0].src}
                   alt={product.images[0].alt}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full cursor-grab object-cover transition-transform duration-500 active:cursor-grabbing group-hover:scale-105"
                   loading="lazy"
                 />
               </div>

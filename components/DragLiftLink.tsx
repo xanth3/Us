@@ -9,6 +9,8 @@ interface DragLiftLinkProps extends LinkProps {
   children: ReactNode;
   className?: string;
   style?: CSSProperties;
+  dragDirection?: "vertical" | "horizontal" | "free";
+  onDragEnd?: (delta: { x: number; y: number }) => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
 }
@@ -19,6 +21,8 @@ export function DragLiftLink({
   children,
   className,
   style,
+  dragDirection = "vertical",
+  onDragEnd,
   onMouseEnter,
   onMouseLeave,
   ...props
@@ -48,7 +52,11 @@ export function DragLiftLink({
     if (moved) {
       event.preventDefault();
       draggedRef.current = true;
-      window.scrollBy({ top: -(event.clientY - lastRef.current.y), behavior: "auto" });
+
+      const isVerticalIntent = Math.abs(rawY) >= Math.abs(rawX);
+      if (dragDirection !== "horizontal" && isVerticalIntent) {
+        window.scrollBy({ top: -(event.clientY - lastRef.current.y), behavior: "auto" });
+      }
     }
 
     lastRef.current = { x: event.clientX, y: event.clientY };
@@ -66,6 +74,7 @@ export function DragLiftLink({
       event.currentTarget.releasePointerCapture(event.pointerId);
     }
 
+    onDragEnd?.({ x: event.clientX - originRef.current.x, y: event.clientY - originRef.current.y });
     setDrag({ active: false, x: 0, y: 0 });
   };
 
@@ -82,6 +91,7 @@ export function DragLiftLink({
           ? "box-shadow var(--lv-motion-instant), transform var(--lv-motion-instant)"
           : "box-shadow var(--lv-motion-fast), transform var(--lv-motion-fast)",
         cursor: drag.active ? "grabbing" : "grab",
+        touchAction: "pan-y",
         boxShadow: drag.active ? "var(--lv-shadow-lift)" : undefined,
         zIndex: drag.active ? 20 : undefined,
       }}

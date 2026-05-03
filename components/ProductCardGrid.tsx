@@ -28,11 +28,21 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
     setImgIndex((i) => (i === product.images.length - 1 ? 0 : i + 1));
   };
 
+  const handleDragEnd = ({ x, y }: { x: number; y: number }) => {
+    if (product.images.length < 2 || Math.abs(x) < 36 || Math.abs(x) <= Math.abs(y)) return;
+    setImgIndex((i) => {
+      if (x > 0) return i === 0 ? product.images.length - 1 : i - 1;
+      return i === product.images.length - 1 ? 0 : i + 1;
+    });
+  };
+
   return (
     <DragLiftLink
       href={`/products/${product.slug}`}
       className="group relative block overflow-hidden m-0 p-0"
       style={{ animation: "fadeInDelayed 0.6s ease-out 0.5s both" }}
+      dragDirection="free"
+      onDragEnd={handleDragEnd}
       onMouseEnter={() => {
         setHovered(true);
         if (isFirst && product.images.length > 1) setImgIndex(1);
@@ -69,7 +79,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
             key={i}
             src={img.src}
             alt={img.alt}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+            className={`absolute inset-0 h-full w-full cursor-grab object-cover transition-opacity duration-500 active:cursor-grabbing ${
               i === imgIndex ? "opacity-100" : "opacity-0"
             }`}
             loading={i === 0 ? "eager" : "lazy"}

@@ -29,7 +29,7 @@ export function ProductCard({ product }: Props) {
             alt={img.alt}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+            className="cursor-grab object-cover object-center transition-transform duration-500 active:cursor-grabbing group-hover:scale-105"
           />
         ) : (
           <div className="h-full w-full bg-muted" />

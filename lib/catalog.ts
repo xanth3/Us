@@ -1,5 +1,16 @@
 import type { Product } from "@/types/product";
 
+const HERITAGE_IMAGES = {
+  fullGhorm: "/assets/heritage/fames-full-ghorm-clear.png",
+  lavender: "/assets/heritage/fames-lavender.png",
+  blue: "/assets/heritage/fames-blue.png",
+  rose: "/assets/heritage/fames-rose.png",
+  badBloodHero: "/assets/heritage/fames-bad-blood-hero.png",
+  gold: "/assets/heritage/fames-product-gold.png",
+  goldAlt: "/assets/heritage/fames-product-gold-alt.png",
+  silver: "/assets/heritage/fames-silver.png",
+} as const;
+
 export const CATALOG_SLUGS = [
   "fantasmagory",
   "symphony",
@@ -30,15 +41,15 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     currency: "USD",
     collection: "Les Parfums",
     images: [
-      { src: "/assets/perfume-hero.jpg", alt: "Fantasmagory perfume bottle" },
-      { src: "/assets/perfume-detail.jpg", alt: "Fantasmagory perfume detail" },
-      { src: "/assets/perfume-lifestyle.jpg", alt: "Fantasmagory lifestyle shot" },
+      { src: HERITAGE_IMAGES.badBloodHero, alt: "Fantasmagory perfume bottle" },
+      { src: HERITAGE_IMAGES.fullGhorm, alt: "Fantasmagory perfume detail" },
+      { src: HERITAGE_IMAGES.gold, alt: "Fantasmagory lifestyle shot" },
     ],
     serviceOffer: {
       title: "Bottle Engraving",
       subtitle: "Complimentary",
       description: "With your initials or numbers",
-      icon: "/assets/perfume-thumb.png",
+      icon: HERITAGE_IMAGES.fullGhorm,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -61,14 +72,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     collection: "Les Parfums",
     badge: "ICON",
     images: [
-      { src: "/assets/product-symphony.jpg", alt: "Symphony perfume bottle" },
-      { src: "/assets/perfume-lifestyle.jpg", alt: "Symphony lifestyle" },
+      { src: HERITAGE_IMAGES.lavender, alt: "Symphony perfume bottle" },
+      { src: HERITAGE_IMAGES.goldAlt, alt: "Symphony lifestyle" },
     ],
     serviceOffer: {
       title: "Bottle Engraving",
       subtitle: "Complimentary",
       description: "With your initials or numbers",
-      icon: "/assets/product-symphony.jpg",
+      icon: HERITAGE_IMAGES.lavender,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -91,14 +102,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     collection: "Les Parfums",
     badge: "NEW",
     images: [
-      { src: "/assets/product-stellar.jpg", alt: "Stellar Times perfume bottle" },
-      { src: "/assets/perfume-detail.jpg", alt: "Stellar Times detail" },
+      { src: HERITAGE_IMAGES.blue, alt: "Stellar Times perfume bottle" },
+      { src: HERITAGE_IMAGES.badBloodHero, alt: "Stellar Times detail" },
     ],
     serviceOffer: {
       title: "Bottle Engraving",
       subtitle: "Complimentary",
       description: "With your initials or numbers",
-      icon: "/assets/product-stellar.jpg",
+      icon: HERITAGE_IMAGES.blue,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -120,14 +131,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     currency: "USD",
     collection: "Les Parfums",
     images: [
-      { src: "/assets/product-lipstick.jpg", alt: "Us Rouge Satin Lipstick" },
-      { src: "/assets/perfume-hero.jpg", alt: "Us Rouge lifestyle" },
+      { src: HERITAGE_IMAGES.rose, alt: "Us Rouge Satin fragrance bottle" },
+      { src: HERITAGE_IMAGES.gold, alt: "Us Rouge lifestyle" },
     ],
     serviceOffer: {
       title: "Gift Wrapping",
       subtitle: "Complimentary",
       description: "Add a personal message",
-      icon: "/assets/product-lipstick.jpg",
+      icon: HERITAGE_IMAGES.rose,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -149,14 +160,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     currency: "USD",
     collection: "Les Parfums",
     images: [
-      { src: "/assets/product-palette.jpg", alt: "Us Ombres Eyeshadow Palette" },
-      { src: "/assets/perfume-lifestyle.jpg", alt: "Us Ombres lifestyle" },
+      { src: HERITAGE_IMAGES.silver, alt: "Us Ombres fragrance bottle" },
+      { src: HERITAGE_IMAGES.goldAlt, alt: "Us Ombres lifestyle" },
     ],
     serviceOffer: {
       title: "Gift Wrapping",
       subtitle: "Complimentary",
       description: "Add a personal message",
-      icon: "/assets/product-palette.jpg",
+      icon: HERITAGE_IMAGES.silver,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -181,14 +192,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     collection: "Azur",
     badge: "NEW",
     images: [
-      { src: "/assets/perfume-lifestyle.jpg", alt: "Azur Coast perfume bottle" },
-      { src: "/assets/perfume-hero.jpg", alt: "Azur Coast lifestyle" },
+      { src: HERITAGE_IMAGES.fullGhorm, alt: "Azur Coast perfume bottle" },
+      { src: HERITAGE_IMAGES.gold, alt: "Azur Coast lifestyle" },
     ],
     serviceOffer: {
       title: "Bottle Engraving",
       subtitle: "Complimentary",
       description: "With your initials or numbers",
-      icon: "/assets/perfume-thumb.png",
+      icon: HERITAGE_IMAGES.fullGhorm,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -211,14 +222,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     collection: "Azur",
     badge: "ICON",
     images: [
-      { src: "/assets/perfume-detail.jpg", alt: "Ciel d'Azur perfume bottle" },
-      { src: "/assets/perfume-lifestyle.jpg", alt: "Ciel d'Azur lifestyle" },
+      { src: HERITAGE_IMAGES.lavender, alt: "Ciel d'Azur perfume bottle" },
+      { src: HERITAGE_IMAGES.goldAlt, alt: "Ciel d'Azur lifestyle" },
     ],
     serviceOffer: {
       title: "Bottle Engraving",
       subtitle: "Complimentary",
       description: "With your initials or numbers",
-      icon: "/assets/perfume-thumb.png",
+      icon: HERITAGE_IMAGES.lavender,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -240,14 +251,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     currency: "USD",
     collection: "Azur",
     images: [
-      { src: "/assets/product-stellar.jpg", alt: "Azur Night perfume bottle" },
-      { src: "/assets/perfume-detail.jpg", alt: "Azur Night lifestyle" },
+      { src: HERITAGE_IMAGES.blue, alt: "Azur Night perfume bottle" },
+      { src: HERITAGE_IMAGES.badBloodHero, alt: "Azur Night lifestyle" },
     ],
     serviceOffer: {
       title: "Bottle Engraving",
       subtitle: "Complimentary",
       description: "With your initials or numbers",
-      icon: "/assets/perfume-thumb.png",
+      icon: HERITAGE_IMAGES.blue,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -269,14 +280,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     currency: "USD",
     collection: "Azur",
     images: [
-      { src: "/assets/product-symphony.jpg", alt: "Azur Bloom perfume bottle" },
-      { src: "/assets/perfume-hero.jpg", alt: "Azur Bloom lifestyle" },
+      { src: HERITAGE_IMAGES.rose, alt: "Azur Bloom perfume bottle" },
+      { src: HERITAGE_IMAGES.gold, alt: "Azur Bloom lifestyle" },
     ],
     serviceOffer: {
       title: "Bottle Engraving",
       subtitle: "Complimentary",
       description: "With your initials or numbers",
-      icon: "/assets/perfume-thumb.png",
+      icon: HERITAGE_IMAGES.rose,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -301,14 +312,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     collection: "Bags",
     badge: "NEW",
     images: [
-      { src: "/assets/perfume-lifestyle.jpg", alt: "Hobo MM bag" },
-      { src: "/assets/perfume-detail.jpg", alt: "Hobo MM detail" },
+      { src: HERITAGE_IMAGES.gold, alt: "Hobo MM bag" },
+      { src: HERITAGE_IMAGES.fullGhorm, alt: "Hobo MM detail" },
     ],
     serviceOffer: {
       title: "Complimentary Gift Wrapping",
       subtitle: "Complimentary",
       description: "Add a personal message",
-      icon: "/assets/perfume-thumb.png",
+      icon: HERITAGE_IMAGES.fullGhorm,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -331,14 +342,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     collection: "Bags",
     badge: "NEW",
     images: [
-      { src: "/assets/perfume-detail.jpg", alt: "All In BB bag" },
-      { src: "/assets/perfume-hero.jpg", alt: "All In BB lifestyle" },
+      { src: HERITAGE_IMAGES.fullGhorm, alt: "All In BB bag" },
+      { src: HERITAGE_IMAGES.badBloodHero, alt: "All In BB lifestyle" },
     ],
     serviceOffer: {
       title: "Complimentary Gift Wrapping",
       subtitle: "Complimentary",
       description: "Add a personal message",
-      icon: "/assets/perfume-thumb.png",
+      icon: HERITAGE_IMAGES.fullGhorm,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -361,14 +372,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     collection: "Bags",
     badge: "ICON",
     images: [
-      { src: "/assets/perfume-hero.jpg", alt: "Neverfull GM bag" },
-      { src: "/assets/perfume-lifestyle.jpg", alt: "Neverfull GM lifestyle" },
+      { src: HERITAGE_IMAGES.badBloodHero, alt: "Neverfull GM bag" },
+      { src: HERITAGE_IMAGES.gold, alt: "Neverfull GM lifestyle" },
     ],
     serviceOffer: {
       title: "Complimentary Gift Wrapping",
       subtitle: "Complimentary",
       description: "Add a personal message",
-      icon: "/assets/perfume-thumb.png",
+      icon: HERITAGE_IMAGES.badBloodHero,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
@@ -391,14 +402,14 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     collection: "Bags",
     badge: "NEW",
     images: [
-      { src: "/assets/product-symphony.jpg", alt: "Express MM bag" },
-      { src: "/assets/perfume-lifestyle.jpg", alt: "Express MM lifestyle" },
+      { src: HERITAGE_IMAGES.lavender, alt: "Express MM bag" },
+      { src: HERITAGE_IMAGES.goldAlt, alt: "Express MM lifestyle" },
     ],
     serviceOffer: {
       title: "Complimentary Gift Wrapping",
       subtitle: "Complimentary",
       description: "Add a personal message",
-      icon: "/assets/perfume-thumb.png",
+      icon: HERITAGE_IMAGES.lavender,
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",

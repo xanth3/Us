@@ -15,7 +15,7 @@ export default function AllPerfumesPage() {
     {
       name: "Les Parfums",
       description: "The signature Us fragrance collection.",
-      heroImage: "/assets/perfume-hero.jpg",
+      heroImage: "/assets/heritage/fames-bad-blood-hero.png",
       heroTitle: "Fantasmagory, the Art of Illusion",
       heroSubtitle:
         "Ethereal and captivating, Fantasmagory conjures the mystery of light dancing on water. A luminous floral-woody fragrance that transcends the ordinary.",
@@ -24,7 +24,7 @@ export default function AllPerfumesPage() {
     {
       name: "Azur",
       description: "Inspired by the endless blue of the Mediterranean.",
-      heroImage: "/assets/perfume-lifestyle.jpg",
+      heroImage: "/assets/heritage/fames-product-gold.png",
       heroTitle: "Azur, the Spirit of the Sea",
       heroSubtitle:
         "Fresh and boundless, the Azur collection captures the brilliance of sun-drenched coastlines and the salt-kissed breeze of the Mediterranean.",
