@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { X, Eye, EyeOff } from "./icons";
 import { useCart } from "./CartProvider";
-import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 // ── Google logo SVG ───────────────────────────────────────────────────────────
 function GoogleLogo() {
@@ -60,14 +59,10 @@ export function AccountDrawer() {
   }, [accountDrawerOpen]);
 
   // Instantiated lazily inside handlers — never runs during SSR/SSG
-  const getSupabase = () => createSupabaseBrowserClient();
 
   const handleGoogleSignIn = async () => {
     setLoading(true);
-    await getSupabase().auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
-    });
+    setError("Account sign-in is mocked for this preview.");
     setLoading(false);
   };
 
@@ -75,9 +70,7 @@ export function AccountDrawer() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    const { error } = await getSupabase().auth.signInWithPassword({ email, password });
-    if (error) setError(error.message);
-    else setAccountDrawerOpen(false);
+    setError("Account sign-in is mocked for this preview.");
     setLoading(false);
   };
 
@@ -85,7 +78,6 @@ export function AccountDrawer() {
     if (!email) { setError("Enter your email address first."); return; }
     setLoading(true);
     setError(null);
-    await getSupabase().auth.signInWithOtp({ email });
     setMagicLinkSent(true);
     setLoading(false);
   };
@@ -236,10 +228,10 @@ export function AccountDrawer() {
           <section className="pb-10">
             <p className="mb-2 text-sm font-light">I do not have an account.</p>
             <p className="mb-6 text-[0.75rem] leading-relaxed text-muted-foreground">
-              Access your MyXA account to discover your wishlist and order history.
+              Access your FAMES account to discover your wishlist and order history.
             </p>
             <button className="flex w-full items-center justify-center rounded-full border border-foreground px-6 py-3 text-sm tracking-wide transition-opacity hover:opacity-70">
-              Create a MyXA Account
+              Create a FAMES Account
             </button>
           </section>
         </div>

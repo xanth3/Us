@@ -1,22 +1,13 @@
 import Link from "next/link";
-import { CATALOG, MENS_READY_TO_WEAR_SLUGS, NEW_BAGS_FOR_HER_SLUGS } from "@/lib/catalog";
-import { formatPrice } from "@/lib/format";
+import { CATALOG, MENS_READY_TO_WEAR_SLUGS } from "@/lib/catalog";
 import { ProductCardGrid } from "@/components/ProductCardGrid";
-import { WishlistButton } from "@/components/WishlistButton";
 
 const CATEGORIES = [
-  { label: "Women's Bags",                href: "/", img: "/assets/heritage/fames-product-gold.png" },
-  { label: "Women's Small Leather Goods", href: "/", img: "/assets/heritage/fames-full-ghorm-clear.png" },
-  { label: "Women's Accessories",         href: "/", img: "/assets/heritage/fames-silver.png" },
-  { label: "Women's Shoes",               href: "/", img: "/assets/heritage/fames-blue.png" },
-  { label: "Men's Bags",                  href: "/", img: "/assets/heritage/fames-lavender.png" },
-  { label: "Men's Small Leather Goods",   href: "/", img: "/assets/heritage/fames-rose.png" },
-  { label: "Men's Shoes",                 href: "/", img: "/assets/heritage/fames-bad-blood-hero.png" },
-  { label: "Perfumes",                    href: "/perfumes", img: "/assets/heritage/fames-full-ghorm-clear.png" },
+  { label: "Perfumes", href: "/perfumes", img: "/assets/heritage/fames-full-ghorm-clear.png" },
+  { label: "Men's Ready to Wear", href: "#mens-ready-to-wear", img: "/assets/outerwear/fames-black-hoodie.png" },
 ];
 
 export default function HomePage() {
-  const bags = NEW_BAGS_FOR_HER_SLUGS.map((s) => CATALOG[s]);
   const mensReadyToWear = MENS_READY_TO_WEAR_SLUGS.map((s) => CATALOG[s]);
 
   return (
@@ -88,7 +79,7 @@ export default function HomePage() {
         >
           Men&apos;s Ready to Wear
         </h2>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4">
+        <div className="mx-auto grid max-w-3xl grid-cols-2 gap-x-4 gap-y-8">
           {mensReadyToWear.map((product, index) => (
             <ProductCardGrid
               key={product.slug}
@@ -100,61 +91,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="px-8 pb-16">
-        <h2
-          className="mb-10 text-center text-2xl font-light"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          New Bags for Her
-        </h2>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4">
-          {bags.map((product) => (
-            <Link
-              key={product.slug}
-              href={`/products/${product.slug}`}
-              className="group relative flex flex-col"
-            >
-              {/* Wishlist */}
-              <div className="absolute right-0 top-0 z-10">
-                <WishlistButton
-                  slug={product.slug}
-                  productName={product.name}
-                  productImage={product.images[0]?.src}
-                />
-              </div>
-
-              {/* Image */}
-              <div className="aspect-[3/4] overflow-hidden bg-secondary">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={product.images[0].src}
-                  alt={product.images[0].alt}
-                  className="h-full w-full cursor-grab object-cover transition-transform duration-500 active:cursor-grabbing group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Info */}
-              <div className="mt-3">
-                <p className="text-sm tracking-wide">{product.name}</p>
-                <p className="mt-0.5 text-sm text-muted-foreground">
-                  {formatPrice(product.price, product.currency)}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Shop Now pill button */}
-        <div className="mt-10 flex justify-center">
-          <Link
-            href="/perfumes"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-primary px-8 py-2.5 text-xs tracking-widest transition-colors hover:bg-primary hover:text-primary-foreground active:opacity-80"
-          >
-            Shop Now
-          </Link>
-        </div>
-      </section>
     </>
   );
 }

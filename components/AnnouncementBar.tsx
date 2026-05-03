@@ -11,7 +11,7 @@ export function AnnouncementBar() {
     <div className="announcement-bar relative flex items-center justify-center px-4 py-2.5">
       <p className="text-center">
         New In: Flight Mode Collection.{" "}
-        <a href="#" className="underline underline-offset-2 transition-opacity hover:opacity-70">
+        <a href="/perfumes" className="underline underline-offset-2 transition-opacity hover:opacity-70">
           Shop Now
         </a>
         .

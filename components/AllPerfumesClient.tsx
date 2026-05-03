@@ -158,7 +158,7 @@ export function AllPerfumesClient({ sections }: Props) {
                   <p className="mt-3 text-sm leading-relaxed opacity-90">{section.heroSubtitle}</p>
                 )}
                 <a
-                  href="#"
+                  href="#products"
                   className="mt-5 w-fit border-b border-white/60 pb-0.5 text-xs tracking-[0.15em] uppercase transition-opacity hover:opacity-70"
                 >
                   Discover More
@@ -167,7 +167,7 @@ export function AllPerfumesClient({ sections }: Props) {
             </div>
 
             {/* Edge-to-edge product grid */}
-            <div className="grid grid-cols-2 gap-0 sm:grid-cols-4">
+            <div id={idx === 0 ? "products" : undefined} className="grid grid-cols-2 gap-0 sm:grid-cols-4">
               {section.products.slice(0, visible).map((product, index) => (
                 <ProductCardGrid key={product.slug} product={product} isFirst={index === 0} />
               ))}

@@ -5,7 +5,7 @@ import { Heart } from "./icons";
 import { useToast } from "./ToastProvider";
 import { useHaptics } from "@/hooks/use-haptics";
 
-const STORAGE_KEY = "us_wishlist";
+const STORAGE_KEY = "fames_wishlist";
 
 function getWishlist(): string[] {
   try {

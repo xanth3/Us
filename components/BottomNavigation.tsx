@@ -2,14 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, ShoppingBag, Heart, User } from "./icons";
+import { Home, ShoppingBag, Heart } from "./icons";
 import { useCart } from "./CartProvider";
 
 const NAV_ITEMS = [
   { href: "/", label: "Home", icon: Home },
   { href: "/perfumes", label: "Shop", icon: ShoppingBag },
   { href: "/wishlist", label: "Wishlist", icon: Heart },
-  { href: "/account", label: "Account", icon: User },
 ];
 
 export function BottomNavigation() {

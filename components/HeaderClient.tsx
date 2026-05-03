@@ -117,7 +117,7 @@ export function HeaderClient() {
           {/* Right */}
           <div className="flex items-center gap-5">
             <a
-              href="#"
+              href="mailto:care@fames.com"
               className={`hidden text-sm font-normal tracking-[0.05em] transition-all hover:opacity-70 active:opacity-80 sm:inline ${
                 scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}

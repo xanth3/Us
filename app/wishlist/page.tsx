@@ -6,7 +6,7 @@ import { CATALOG } from "@/lib/catalog";
 import type { Product } from "@/types/product";
 import { ProductCardGrid } from "@/components/ProductCardGrid";
 
-const WISHLIST_STORAGE_KEY = "us_wishlist";
+const WISHLIST_STORAGE_KEY = "fames_wishlist";
 const RECENTLY_VIEWED_STORAGE_KEY = "us_recently_viewed";
 
 function getWishlisted(): string[] {
