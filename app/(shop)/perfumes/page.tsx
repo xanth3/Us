@@ -4,7 +4,7 @@ import { AllPerfumesClient } from "@/components/AllPerfumesClient";
 
 export const metadata: Metadata = {
   title: "All Perfumes",
-  description: "Explore the full Us perfume collection — personalizable, refillable luxury fragrances.",
+  description: "Explore the full FAMES perfume collection — personalizable, refillable luxury fragrances.",
 };
 
 export default function AllPerfumesPage() {
@@ -14,7 +14,7 @@ export default function AllPerfumesPage() {
   const sections = [
     {
       name: "Les Parfums",
-      description: "The signature Us fragrance collection.",
+      description: "The signature FAMES fragrance collection.",
       heroImage: "/assets/heritage/fames-bad-blood-hero.png",
       heroTitle: "Fantasmagory, the Art of Illusion",
       heroSubtitle:

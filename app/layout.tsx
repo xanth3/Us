@@ -10,15 +10,15 @@ import { GesturesClient } from "@/components/GesturesClient";
 
 export const metadata: Metadata = {
   title: {
-    default: "Us — Luxury Beauty & Fragrance",
-    template: "%s | Us",
+    default: "FAMES - Luxury Beauty & Fragrance",
+    template: "%s | FAMES",
   },
-  description: "Discover the Us collection of luxury fragrances, makeup, and skincare.",
+  description: "Discover the FAMES collection of luxury fragrances, ready to wear, and accessories.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Us",
+    title: "FAMES",
     startupImage: "/assets/splash-screen.png",
   },
   formatDetection: {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
-    "apple-mobile-web-app-title": "Us",
+    "apple-mobile-web-app-title": "FAMES",
     "theme-color": "#000000",
   },
 };

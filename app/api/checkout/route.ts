@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
     const session = await createCheckoutSession({
-      productName: body.productName ?? "Us Product",
+      productName: body.productName ?? "FAMES Product",
       priceAmount: body.priceAmount ?? 59500, // $595.00 in cents
       currency: body.currency ?? "usd",
       successUrl: `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,

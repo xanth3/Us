@@ -157,7 +157,7 @@ const NAV_ITEMS: NavItem[] = [
     },
   },
   {
-    label: "The Maison Us",
+    label: "The Maison FAMES",
     href: "/",
     submenu: {
       featured: [
@@ -213,7 +213,7 @@ export function MenuDrawer({ open, onClose }: Props) {
         href="tel:+18006600"
         className="mt-0.5 block text-[0.8rem] font-medium tracking-wide transition-opacity hover:opacity-70 active:opacity-80"
       >
-        +1 800 US-BRAND
+        +1 800 FAMES
       </a>
       <div className="my-5 border-t border-border" />
       <ul>

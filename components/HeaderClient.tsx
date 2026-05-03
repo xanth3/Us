@@ -111,7 +111,7 @@ export function HeaderClient() {
             href="/"
             className={`transition-all ${scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"}`}
           >
-            <BrandLogo />
+            <BrandLogo variant="navbar" inverted={!scrolled} />
           </Link>
 
           {/* Right */}
@@ -122,7 +122,7 @@ export function HeaderClient() {
                 scrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
               }`}
             >
-              Contact Us
+              Contact FAMES
             </a>
             <Link
               href="/wishlist"

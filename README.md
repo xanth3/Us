@@ -1,6 +1,6 @@
-# Us — Luxury Beauty & Fragrance
+# FAMES - Luxury Beauty & Fragrance
 
-Next.js 14 App Router e-commerce scaffold for the Us (Xanthe) brand.
+Next.js 14 App Router e-commerce scaffold for the FAMES brand.
 
 ## Prerequisites
 

@@ -11,12 +11,18 @@ const HERITAGE_IMAGES = {
   silver: "/assets/heritage/fames-silver.png",
 } as const;
 
+const OUTERWEAR_IMAGES = {
+  tee: "/assets/outerwear/fames-cross-tee.webp",
+  blackHoodie: "/assets/outerwear/fames-black-hoodie.png",
+  whiteCrewneck: "/assets/outerwear/fames-white-crewneck.png",
+} as const;
+
 export const CATALOG_SLUGS = [
   "fantasmagory",
   "symphony",
   "stellar-times",
-  "us-rouge-lipstick",
-  "us-ombres-palette",
+  "fames-rouge-lipstick",
+  "fames-ombres-palette",
   // Azur collection
   "azur-coast",
   "ciel-d-azur",
@@ -27,6 +33,8 @@ export const CATALOG_SLUGS = [
   "all-in-bb",
   "neverfull-gm",
   "express-mm",
+  // Men's Ready to Wear
+  "fames-outerwear",
 ] as const;
 
 export type CatalogSlug = (typeof CATALOG_SLUGS)[number];
@@ -53,12 +61,12 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Complimentary Standard Delivery on all orders. Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available at checkout.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Complimentary Standard Delivery on all orders. Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available at checkout.", indicator: "+" },
     ],
   },
 
@@ -83,12 +91,12 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 
@@ -113,26 +121,26 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 
-  "us-rouge-lipstick": {
-    slug: "us-rouge-lipstick",
+  "fames-rouge-lipstick": {
+    slug: "fames-rouge-lipstick",
     ref: "LP0312",
     kicker: "Bestseller",
-    name: "Us Rouge — Satin Lipstick",
+    name: "FAMES Rouge — Satin Lipstick",
     price: 160.0,
     currency: "USD",
     collection: "Les Parfums",
     images: [
-      { src: HERITAGE_IMAGES.rose, alt: "Us Rouge Satin fragrance bottle" },
-      { src: HERITAGE_IMAGES.gold, alt: "Us Rouge lifestyle" },
+      { src: HERITAGE_IMAGES.rose, alt: "FAMES Rouge Satin fragrance bottle" },
+      { src: HERITAGE_IMAGES.gold, alt: "FAMES Rouge lifestyle" },
     ],
     serviceOffer: {
       title: "Gift Wrapping",
@@ -142,26 +150,26 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 
-  "us-ombres-palette": {
-    slug: "us-ombres-palette",
+  "fames-ombres-palette": {
+    slug: "fames-ombres-palette",
     ref: "LP0517",
     kicker: "Collector's Edition",
-    name: "Us Ombres — Eyeshadow Palette",
+    name: "FAMES Ombres — Eyeshadow Palette",
     price: 250.0,
     currency: "USD",
     collection: "Les Parfums",
     images: [
-      { src: HERITAGE_IMAGES.silver, alt: "Us Ombres fragrance bottle" },
-      { src: HERITAGE_IMAGES.goldAlt, alt: "Us Ombres lifestyle" },
+      { src: HERITAGE_IMAGES.silver, alt: "FAMES Ombres fragrance bottle" },
+      { src: HERITAGE_IMAGES.goldAlt, alt: "FAMES Ombres lifestyle" },
     ],
     serviceOffer: {
       title: "Gift Wrapping",
@@ -171,12 +179,12 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 
@@ -203,12 +211,12 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 
@@ -233,12 +241,12 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 
@@ -262,12 +270,12 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 
@@ -291,12 +299,12 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 
@@ -323,12 +331,12 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 
@@ -353,12 +361,12 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 
@@ -383,12 +391,12 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 
@@ -413,12 +421,43 @@ export const CATALOG: Record<CatalogSlug, Product> = {
     },
     deliveryCopy: [
       "Complimentary Standard Delivery or Collect-in-Store.",
-      "Available exclusively on us.com and in selected Us stores.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
     ],
     faqs: [
-      { title: "Find in Store", content: "Use our store locator to find the nearest Us boutique.", indicator: "+" },
-      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "›" },
-      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "›" },
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
+    ],
+  },
+
+  "fames-outerwear": {
+    slug: "fames-outerwear",
+    ref: "RTW0101",
+    kicker: "Men's Ready to Wear",
+    name: "Fames Outerwear",
+    price: 1295.0,
+    currency: "USD",
+    collection: "Men's Ready to Wear",
+    badge: "NEW",
+    images: [
+      { src: OUTERWEAR_IMAGES.blackHoodie, alt: "Fames black graphic hoodie" },
+      { src: OUTERWEAR_IMAGES.whiteCrewneck, alt: "Fames white graphic crewneck" },
+      { src: OUTERWEAR_IMAGES.tee, alt: "Fames cross tee" },
+    ],
+    serviceOffer: {
+      title: "Complimentary Gift Wrapping",
+      subtitle: "Complimentary",
+      description: "Add a personal message",
+      icon: OUTERWEAR_IMAGES.blackHoodie,
+    },
+    deliveryCopy: [
+      "Complimentary Standard Delivery or Collect-in-Store.",
+      "Available exclusively on fames.com and in selected FAMES stores.",
+    ],
+    faqs: [
+      { title: "Find in Store", content: "Use our store locator to find the nearest FAMES boutique.", indicator: "+" },
+      { title: "Delivery & Returns", content: "Free returns within 30 days.", indicator: "+" },
+      { title: "Gifting", content: "Complimentary gift wrapping available.", indicator: "+" },
     ],
   },
 };
@@ -429,8 +468,8 @@ export const ALL_PRODUCTS = Object.values(CATALOG);
 export const FANTASMAGORY_RECS: CatalogSlug[] = [
   "symphony",
   "stellar-times",
-  "us-rouge-lipstick",
-  "us-ombres-palette",
+  "fames-rouge-lipstick",
+  "fames-ombres-palette",
 ];
 
 /** Featured slugs for homepage */
@@ -438,7 +477,7 @@ export const FEATURED_SLUGS: CatalogSlug[] = [
   "fantasmagory",
   "symphony",
   "stellar-times",
-  "us-rouge-lipstick",
+  "fames-rouge-lipstick",
 ];
 
 /** Slugs for "Les Parfums" collection */
@@ -446,8 +485,8 @@ export const LES_PARFUMS_SLUGS: CatalogSlug[] = [
   "fantasmagory",
   "symphony",
   "stellar-times",
-  "us-rouge-lipstick",
-  "us-ombres-palette",
+  "fames-rouge-lipstick",
+  "fames-ombres-palette",
 ];
 
 /** Slugs for "Azur" collection */
@@ -464,4 +503,9 @@ export const NEW_BAGS_FOR_HER_SLUGS: CatalogSlug[] = [
   "all-in-bb",
   "neverfull-gm",
   "express-mm",
+];
+
+/** Slugs for Men's Ready to Wear homepage section */
+export const MENS_READY_TO_WEAR_SLUGS: CatalogSlug[] = [
+  "fames-outerwear",
 ];

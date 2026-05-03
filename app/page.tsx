@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { CATALOG, NEW_BAGS_FOR_HER_SLUGS } from "@/lib/catalog";
+import { CATALOG, MENS_READY_TO_WEAR_SLUGS, NEW_BAGS_FOR_HER_SLUGS } from "@/lib/catalog";
 import { formatPrice } from "@/lib/format";
+import { ProductCardGrid } from "@/components/ProductCardGrid";
 import { WishlistButton } from "@/components/WishlistButton";
 
 const CATEGORIES = [
@@ -16,6 +17,7 @@ const CATEGORIES = [
 
 export default function HomePage() {
   const bags = NEW_BAGS_FOR_HER_SLUGS.map((s) => CATALOG[s]);
+  const mensReadyToWear = MENS_READY_TO_WEAR_SLUGS.map((s) => CATALOG[s]);
 
   return (
     <>
@@ -79,6 +81,25 @@ export default function HomePage() {
       </section>
 
       {/* ── New Bags for Her ─────────────────────────────────────────────────── */}
+      <section id="mens-ready-to-wear" className="px-8 pb-16">
+        <h2
+          className="mb-10 text-center text-2xl font-light"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          Men&apos;s Ready to Wear
+        </h2>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4">
+          {mensReadyToWear.map((product, index) => (
+            <ProductCardGrid
+              key={product.slug}
+              product={product}
+              isFirst={index === 0}
+              overlayInfoOnHover
+            />
+          ))}
+        </div>
+      </section>
+
       <section className="px-8 pb-16">
         <h2
           className="mb-10 text-center text-2xl font-light"

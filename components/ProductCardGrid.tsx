@@ -10,9 +10,10 @@ import { DragLiftLink } from "./DragLiftLink";
 interface Props {
   product: Product;
   isFirst?: boolean;
+  overlayInfoOnHover?: boolean;
 }
 
-export function ProductCardGrid({ product, isFirst = false }: Props) {
+export function ProductCardGrid({ product, isFirst = false, overlayInfoOnHover = false }: Props) {
   const [hovered, setHovered] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
 
@@ -29,7 +30,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
   };
 
   const handleDragEnd = ({ x, y }: { x: number; y: number }) => {
-    if (product.images.length < 2 || Math.abs(x) < 36 || Math.abs(x) <= Math.abs(y)) return;
+    if (!isFirst || product.images.length < 2 || Math.abs(x) < 36 || Math.abs(x) <= Math.abs(y)) return;
     setImgIndex((i) => {
       if (x > 0) return i === 0 ? product.images.length - 1 : i - 1;
       return i === product.images.length - 1 ? 0 : i + 1;
@@ -54,10 +55,14 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
     >
       {/* Card dimensions */}
       <div className="aspect-[9/14] w-full sm:aspect-[3/4]" />
-      <div className="h-[60px] sm:h-[72px]" />
+      {!overlayInfoOnHover && <div className="h-[60px] sm:h-[72px]" />}
 
       {/* ── Image layer ─────────────────────────────────────────── */}
-      <div className="absolute inset-x-0 top-0 h-[calc(100%-60px)] sm:h-[calc(100%-72px)] overflow-hidden bg-[hsl(var(--secondary))]">
+      <div
+        className={`absolute inset-x-0 top-0 overflow-hidden bg-[hsl(var(--secondary))] ${
+          overlayInfoOnHover ? "bottom-0" : "h-[calc(100%-60px)] sm:h-[calc(100%-72px)]"
+        }`}
+      >
         {/* Quick-view */}
         <div className="absolute left-3 top-3 z-10 hidden sm:block opacity-0 transition-opacity duration-200 group-hover:opacity-100">
           <Maximize2 size={15} className="text-foreground drop-shadow-sm" />
@@ -90,16 +95,20 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
         {isFirst && hovered && product.images.length > 1 && (
           <>
             <button
+              type="button"
               onClick={prev}
+              onPointerDown={(event) => event.stopPropagation()}
               aria-label="Previous image"
-              className="absolute left-2 top-1/2 z-10 hidden sm:flex -translate-y-1/2 p-1 text-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100 hover:opacity-60"
+              className="absolute inset-y-0 left-0 z-20 hidden w-[22%] cursor-w-resize items-center justify-start px-2 text-foreground opacity-0 transition-opacity duration-200 hover:opacity-60 group-hover:opacity-100 sm:flex"
             >
               <ChevronLeft size={16} strokeWidth={1.5} />
             </button>
             <button
+              type="button"
               onClick={next}
+              onPointerDown={(event) => event.stopPropagation()}
               aria-label="Next image"
-              className="absolute right-2 top-1/2 z-10 hidden sm:flex -translate-y-1/2 p-1 text-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100 hover:opacity-60"
+              className="absolute inset-y-0 right-0 z-20 hidden w-[22%] cursor-e-resize items-center justify-end px-2 text-foreground opacity-0 transition-opacity duration-200 hover:opacity-60 group-hover:opacity-100 sm:flex"
             >
               <ChevronRight size={16} strokeWidth={1.5} />
             </button>
@@ -119,9 +128,30 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
             ))}
           </div>
         )}
+
+        {overlayInfoOnHover && (
+          <div
+            className={`pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/55 via-black/20 to-transparent px-3 pb-3 pt-12 text-white transition-opacity duration-300 ${
+              hovered ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {product.kicker && (
+              <p className="text-[0.6rem] uppercase tracking-[0.12em] text-white/75">
+                {product.kicker}
+              </p>
+            )}
+            <p className="mt-0.5 text-[0.72rem] font-medium tracking-wide">
+              {product.name}
+            </p>
+            <p className="mt-0.5 text-[0.68rem] text-white/90">
+              From {formatPrice(product.price, product.currency)}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* ── Text layer — transparent on hover ───────────────────── */}
+      {!overlayInfoOnHover && (
       <div className={`absolute inset-x-0 bottom-0 px-3 py-2 sm:py-3 transition-colors duration-300 ${hovered ? "bg-transparent" : "bg-white"}`}>
         {product.kicker && (
           <p className="text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground">
@@ -135,6 +165,7 @@ export function ProductCardGrid({ product, isFirst = false }: Props) {
           From {formatPrice(product.price, product.currency)}
         </p>
       </div>
+      )}
     </DragLiftLink>
   );
 }
